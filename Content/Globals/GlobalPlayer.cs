@@ -13,23 +13,27 @@ namespace ShatteredRealm.Content.Globals
 {
     public class ShatteredPlayer : ModPlayer
     {
-    
+        //Armors
         public bool verdantSetBonus; //Verdant Armor
 
+       
+        //Permanent buffs
+        public bool ConsumedForestHeart; //Forest Heart Perm Buff
+
+        //Accessories
+        public bool verdantBoosterShot;
+        public bool rampantBoosterShot;
+        public bool PetalTrinket;
+        public bool ArdentShieldStat;
+        public bool PetalTrinketUpgrade;
+
+
+        //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
-        
+
         public int CoordinatedAttacksLushOrbs; //This is stored here so all orbs have the same variable.
         public int CoordinatedDashOrbRand; //Lush
 
-        public bool ConsumedForestHeart; //Forest Heart Perm Buff
-
-        public bool verdantBoosterShot;
-
-        public bool rampantBoosterShot;
-
-        public bool PetalTrinket;
-
-        public bool ArdentShieldStat;
 
         public override void SaveData(TagCompound tag)
         {
@@ -71,6 +75,15 @@ namespace ShatteredRealm.Content.Globals
             base.GetHealLife(item, quickHeal, ref healValue);
         }
 
+        public override void GetHealMana(Item item, bool quickHeal, ref int healValue)
+        {
+            if (PetalTrinketUpgrade)
+            {
+                healValue += 20;
+            }
+            base.GetHealMana(item, quickHeal, ref healValue);
+        }
+
         public override void PostUpdate()
         {
             AutoConsumePotion();
@@ -85,7 +98,7 @@ namespace ShatteredRealm.Content.Globals
 
             verdantBoosterShot = false;
             rampantBoosterShot = false;
-
+            PetalTrinketUpgrade = false;
             ArdentShieldStat = false;
 
             base.ResetEffects();
