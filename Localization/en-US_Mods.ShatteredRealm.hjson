@@ -1,0 +1,259 @@
+Projectiles: {
+	StratosBaneProjectile.DisplayName: Stratus Etheria
+	StratosBaneShortswordProjectile.DisplayName: Stratos Bane Shortsword
+	StratosFireball.DisplayName: Stratos Fireball
+	StratosBaneShortswordProjectileMain.DisplayName: Stratos Bane Shortsword Projectile Main
+	FlameBall.DisplayName: Flame Ball
+	VerdantStalkThorn.DisplayName: Verdant Stalk Thorn
+	VerdantBladeProjectile.DisplayName: Verdant Blade
+	VerdantArrowProjectile.DisplayName: Verdant Arrow
+	FlowerProjectile.DisplayName: Flower Projectile
+	SporeGasFlamethrower.DisplayName: Spore Gas Flamethrower
+	VerdantStalkThornBomb.DisplayName: Verdant Stalk Thorn Bomb
+	DancingSparksProj.DisplayName: Dancing Sparks Proj
+	SporeGasCloud.DisplayName: Spore Gas Cloud
+	ArdentSparks.DisplayName: Ardent Sparks
+	HellfireRoundsProj.DisplayName: Hellfire Rounds Proj
+	VerdantRoundsProj.DisplayName: Verdant Rounds Proj
+	MagmaStaffProj.DisplayName: Magma Staff Proj
+	MagmaBoltProj.DisplayName: Magma Bolt Proj
+	MagmaBoltProj2.DisplayName: Magma Bolt Proj2
+	LightningBulletsProj.DisplayName: Lightning Bullets Proj
+	ChonkWhipProjectile.DisplayName: Chonk Whip Projectile
+}
+
+Items: {
+	StratosBane: {
+		Tooltip: A gift from the gods, forged from petrichor.
+		DisplayName: Stratus's Epiphany
+	}
+
+	VerdantBlade: {
+		DisplayName: Verdant Blade
+		Tooltip: Spawns spore gas on hit enemies
+	}
+
+	VerdantBow: {
+		DisplayName: Blossom Shortbow
+		Tooltip: Occasionally fires an exploding flower
+	}
+
+	ZenithGun: {
+		DisplayName: Apex
+		Tooltip: The one above all the rest.
+	}
+
+	SwiftTrinketofPetals: {
+		DisplayName: Vegetative Salve
+		Tooltip:
+			'''
+			Auto-consumes health potions when in inventory or equipped
+			Boosts all healing items by 20 hp when equipped
+			'''
+	}
+
+	ViperBreastplate: {
+		DisplayName: Viper Breastplate
+		Tooltip: +2.5% crit chance.
+	}
+
+	ViperHelmet: {
+		DisplayName: Viper Helmet
+		Tooltip: +6% melee damage, +10% luck.
+	}
+
+	ViperLeggings: {
+		DisplayName: Viper Leggings
+		Tooltip: +1.5% crit chance, +10% movement speed.
+	}
+
+	VerdantStaff: {
+		Tooltip:
+			'''
+			Fires several thorns at the cursor 
+			Right click to fire lifestealing thorns for a tradeoff for damage and accuracy
+			'''
+		DisplayName: Book of Thorns
+	}
+
+	PlantBurner: {
+		DisplayName: Spore Spewer
+		Tooltip: Uses jungle spores as ammo, consumes one every 25 uses
+	}
+
+	DancingSparks: {
+		DisplayName: Book of Dancing Sparks
+		Tooltip: Fires a burst of sparks
+	}
+
+	VerdantTulip: {
+		Tooltip: Summons a verdant goliath in a mysterious arena
+		DisplayName: Verdant Tulip
+	}
+
+	DarkForce: {
+		Tooltip: Fires dark bolts in sets of 2
+		DisplayName: Dark Dualshot
+	}
+
+	HeartOfTheForest: {
+		DisplayName: Heart Of The Forest
+		Tooltip: All damaging debuffs deal 33% less damage
+	}
+
+	VerdantBoosterShot: {
+		DisplayName: Plant-Based Stimulant
+		Tooltip:
+			'''
+			Consuming a health potion will drastically increase life regen
+			This effect lasts for longer depending on the potion
+			'''
+	}
+
+	RampantBoosterShot: {
+		DisplayName: Rampant Stimulant
+		Tooltip:
+			'''
+			Consuming a health potion will boost damage by 1.3x
+			Also boosts regen significantly for a short time
+			This effect lasts for longer depending on the potion
+			'''
+	}
+
+	ArdentShield: {
+		DisplayName: Shield of the Inferno
+		Tooltip:
+			'''
+			Getting hit shoots out burning sparks 
+			All attacks also inflict Hellfire for a shorter time
+			Reduces all damage by 12.5%
+			Immunity to all fire debuffs.
+			'''
+	}
+
+	HellfireRounds: {
+		DisplayName: Hellfire Rounds
+		Tooltip: Fire molten slag. Why? Who knows.
+	}
+
+	VerdantRounds: {
+		DisplayName: Verdant Rounds
+		Tooltip: Heals 1-9 HP
+	}
+
+	MagmaStaff: {
+		DisplayName: Pyroclastic Purge
+		Tooltip: Fires a stream of magma
+	}
+
+	SporeShield: {
+		DisplayName: Spore Shield
+		Tooltip: Leaves behind 4 spores when dashing
+	}
+
+	DaedalusVortex: {
+		DisplayName: Daedalus Vortex
+		Tooltip:
+			'''
+			Fires a stream of arrows from the heavens
+			1/25 arrows are replaced with stars
+			-Sponsor Item-
+			'''
+	}
+
+	LavaBolt: {
+		DisplayName: Fire Bolt
+		Tooltip:
+			'''
+			Fires bouncing fireballs
+			Occasionally fires blue fireballs
+			'''
+	}
+
+	RazzLeggings: {
+		DisplayName: RazZ's Greaves
+		Tooltip:
+			'''
+			It came from another realm...
+			-Sponsor Item-
+			'''
+	}
+
+	RazzBreastplate: {
+		DisplayName: RazZ's Chestplate
+		Tooltip:
+			'''
+			It came from another realm...
+			-Sponsor Item-
+			'''
+	}
+
+	RazzHelmet: {
+		DisplayName: RazZ's Helm
+		Tooltip:
+			'''
+			It came from another realm...
+			-Sponsor Item-
+			'''
+	}
+
+	LightningBullets: {
+		Tooltip: ""
+		DisplayName: Lightning Bullets
+	}
+
+	RazzWings: {
+		Tooltip:
+			'''
+			Flight Time : 190
+			Flight Speed : 3.5
+			It came from another realm...
+			-Sponsor Item-
+			'''
+		DisplayName: RazZ's Wings
+	}
+
+	ChonkWhip: {
+		DisplayName: Chonk Whip
+		Tooltip:
+			'''
+			9 summon tag damage
+			A hamster attached to the end of a whip.
+			..who thought of this?
+			-Sponsor Item-
+			'''
+	}
+
+	Firebird: {
+		DisplayName: Firebird
+		Tooltip: ""
+	}
+}
+
+NPCs: {
+	Ardent.DisplayName: Ardent
+	VerdantOrb.DisplayName: Verdant Orb
+	Lush.DisplayName: Lush
+}
+
+Buffs: {
+	BoosterShot: {
+		DisplayName: Vegatative Stimulant
+		Description: Healing life rapidly
+	}
+
+	RampantShot: {
+		DisplayName: Rampant Stimulant
+		Description: Damaged boosted by 1.35x
+	}
+
+	LethalInjectionDebuff: {
+		DisplayName: Lethal Injection Debuff
+		Description: Mods.ShatteredRealm.Buffs.LethalInjectionDebuff.Description
+	}
+
+	ChonkWhipDebuff: {
+		DisplayName: Chonk Whip Debuff
+		Description: Mods.ShatteredRealm.Buffs.ChonkWhipDebuff.Description
+	}
+}
