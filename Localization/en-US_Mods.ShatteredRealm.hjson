@@ -225,8 +225,8 @@ Items: {
 	}
 
 	Firebird: {
-		DisplayName: Firebird
-		Tooltip: ""
+		DisplayName: Helbird
+		Tooltip: "Fires 2-3 bullets in a small spread"
 	}
 }
 
