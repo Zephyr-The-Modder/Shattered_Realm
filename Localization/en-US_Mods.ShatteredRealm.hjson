@@ -30,17 +30,17 @@ Items: {
 
 	VerdantBlade: {
 		DisplayName: Verdant Blade
-		Tooltip: Spawns spore gas on hit enemies
+		Tooltip: Spore clouds spawn on hit enemies.
 	}
 
 	VerdantBow: {
 		DisplayName: Blossom Shortbow
-		Tooltip: Occasionally fires an exploding flower
+		Tooltip: Occasionally shoots exploding flowers
 	}
 
 	ZenithGun: {
 		DisplayName: Apex
-		Tooltip: The one above all the rest.
+		Tooltip: The culmination of America.
 	}
 
 	SwiftTrinketofPetals: {
@@ -54,17 +54,23 @@ Items: {
 
 	ViperBreastplate: {
 		DisplayName: Viper Breastplate
-		Tooltip: +2.5% crit chance.
+		Tooltip: +2.5% crit chance
 	}
 
 	ViperHelmet: {
 		DisplayName: Viper Helmet
-		Tooltip: +6% melee damage, +10% luck.
+		Tooltip: '''
+		+6% melee damage
+		+10% luck
+		'''
 	}
 
 	ViperLeggings: {
 		DisplayName: Viper Leggings
-		Tooltip: +1.5% crit chance, +10% movement speed.
+		Tooltip: '''
+		+1.5% crit chance
+		+10% movement speed
+		'''
 	}
 
 	VerdantStaff: {
