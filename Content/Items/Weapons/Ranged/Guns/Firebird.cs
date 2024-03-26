@@ -18,8 +18,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			// Modders can use Item.DefaultToRangedWeapon to quickly set many common properties, such as: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
 
 			// Common Properties
-			Item.width = 34; // Hitbox width of the item.
-			Item.height = 14; // Hitbox height of the item.
+			Item.width = 36; // Hitbox width of the item.
+			Item.height = 23; // Hitbox height of the item.
 			Item.rare = ItemRarityID.Yellow; // The color that the item's name will be in-game.
 
 			// Use Properties

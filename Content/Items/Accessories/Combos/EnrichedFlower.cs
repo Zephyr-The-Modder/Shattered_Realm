@@ -30,7 +30,10 @@ namespace ShatteredRealm.Content.Items.Accessories.Combos
                     player.QuickHeal();
                 }
             }
-
+            if (player.statMana <= player.statManaMax2 / 20)
+            {
+                player.QuickMana();
+            }
             player.manaCost *= 0.92f; // Mana flower effects
             player.manaFlower = true;
         }

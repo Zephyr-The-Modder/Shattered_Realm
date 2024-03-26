@@ -11,6 +11,7 @@ using ShatteredRealm.Content.Items.Accessories.AccessoryProjectiles;
 using ShatteredRealm.Content.Items.Accessories.Ardent;
 using Terraria.Localization;
 using Terraria.UI;
+using ShatteredRealm.Content.Items.Accessories.Combos;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -218,6 +219,13 @@ namespace ShatteredRealm.Content.Globals
                         Player.QuickHeal();
                     }
                 }
+            }
+            if (Main.LocalPlayer.HasItem(ModContent.ItemType<EnrichedFlower>()))
+            {
+                 if (Player.statMana <= Player.statManaMax2 / 20)
+                 {
+                     Player.QuickMana();
+                 }
             }
         }
     }
