@@ -10,9 +10,6 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
 {
     public class ArdentShield : ModItem
     {
-        float DR = 0.67f;
-        int Durability = 115;
-        int Cooldown = 1200;
         public override void SetDefaults()
         {
             Item.width = 24;
@@ -20,24 +17,16 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.value = Item.buyPrice(0, 24, 0, 0);
             Item.rare = ItemRarityID.Yellow;
             Item.accessory = true;
-            Item.defense = 9;
+            Item.defense = 5;
+            Item.shieldItem().shield = true;
+            Item.shieldItem().absorption = 0.33f;
+            Item.shieldItem().durability = 120;
+            Item.shieldItem().cooldown = 60 * 20;
+            Item.shieldItem().shieldType = "ArdentShield";
         }
         
         public override void UpdateAccessory(Player player, bool hideVisual)
         {  
-            if (Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().ShieldDR < DR)
-            {
-                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().ShieldDR = DR;
-            }
-            if (Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxDurability < Durability)
-            {
-                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxDurability = Durability;
-            }
-            if (Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxCooldown > Cooldown)
-            {
-                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxCooldown = Cooldown;
-            }
-            Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldEquipped = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.OnFire3] = true;
             player.GetModPlayer<ShatteredPlayer>().ArdentShieldStat = true;

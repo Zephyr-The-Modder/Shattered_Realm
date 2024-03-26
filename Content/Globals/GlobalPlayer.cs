@@ -8,6 +8,9 @@ using Terraria.Audio;
 using ShatteredRealm.Content.Buffs;
 using ShatteredRealm.Content.Items.Accessories.Lush;
 using ShatteredRealm.Content.Items.Accessories.AccessoryProjectiles;
+using ShatteredRealm.Content.Items.Accessories.Ardent;
+using Terraria.Localization;
+using Terraria.UI;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -36,6 +39,8 @@ namespace ShatteredRealm.Content.Globals
         public bool firstComing = true;
         public bool secondComing = false; //This is only used in the code below
         public float ShieldDR = 0;
+        public int shieldMaxCooldownPrevious;
+        public string shieldType;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -94,28 +99,26 @@ namespace ShatteredRealm.Content.Globals
         }
         public override void PreUpdate()
         {
+            if (!shieldEquipped && shieldMaxCooldownPrevious > 0)
+            {
+                shieldMaxCooldownPrevious = 0;
+                shieldCooldown = 0;
+            }
+            if (shieldEquipped && shieldMaxCooldownPrevious == 0)
+            {
+                shieldCooldown = shieldMaxCooldown;
+            }
             if (shieldEquipped)
             {
-                if (shieldDurability > 0)
+                if (shieldCooldown == 0)
                 {
-                    Player.endurance += ShieldDR;
+                    shieldDurability = shieldMaxDurability;
                 }
-                if (shieldDurability == 0 && !secondComing)
-                {
-                    shieldCooldown = shieldMaxCooldown;
-                    secondComing = true;
-                }
-                if (secondComing == true)
-                {
-                    if (shieldCooldown == 0)
-                    {
-                        shieldDurability = shieldMaxDurability;
-                        secondComing = false;
-                    }
-                    shieldCooldown--;
-                }
-            }    
+            }
+            shieldCooldown--;
         }
+
+
         public override void PostUpdate()
         {
             AutoConsumePotion();
@@ -134,14 +137,14 @@ namespace ShatteredRealm.Content.Globals
             ArdentShieldStat = false;
             shieldEquipped = false;
             shieldMaxDurability = 0;
+            shieldMaxCooldownPrevious = shieldMaxCooldown;
             shieldMaxCooldown = 0;
-
+            shieldType = "";
             base.ResetEffects();
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
-            ShieldInfo(hurtInfo);
             if (ArdentShieldStat)
             {
                 for (int i = 0; i < 10; i++)
@@ -152,21 +155,6 @@ namespace ShatteredRealm.Content.Globals
             }
         }
 
-        public void ShieldInfo(Player.HurtInfo hurtInfo)
-        {
-            if (shieldEquipped == true)
-            {
-                if (shieldDurability >= 0)
-                {
-                    shieldDurability -= hurtInfo.Damage;
-                }
-                if (shieldDurability <= 0)
-                {
-                    shieldDurability = 0;
-                }
-            }
-
-        }
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {
             if (ArdentShieldStat)
@@ -179,6 +167,46 @@ namespace ShatteredRealm.Content.Globals
 
             }
         }
+
+
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            if (shieldEquipped && shieldDurability > 0)
+            {
+                modifiers.FinalDamage *= ShieldDR;
+            }
+        }
+        public override void OnHurt(Player.HurtInfo info)
+        {
+            if (shieldEquipped && shieldDurability > 0)
+            {
+                int preShieldDmg = (int)(info.Damage / ShieldDR);
+                int shieldDmg = preShieldDmg - info.Damage;
+                shieldDurability -= shieldDmg;
+
+                CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), Color.DarkCyan, shieldDmg);
+
+                if (shieldDurability <= 0)
+                {
+                    ShieldBreak(shieldType);
+                }
+            }
+        }
+        public void ShieldBreak(string type)
+        {
+            shieldDurability = 0;
+            shieldCooldown = shieldMaxCooldown;
+
+            switch (type)
+            {
+                case "ArdentShield":
+                    break;
+
+            }
+
+        }
+
+
         public void AutoConsumePotion()
         {
             if (Main.LocalPlayer.HasItem(ModContent.ItemType<SwiftTrinketofPetals>()))

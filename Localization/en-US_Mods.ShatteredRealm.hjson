@@ -250,7 +250,7 @@ Items: {
 }
 
 UI: {
-	Durability: DurabilityResource: {0} / {1}
+	Durability: Shields: {0}
 	DurabilityResource: Mods.ShatteredRealm.UI.DurabilityResource
 }
 
