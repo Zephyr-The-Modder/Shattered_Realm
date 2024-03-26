@@ -27,6 +27,15 @@ namespace ShatteredRealm.Content.Globals
         public bool ArdentShieldStat;
         public bool PetalTrinketUpgrade;
 
+        //Shield Stats
+        public int shieldDurability; //Do not set this value.
+        public int shieldMaxDurability; //Set this to a damage value
+        public bool shieldEquipped = false; //Set this in all shields to have this stat
+        public int shieldCooldown; //Do not set this
+        public int shieldMaxCooldown; //Set this to the cooldown length
+        public bool firstComing = true;
+        public bool secondComing = false; //This is only used in the code below
+        public float ShieldDR = 0;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -83,7 +92,30 @@ namespace ShatteredRealm.Content.Globals
             }
             base.GetHealMana(item, quickHeal, ref healValue);
         }
-
+        public override void PreUpdate()
+        {
+            if (shieldEquipped)
+            {
+                if (shieldDurability > 0)
+                {
+                    Player.endurance += ShieldDR;
+                }
+                if (shieldDurability == 0 && !secondComing)
+                {
+                    shieldCooldown = shieldMaxCooldown;
+                    secondComing = true;
+                }
+                if (secondComing == true)
+                {
+                    if (shieldCooldown == 0)
+                    {
+                        shieldDurability = shieldMaxDurability;
+                        secondComing = false;
+                    }
+                    shieldCooldown--;
+                }
+            }    
+        }
         public override void PostUpdate()
         {
             AutoConsumePotion();
@@ -100,21 +132,40 @@ namespace ShatteredRealm.Content.Globals
             rampantBoosterShot = false;
             PetalTrinketUpgrade = false;
             ArdentShieldStat = false;
+            shieldEquipped = false;
+            shieldMaxDurability = 0;
+            shieldMaxCooldown = 0;
 
             base.ResetEffects();
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
+            ShieldInfo(hurtInfo);
             if (ArdentShieldStat)
             {
-                
                 for (int i = 0; i < 10; i++)
                 {
                     Projectile.NewProjectileDirect(Player.GetSource_OnHit(npc), Player.Center, Vector2.One, ModContent.ProjectileType<ArdentSparks>(), hurtInfo.SourceDamage + 9, 4);
                 }
                
             }
+        }
+
+        public void ShieldInfo(Player.HurtInfo hurtInfo)
+        {
+            if (shieldEquipped == true)
+            {
+                if (shieldDurability >= 0)
+                {
+                    shieldDurability -= hurtInfo.Damage;
+                }
+                if (shieldDurability <= 0)
+                {
+                    shieldDurability = 0;
+                }
+            }
+
         }
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {

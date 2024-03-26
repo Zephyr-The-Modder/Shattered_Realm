@@ -239,7 +239,7 @@ Items: {
 
 	EnrichedFlower: {
 		DisplayName: Enriched Flower
-		Tooltip: 
+		Tooltip:
 			'''
 			Auto-consumes health potions; this effect will occur if the item is in the inventory
 			Auto-consumes mana potions
@@ -247,6 +247,11 @@ Items: {
 			Boosts all health and mana restoration items by 20
 			'''
 	}
+}
+
+UI: {
+	Durability: DurabilityResource: {0} / {1}
+	DurabilityResource: Mods.ShatteredRealm.UI.DurabilityResource
 }
 
 NPCs: {

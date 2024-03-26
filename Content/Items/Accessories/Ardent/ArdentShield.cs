@@ -10,6 +10,9 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
 {
     public class ArdentShield : ModItem
     {
+        float DR = 0.67f;
+        int Durability = 115;
+        int Cooldown = 1200;
         public override void SetDefaults()
         {
             Item.width = 24;
@@ -19,12 +22,22 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.accessory = true;
             Item.defense = 9;
         }
-
+        
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.maxRunSpeed *= 0.75f;
-            player.statLifeMax2 += 25;
-            player.endurance += 0.125f;
+        {  
+            if (Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().ShieldDR < DR)
+            {
+                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().ShieldDR = DR;
+            }
+            if (Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxDurability < Durability)
+            {
+                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxDurability = Durability;
+            }
+            if (Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxCooldown > Cooldown)
+            {
+                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldMaxCooldown = Cooldown;
+            }
+            Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldEquipped = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.OnFire3] = true;
             player.GetModPlayer<ShatteredPlayer>().ArdentShieldStat = true;
