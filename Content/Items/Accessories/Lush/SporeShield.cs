@@ -17,6 +17,12 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.value = Item.buyPrice(gold: 11);
 			Item.accessory = true;
 
+			Item.shieldItem().shield = true;
+			Item.shieldItem().absorption = 0.2f;
+			Item.shieldItem().durability = 75;
+			Item.shieldItem().cooldown = 60 * 22;
+			Item.shieldItem().shieldType = "SporeShield";
+
 			Item.defense = 9;
 			Item.lifeRegen = 5;
 		}

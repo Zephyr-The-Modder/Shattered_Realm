@@ -202,12 +202,10 @@ namespace ShatteredRealm.Content.Globals
             {
                 case "ArdentShield":
                     break;
-
+                case "SporeShield":
+                    break;
             }
-
         }
-
-
         public void AutoConsumePotion()
         {
             if (Main.LocalPlayer.HasItem(ModContent.ItemType<SwiftTrinketofPetals>()))

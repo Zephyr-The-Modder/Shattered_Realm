@@ -19,9 +19,9 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.accessory = true;
             Item.defense = 5;
             Item.shieldItem().shield = true;
-            Item.shieldItem().absorption = 0.33f;
-            Item.shieldItem().durability = 120;
-            Item.shieldItem().cooldown = 60 * 20;
+            Item.shieldItem().absorption = 0.4f;
+            Item.shieldItem().durability = 95;
+            Item.shieldItem().cooldown = 60 * 15;
             Item.shieldItem().shieldType = "ArdentShield";
         }
         

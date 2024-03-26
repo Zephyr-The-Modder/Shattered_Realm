@@ -234,7 +234,11 @@ Items: {
 
 	Firebird: {
 		DisplayName: Helbird
-		Tooltip: Fires 2-3 bullets rapidly
+		Tooltip: '''
+		Fires 2-3 bullets in a small spread.
+		It feels light, somewhat like a bird. 
+		It also burns your hand.
+		'''
 	}
 
 	EnrichedFlower: {
