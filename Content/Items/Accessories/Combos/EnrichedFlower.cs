@@ -12,8 +12,8 @@ namespace ShatteredRealm.Content.Items.Accessories.Combos
     {
         public override void SetDefaults()
         {
-            Item.width = 24;
-            Item.height = 28;
+            Item.width = 28;
+            Item.height = 30;
             Item.value = Item.buyPrice(0, 5, 0, 0);
             Item.rare = ItemRarityID.LightRed;
             Item.accessory = true;
