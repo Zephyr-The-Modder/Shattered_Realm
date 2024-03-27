@@ -41,8 +41,9 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.shieldItem().durability = 75;
 			Item.shieldItem().cooldown = 60 * 22;
 			Item.shieldItem().shieldType = "SporeShield";
+            Item.shieldItem().shieldBreakColor = Color.LawnGreen;
 
-			Item.defense = 2;
+            Item.defense = 2;
 			Item.lifeRegen = 3;
 		}
 

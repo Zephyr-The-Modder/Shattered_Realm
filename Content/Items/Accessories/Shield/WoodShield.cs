@@ -40,8 +40,9 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.shieldItem().durability = 14;
 			Item.shieldItem().cooldown = 60 * 30;
 			Item.shieldItem().shieldType = "WoodShield";
+            Item.shieldItem().shieldBreakColor = new Color(235, 129, 8);
 
-			Item.defense = 1;
+            Item.defense = 1;
 		}
 
         public override void AddRecipes()

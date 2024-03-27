@@ -41,8 +41,10 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.shieldItem().durability = 15;
 			Item.shieldItem().cooldown = 60 * 30;
 			Item.shieldItem().shieldType = "StoneShield";
+            Item.shieldItem().shieldBreakColor = new Color(199, 195, 190);
 
-			Item.defense = 1;
+
+            Item.defense = 1;
 		}
 
         public override void UpdateAccessory(Player player, bool hideVisual)

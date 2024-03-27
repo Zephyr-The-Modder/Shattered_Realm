@@ -45,6 +45,7 @@ namespace ShatteredRealm.Content.Globals
         public string shieldType;
         public float shieldDurabilityMult;
         public float shieldCooldownMult;
+        public Color shieldBreakColor;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -150,6 +151,7 @@ namespace ShatteredRealm.Content.Globals
             shieldType = "";
             shieldCooldownMult = 1;
             shieldDurabilityMult = 1;
+            shieldBreakColor = Color.LightGray;
             base.ResetEffects();
         }
 
@@ -204,6 +206,8 @@ namespace ShatteredRealm.Content.Globals
         }
         public void ShieldBreak(string type)
         {
+            CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), shieldBreakColor, "Shield Break!", dramatic: true);
+
             shieldDurability = 0;
             shieldCooldown = shieldMaxCooldown;
 

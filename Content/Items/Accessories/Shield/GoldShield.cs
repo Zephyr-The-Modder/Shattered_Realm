@@ -41,8 +41,9 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.shieldItem().durability = 45;
 			Item.shieldItem().cooldown = 60 * 25;
 			Item.shieldItem().shieldType = "GoldShield";
+            Item.shieldItem().shieldBreakColor = Color.Gold;
 
-			Item.defense = 2;
+            Item.defense = 2;
 		}
 
         public override void AddRecipes()

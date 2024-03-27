@@ -40,9 +40,11 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.shieldItem().absorption = 0.4f;
             Item.shieldItem().durability = 90;
             Item.shieldItem().cooldown = 60 * 15;
-            Item.shieldItem().shieldType = "ArdentShield";
+            Item.shieldItem().shieldType = "ArdentShield"; 
+            Item.shieldItem().shieldBreakColor = Color.OrangeRed;
+
         }
-        
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {  
             player.buffImmune[BuffID.OnFire] = true;

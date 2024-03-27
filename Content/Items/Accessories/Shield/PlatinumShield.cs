@@ -40,9 +40,10 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.shieldItem().absorption = 0.14f;
 			Item.shieldItem().durability = 40;
 			Item.shieldItem().cooldown = 60 * 23;
-			Item.shieldItem().shieldType = "PlatinumShield";
+			Item.shieldItem().shieldType = "PlatinumShield"; 
+            Item.shieldItem().shieldBreakColor = Color.LightGray;
 
-			Item.defense = 2;
+            Item.defense = 2;
 		}
 
         public override void AddRecipes()
