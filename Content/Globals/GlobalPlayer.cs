@@ -248,7 +248,7 @@ namespace ShatteredRealm.Content.Globals
                 case "ArachnidAegis":
                     for (int i = 0; i < 12; i++)
                     {
-                        int proj = Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, new Vector2(0, -7).RotatedByRandom(MathHelper.ToRadians(24)), ProjectileID.BabySpider, 45, 0, Player.whoAmI);
+                        int proj = Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) + new Vector2(0, -6.5f), ProjectileID.BabySpider, 45, 0, Player.whoAmI);
                     }
                     break;
 

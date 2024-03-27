@@ -34,7 +34,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.height = 28;
 			Item.value = Item.buyPrice(gold: 1);
 			Item.accessory = true;
-
+            Item.rare = ItemRarityID.LightRed;
 			Item.shieldItem().shield = true;
 			Item.shieldItem().absorption = 0.25f;
 			Item.shieldItem().durability = 25;

@@ -309,7 +309,8 @@ Items: {
 			Shield Cooldown: {2}
 			While on cooldown, movement speed is reduced by 33%
 			'''
-	
+	}
+
 	ArachnidAegis: {
 		DisplayName: Arachnid Aegis
 		Tooltip: ""
