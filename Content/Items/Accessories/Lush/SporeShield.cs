@@ -46,8 +46,6 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetDamage(DamageClass.Generic) += 0.06f; // Increase ALL player damage by 100%
-			player.endurance *= 1.035f;
 			player.GetModPlayer<SporeShieldPlayer>().DashAccessoryEquipped = true;
 			player.GetModPlayer<SporeShieldPlayer>().shield = Item;
 		}

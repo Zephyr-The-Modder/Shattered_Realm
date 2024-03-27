@@ -266,6 +266,17 @@ Items: {
 			Boosts all health and mana restoration items by 20
 			'''
 	}
+
+	WoodShield: {
+		DisplayName: Wooden Shield
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			'''
+	}
 }
 
 UI: {
