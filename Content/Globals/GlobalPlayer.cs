@@ -204,6 +204,10 @@ namespace ShatteredRealm.Content.Globals
                     break;
                 case "SporeShield":
                     break;
+                case "WoodShield":
+                    break;
+                case "GoldShield":
+                    break;
             }
         }
         public void AutoConsumePotion()

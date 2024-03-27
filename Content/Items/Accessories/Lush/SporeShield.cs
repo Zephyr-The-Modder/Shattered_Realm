@@ -3,13 +3,30 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ShatteredRealm.Content.Items.Weapons.Melee.Swords;
+using System.Collections.Generic;
+using System;
+using Terraria.Localization;
 
 namespace ShatteredRealm.Content.Items.Accessories.Lush
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
 	public class SporeShield : ModItem
 	{
-		public override void SetDefaults()
+        public static LocalizedText TooltipWithVar { get; private set; }
+        public override void SetStaticDefaults()
+        {
+            TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Player player = Main.LocalPlayer;
+            TooltipLine tooltip;
+            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability, Item.shieldItem().absorption * 100 + "%", Math.Round(Item.shieldItem().cooldown / 60f * 100) / 100 + " seconds"));
+            tooltips.Add(tooltip);
+        }
+
+
+        public override void SetDefaults()
 		{
 			Item.expert = true;
 			Item.width = 24;
@@ -23,14 +40,12 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.shieldItem().cooldown = 60 * 22;
 			Item.shieldItem().shieldType = "SporeShield";
 
-			Item.defense = 9;
-			Item.lifeRegen = 5;
+			Item.defense = 2;
+			Item.lifeRegen = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetDamage(DamageClass.Generic) += 0.06f; // Increase ALL player damage by 100%
-			player.endurance *= 1.035f;
 			player.GetModPlayer<SporeShieldPlayer>().DashAccessoryEquipped = true;
 			player.GetModPlayer<SporeShieldPlayer>().shield = Item;
 		}

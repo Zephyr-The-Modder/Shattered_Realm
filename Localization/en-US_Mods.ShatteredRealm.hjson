@@ -130,11 +130,15 @@ Items: {
 
 	ArdentShield: {
 		DisplayName: Shield of the Inferno
-		Tooltip:
+		Tooltip: ""
+		TooltipWithVar:
 			'''
-			Getting hit shoots out scorching sparks 
-			All attacks also inflict Hellfire for a shorter time
-			Immunity to all fire debuffs.
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			Taking damage releases multiple burning sparks that scale with damage taken
+			All attacks inflict Hellfire for a short time
+			Immunity to all fire debuffs
 			'''
 	}
 
@@ -155,7 +159,15 @@ Items: {
 
 	SporeShield: {
 		DisplayName: Spore Shield
-		Tooltip: Leaves behind 4 spores when dashing
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			Grants a dash which leaves behind spores
+			Increases life regeneration by 1.5 HP/sec
+			'''
 	}
 
 	DaedalusVortex: {
@@ -233,11 +245,12 @@ Items: {
 
 	Firebird: {
 		DisplayName: Helbird
-		Tooltip: '''
-		Fires 2-3 bullets in a small spread.
-		It feels light, somewhat like a bird. 
-		It also burns your hand.
-		'''
+		Tooltip:
+			'''
+			Fires 2-3 bullets in a small spread.
+			It feels light, somewhat like a bird. 
+			It also burns your hand.
+			'''
 	}
 
 	EnrichedFlower: {
@@ -248,6 +261,17 @@ Items: {
 			Auto-consumes mana potions
 			Reduces mana cost by 8%
 			Boosts all health and mana restoration items by 20
+			'''
+	}
+
+	WoodShield: {
+		DisplayName: Wooden Shield
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
 			'''
 	}
 }

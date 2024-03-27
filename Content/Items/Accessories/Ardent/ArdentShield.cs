@@ -5,11 +5,27 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using ShatteredRealm.Content.Globals;
 using ShatteredRealm.Content.Items.Accessories.Lush;
+using System.Collections.Generic;
+using System;
+using Terraria.Localization;
 
 namespace ShatteredRealm.Content.Items.Accessories.Ardent
 {
     public class ArdentShield : ModItem
     {
+        public static LocalizedText TooltipWithVar { get; private set; }
+        public override void SetStaticDefaults()
+        {
+            TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Player player = Main.LocalPlayer;
+            TooltipLine tooltip;
+            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability, Item.shieldItem().absorption * 100 + "%", Math.Round(Item.shieldItem().cooldown / 60f * 100) / 100 + " seconds"));
+            tooltips.Add(tooltip);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 24;
@@ -20,7 +36,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.defense = 5;
             Item.shieldItem().shield = true;
             Item.shieldItem().absorption = 0.4f;
-            Item.shieldItem().durability = 95;
+            Item.shieldItem().durability = 90;
             Item.shieldItem().cooldown = 60 * 15;
             Item.shieldItem().shieldType = "ArdentShield";
         }
