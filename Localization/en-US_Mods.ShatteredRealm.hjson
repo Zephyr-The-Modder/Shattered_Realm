@@ -132,9 +132,8 @@ Items: {
 		DisplayName: Shield of the Inferno
 		Tooltip:
 			'''
-			Getting hit shoots out burning sparks 
+			Getting hit shoots out scorching sparks 
 			All attacks also inflict Hellfire for a shorter time
-			Reduces damage taken by 12.5%
 			Immunity to all fire debuffs.
 			'''
 	}
