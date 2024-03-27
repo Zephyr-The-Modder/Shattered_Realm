@@ -165,8 +165,8 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			Grants a dash which leaves behind spores
-			Increases life regeneration by 1.5 HP/sec
+			While active, grants a dash which leaves behind spores
+			While on cooldown, increases life regeneration by 1.5 HP/sec
 			'''
 	}
 
@@ -308,6 +308,17 @@ Items: {
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
 			While on cooldown, movement speed is reduced by 33%
+			'''
+	
+	ArachnidAegis: {
+		DisplayName: Arachnid Aegis
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			On shield break, bursts into a swarm of spiders
 			'''
 	}
 }

@@ -13,6 +13,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using ShatteredRealm.Content.Items.Accessories.Combos;
 using System.Security.Permissions;
+using Microsoft.CodeAnalysis;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -244,6 +245,13 @@ namespace ShatteredRealm.Content.Globals
                     break;
                 case "StoneShield":
                     break;
+                case "ArachnidAegis":
+                    for (int i = 0; i < 12; i++)
+                    {
+                        int proj = Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, new Vector2(0, -7).RotatedByRandom(MathHelper.ToRadians(24)), ProjectileID.BabySpider, 45, 0, Player.whoAmI);
+                    }
+                    break;
+
             }
         }
         public void AutoConsumePotion()

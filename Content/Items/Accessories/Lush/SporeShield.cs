@@ -13,22 +13,22 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
 	public class SporeShield : ModItem
 	{
-        public static LocalizedText TooltipWithVar { get; private set; }
-        public override void SetStaticDefaults()
-        {
-            TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
-        }
+		public static LocalizedText TooltipWithVar { get; private set; }
+		public override void SetStaticDefaults()
+		{
+			TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
+		}
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            Player player = Main.LocalPlayer;
-            TooltipLine tooltip;
-            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult, Math.Round(Item.shieldItem().absorption * 10000) / 100 + "%", Math.Round(Item.shieldItem().cooldown / player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult / 60f * 100) / 100 + " seconds"));
-            tooltips.Add(tooltip);
-        }
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			Player player = Main.LocalPlayer;
+			TooltipLine tooltip;
+			tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult, Math.Round(Item.shieldItem().absorption * 10000) / 100 + "%", Math.Round(Item.shieldItem().cooldown / player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult / 60f * 100) / 100 + " seconds"));
+			tooltips.Add(tooltip);
+		}
 
 
-        public override void SetDefaults()
+		public override void SetDefaults()
 		{
 			Item.expert = true;
 			Item.width = 24;
@@ -41,16 +41,22 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.shieldItem().durability = 75;
 			Item.shieldItem().cooldown = 60 * 22;
 			Item.shieldItem().shieldType = "SporeShield";
-            Item.shieldItem().shieldBreakColor = Color.LawnGreen;
+			Item.shieldItem().shieldBreakColor = Color.LawnGreen;
 
-            Item.defense = 2;
-			Item.lifeRegen = 3;
+			Item.defense = 2;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<SporeShieldPlayer>().DashAccessoryEquipped = true;
-			player.GetModPlayer<SporeShieldPlayer>().shield = Item;
+			if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown > 0)
+			{
+				player.lifeRegen += 3;
+			}
+			else
+			{
+				player.GetModPlayer<SporeShieldPlayer>().DashAccessoryEquipped = true;
+				player.GetModPlayer<SporeShieldPlayer>().shield = Item;
+			}
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
