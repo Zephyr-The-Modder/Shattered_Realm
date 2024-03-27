@@ -2,17 +2,18 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
-using ShatteredRealm.Content.Globals;
-using ShatteredRealm.Content.Items.Accessories.Lush;
+using ShatteredRealm.Content.Items.Weapons.Melee.Swords;
 using System.Collections.Generic;
 using System;
 using Terraria.Localization;
+using ShatteredRealm.Content.Items.Accessories.Lush;
+using ShatteredRealm.Content.Globals;
 
-namespace ShatteredRealm.Content.Items.Accessories.Ardent
+namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
-    public class ArdentShield : ModItem
-    {
+	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
+	public class StoneShield : ModItem
+	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
         {
@@ -29,32 +30,36 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
 
 
         public override void SetDefaults()
-        {
-            Item.width = 24;
-            Item.height = 28;
-            Item.value = Item.buyPrice(0, 24, 0, 0);
-            Item.rare = ItemRarityID.Yellow;
-            Item.accessory = true;
-            Item.defense = 5;
-            Item.shieldItem().shield = true;
-            Item.shieldItem().absorption = 0.4f;
-            Item.shieldItem().durability = 90;
-            Item.shieldItem().cooldown = 60 * 15;
-            Item.shieldItem().shieldType = "ArdentShield";
-        }
-        
+		{
+			Item.width = 24;
+			Item.height = 28;
+			Item.value = Item.buyPrice(silver: 10);
+			Item.accessory = true;
+
+			Item.shieldItem().shield = true;
+			Item.shieldItem().absorption = 0.12f;
+			Item.shieldItem().durability = 15;
+			Item.shieldItem().cooldown = 60 * 30;
+			Item.shieldItem().shieldType = "StoneShield";
+
+			Item.defense = 1;
+		}
+
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {  
-            player.buffImmune[BuffID.OnFire] = true;
-            player.buffImmune[BuffID.OnFire3] = true;
-            player.GetModPlayer<ShatteredPlayer>().ArdentShieldStat = true;
+        {
+            if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown > 0)
+            {
+                player.moveSpeed *= 0.67f;
+            }
         }
 
-        // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
         public override void AddRecipes()
         {
-
+            CreateRecipe()
+                .AddIngredient(ItemID.StoneBlock, 30)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
+        // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
     }
-
 }

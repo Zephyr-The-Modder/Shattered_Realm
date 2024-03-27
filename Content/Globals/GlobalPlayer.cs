@@ -216,6 +216,29 @@ namespace ShatteredRealm.Content.Globals
                 case "WoodShield":
                     break;
                 case "GoldShield":
+                    float distanceFromTarget = 225;
+
+                    // This code is required either way, used for finding a target
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC npc = Main.npc[i];
+
+                        if (npc.CanBeChasedBy())
+                        {
+                            float between = Vector2.Distance(npc.Center, this.Player.Center);
+                            bool inRange = between < distanceFromTarget;
+
+                            if (inRange)
+                            {
+                                npc.AddBuff(BuffID.Midas, 900);
+                            }
+                        }
+                    }
+                    break;
+                case "PlatinumShield":
+                    Player.AddBuff(ModContent.BuffType<PlatinumShieldLuck>(), 900);
+                    break;
+                case "StoneShield":
                     break;
             }
         }

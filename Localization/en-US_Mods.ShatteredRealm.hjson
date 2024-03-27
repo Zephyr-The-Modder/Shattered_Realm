@@ -276,13 +276,39 @@ Items: {
 	}
 
 	GoldShield: {
-		TooltipWithVar: '''
+		DisplayName: Golden Shield
+		Tooltip: ""
+		TooltipWithVar:
+			'''
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
+			On shield break, nearby enemies are inflicted with Midas for 15 seconds
 			'''
-		DisplayName: Gold Shield
+	}
+
+	PlatinumShield: {
+		DisplayName: Platinum Shield
 		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			On shield break, luck is increased for 15 seconds
+			'''
+	}
+
+	StoneShield: {
+		DisplayName: Stone Shield
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			While on cooldown, movement speed is reduced by 33%
+			'''
 	}
 }
 
@@ -316,5 +342,10 @@ Buffs: {
 	ChonkWhipDebuff: {
 		DisplayName: Chonk Whip Debuff
 		Description: Mods.ShatteredRealm.Buffs.ChonkWhipDebuff.Description
+	}
+
+	PlatinumShieldLuck: {
+		DisplayName: Platinum Shield Luck
+		Description: Luck moderately increased
 	}
 }
