@@ -18,13 +18,15 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
         {
             TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
         }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player player = Main.LocalPlayer;
             TooltipLine tooltip;
-            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability, Item.shieldItem().absorption * 100 + "%", Math.Round(Item.shieldItem().cooldown / 60f * 100) / 100 + " seconds"));
+            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult, Item.shieldItem().absorption * 100 + "%", Math.Round(Item.shieldItem().cooldown / player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult / 60f * 100) / 100 + " seconds"));
             tooltips.Add(tooltip);
         }
+
 
         public override void SetDefaults()
         {

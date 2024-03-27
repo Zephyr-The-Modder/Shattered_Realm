@@ -28,7 +28,7 @@ namespace ShatteredRealm.Content.Globals
                 return;
             }
             player.GetModPlayer<ShatteredPlayer>().shieldEquipped = true;
-            player.GetModPlayer<ShatteredPlayer>().shieldMaxDurability = item.shieldItem().durability;
+            player.GetModPlayer<ShatteredPlayer>().shieldMaxDurability = (int)(item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult);
             player.GetModPlayer<ShatteredPlayer>().shieldMaxCooldown = item.shieldItem().cooldown;
             player.GetModPlayer<ShatteredPlayer>().ShieldDR = 1 - item.shieldItem().absorption;
             player.GetModPlayer<ShatteredPlayer>().shieldType = shieldType;

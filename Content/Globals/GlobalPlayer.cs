@@ -12,6 +12,7 @@ using ShatteredRealm.Content.Items.Accessories.Ardent;
 using Terraria.Localization;
 using Terraria.UI;
 using ShatteredRealm.Content.Items.Accessories.Combos;
+using System.Security.Permissions;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -35,13 +36,15 @@ namespace ShatteredRealm.Content.Globals
         public int shieldDurability; //Do not set this value.
         public int shieldMaxDurability; //Set this to a damage value
         public bool shieldEquipped = false; //Set this in all shields to have this stat
-        public int shieldCooldown; //Do not set this
+        public float shieldCooldown; //Do not set this
         public int shieldMaxCooldown; //Set this to the cooldown length
         public bool firstComing = true;
         public bool secondComing = false; //This is only used in the code below
         public float ShieldDR = 0;
         public int shieldMaxCooldownPrevious;
         public string shieldType;
+        public float shieldDurabilityMult;
+        public float shieldCooldownMult;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -115,8 +118,12 @@ namespace ShatteredRealm.Content.Globals
                 {
                     shieldDurability = shieldMaxDurability;
                 }
+                if (shieldDurability > shieldMaxDurability)
+                {
+                    shieldDurability = shieldMaxDurability;
+                }
             }
-            shieldCooldown--;
+            shieldCooldown -= shieldCooldownMult;
         }
 
 
@@ -141,6 +148,8 @@ namespace ShatteredRealm.Content.Globals
             shieldMaxCooldownPrevious = shieldMaxCooldown;
             shieldMaxCooldown = 0;
             shieldType = "";
+            shieldCooldownMult = 1;
+            shieldDurabilityMult = 1;
             base.ResetEffects();
         }
 
