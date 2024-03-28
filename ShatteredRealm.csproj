@@ -26,6 +26,8 @@
     <None Remove="Content\Items\Summonerr\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\Items\Accessories\Shield\EnchantedShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\EnchantedShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\GoldShield.png" />
     <None Remove="Content\Items\Accessories\Shield\GoldShield_Shield.png" />
     <None Remove="Content\Items\Ammos\HellfireRoundsProj.png" />

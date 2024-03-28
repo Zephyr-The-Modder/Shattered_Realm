@@ -33,14 +33,14 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(silver: 15);
+			Item.value = Item.buyPrice(gold: 2, silver: 50);
 			Item.accessory = true;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
 
             Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.14f;
+			Item.shieldItem().absorption = 0.15f;
 			Item.shieldItem().durability = 40;
-			Item.shieldItem().cooldown = 60 * 23;
+			Item.shieldItem().cooldown = 60 * 20;
 			Item.shieldItem().shieldType = "PlatinumShield"; 
             Item.shieldItem().shieldBreakColor = Color.LightGray;
 

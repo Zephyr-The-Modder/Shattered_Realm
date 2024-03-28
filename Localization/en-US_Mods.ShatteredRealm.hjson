@@ -307,7 +307,8 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			While on cooldown, movement speed is reduced by 33%
+			While on cooldown, movement speed is reduced by 25%
+			Armor Penetration is also decreased by 5
 			'''
 	}
 
@@ -320,6 +321,18 @@ Items: {
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
 			On shield break, bursts into a swarm of spiders
+			'''
+	}
+
+	EnchantedShield: {
+		DisplayName: Enchanted Shield
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			On shield break, stars fall from the heavens to strike your enemy
 			'''
 	}
 }

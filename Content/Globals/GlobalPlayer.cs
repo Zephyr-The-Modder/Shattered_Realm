@@ -48,6 +48,11 @@ namespace ShatteredRealm.Content.Globals
         public float shieldCooldownMult;
         public Color shieldBreakColor;
 
+        public int MinimumShieldDamage = 10;
+        public int MaximumShieldDamage = 70;
+
+
+
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
 
@@ -191,10 +196,13 @@ namespace ShatteredRealm.Content.Globals
         }
         public override void OnHurt(Player.HurtInfo info)
         {
+            
             if (shieldEquipped && shieldDurability > 0)
             {
-                int preShieldDmg = (int)(info.Damage / ShieldDR);
-                int shieldDmg = preShieldDmg - info.Damage;
+                
+                float ModifiedDR1 = ShieldDR * 100;
+                int ModifiedDR2 = (int)ModifiedDR1;
+                int shieldDmg = info.SourceDamage / ModifiedDR2;
                 shieldDurability -= shieldDmg;
 
                 CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), Color.DarkCyan, shieldDmg);

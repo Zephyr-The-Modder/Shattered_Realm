@@ -32,7 +32,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(gold: 1);
+			Item.value = Item.buyPrice(gold: 9);
 			Item.accessory = true;
             Item.rare = ItemRarityID.LightRed;
 			Item.shieldItem().shield = true;
@@ -42,7 +42,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.shieldItem().shieldType = "ArachnidAegis";
             Item.shieldItem().shieldBreakColor = new Color(181, 32, 9);
 
-            Item.defense = 3;
+            Item.defense = 4;
 		}
 
         public override void AddRecipes()

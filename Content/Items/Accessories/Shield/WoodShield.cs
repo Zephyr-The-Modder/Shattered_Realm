@@ -32,27 +32,19 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(silver: 1);
-			Item.accessory = true;
+			Item.value = Item.buyPrice(gold: 1, silver: 50);
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Blue;
 
-			Item.shieldItem().shield = true;
+            Item.shieldItem().shield = true;
 			Item.shieldItem().absorption = 0.12f;
-			Item.shieldItem().durability = 14;
+			Item.shieldItem().durability = 25;
 			Item.shieldItem().cooldown = 60 * 30;
 			Item.shieldItem().shieldType = "WoodShield";
             Item.shieldItem().shieldBreakColor = new Color(235, 129, 8);
 
             Item.defense = 1;
 		}
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddRecipeGroup("Wood", 25)
-                .AddIngredient(ItemID.StoneBlock, 10)
-                .AddTile(TileID.WorkBenches)
-                .Register();
-        }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
     }
 }
