@@ -199,10 +199,7 @@ namespace ShatteredRealm.Content.Globals
             
             if (shieldEquipped && shieldDurability > 0)
             {
-                
-                float ModifiedDR1 = ShieldDR * 100;
-                int ModifiedDR2 = (int)ModifiedDR1;
-                int shieldDmg = info.SourceDamage / ModifiedDR2;
+                int shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
                 shieldDurability -= shieldDmg;
 
                 CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), Color.DarkCyan, shieldDmg);
