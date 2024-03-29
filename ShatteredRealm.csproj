@@ -26,10 +26,14 @@
     <None Remove="Content\Items\Summonerr\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\Items\Accessories\Shield\BeeShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\BeeShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\EnchantedShield.png" />
     <None Remove="Content\Items\Accessories\Shield\EnchantedShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\GoldShield.png" />
     <None Remove="Content\Items\Accessories\Shield\GoldShield_Shield.png" />
+    <None Remove="Content\Items\Accessories\Shield\HellstoneShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\HellstoneShield_Shield.png" />
     <None Remove="Content\Items\Ammos\HellfireRoundsProj.png" />
     <None Remove="Content\Items\Ammos\LightningBullets.png" />
     <None Remove="Content\Items\Ammos\LightningBulletsProj.png" />

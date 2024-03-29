@@ -339,6 +339,30 @@ Items: {
 			On shield break, stars fall from the heavens to strike your enemy
 			'''
 	}
+
+	HellstoneShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			On shield break, releases 4 fireballs at the cursor.
+			'''
+		DisplayName: Hellstone Shield
+		Tooltip: ""
+	}
+
+	BeeShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			On shield break, bursts into a beesplosion of 60 bees
+			'''
+		DisplayName: Bee Shield
+		Tooltip: ""
+	}
 }
 
 UI: {

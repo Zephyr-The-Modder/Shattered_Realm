@@ -55,7 +55,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown > 0)
             {
-                player.moveSpeed *= 0.25f;
+                player.moveSpeed *= 0.75f;
                 player.GetArmorPenetration(DamageClass.Generic) -= 5;
             }
         }

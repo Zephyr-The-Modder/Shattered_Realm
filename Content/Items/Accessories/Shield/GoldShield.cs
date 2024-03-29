@@ -38,8 +38,8 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.rare = ItemRarityID.Green;
 
             Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.17f;
-			Item.shieldItem().durability = 45;
+			Item.shieldItem().absorption = 0.16f;
+			Item.shieldItem().durability = 50;
 			Item.shieldItem().cooldown = 60 * 23;
 			Item.shieldItem().shieldType = "GoldShield";
             Item.shieldItem().shieldBreakColor = Color.Gold;

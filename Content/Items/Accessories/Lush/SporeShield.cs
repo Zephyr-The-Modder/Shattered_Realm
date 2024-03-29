@@ -39,7 +39,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.shieldItem().overrideShieldDamage = true;
 			Item.shieldItem().shield = true;
 
-			Item.shieldItem().absorption = 0.2f;
+			Item.shieldItem().absorption = 0.18f;
 			Item.shieldItem().durability = 65;
 			Item.shieldItem().cooldown = 60 * 18;
 

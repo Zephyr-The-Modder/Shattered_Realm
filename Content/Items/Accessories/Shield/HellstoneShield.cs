@@ -12,18 +12,19 @@ using ShatteredRealm.Content.Globals;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class ArachnidAegis : ModItem
+	public class HellstoneShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
         {
             TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
         }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player player = Main.LocalPlayer;
             TooltipLine tooltip;
-            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult, Math.Round(Item.shieldItem().absorption * 10000) / 100 + "%", Math.Round(Item.shieldItem().cooldown / player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult / 60f * 100) / 100 + " seconds"));
+            tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult, Math.Round(Item.shieldItem().absorption * 10000)/100 + "%", Math.Round(Item.shieldItem().cooldown / player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult / 60f * 100) / 100 + " seconds"));
             tooltips.Add(tooltip);
         }
 
@@ -32,30 +33,26 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(gold: 9);
+			Item.value = Item.buyPrice(gold: 2, silver: 50);
 			Item.accessory = true;
-            Item.rare = ItemRarityID.LightRed;
-			Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.24f;
-			Item.shieldItem().durability = 75;
-			Item.shieldItem().cooldown = 60 * 18;
-			Item.shieldItem().shieldType = "ArachnidAegis";
-            Item.shieldItem().shieldBreakColor = new Color(181, 32, 9);
+            Item.rare = ItemRarityID.Green;
 
-            Item.defense = 4;
+            Item.shieldItem().shield = true;
+			Item.shieldItem().absorption = 0.2f;
+			Item.shieldItem().durability = 70;
+			Item.shieldItem().cooldown = 60 * 26;
+			Item.shieldItem().shieldType = "HellstoneShield";
+            Item.shieldItem().shieldBreakColor = Color.OrangeRed;
+
+            Item.defense = 2;
 		}
-
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetDamage(DamageClass.Summon) += 0.1f;
-        }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.SpiderFang, 14)
-                .AddRecipeGroup("TitaniumBar", 9)
-                .AddTile(TileID.MythrilAnvil)
+                .AddRecipeGroup("Wood", 25)
+                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

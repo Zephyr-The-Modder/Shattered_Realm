@@ -12,7 +12,7 @@ using ShatteredRealm.Content.Globals;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class ArachnidAegis : ModItem
+	public class BeeShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
@@ -36,26 +36,25 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.accessory = true;
             Item.rare = ItemRarityID.LightRed;
 			Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.24f;
-			Item.shieldItem().durability = 75;
-			Item.shieldItem().cooldown = 60 * 18;
-			Item.shieldItem().shieldType = "ArachnidAegis";
-            Item.shieldItem().shieldBreakColor = new Color(181, 32, 9);
+			Item.shieldItem().absorption = 0.22f;
+			Item.shieldItem().durability = 73;
+			Item.shieldItem().cooldown = 60 * 22;
+			Item.shieldItem().shieldType = "BeeShield";
+            Item.shieldItem().shieldBreakColor = Color.Yellow;
 
             Item.defense = 4;
 		}
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Summon) += 0.1f;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.SpiderFang, 14)
-                .AddRecipeGroup("TitaniumBar", 9)
-                .AddTile(TileID.MythrilAnvil)
+                .AddIngredient(ItemID.BeeWax, 14)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

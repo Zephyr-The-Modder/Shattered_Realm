@@ -14,6 +14,7 @@ using Terraria.UI;
 using ShatteredRealm.Content.Items.Accessories.Combos;
 using System.Security.Permissions;
 using Microsoft.CodeAnalysis;
+using ShatteredRealm.Content.Items.Weapons.Mage.Staffs;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -250,6 +251,22 @@ namespace ShatteredRealm.Content.Globals
                 case "ArdentShield":
                     break;
                 case "SporeShield":
+                    break;
+                case "EnchantedShield":
+                    break;
+                case "HellstoneShield":
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Vector2 newVel = Player.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(19)) * 8;
+                        
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, newVel, ModContent.ProjectileType<MagmaStaffProj>(), 29, 0, Player.whoAmI);
+                    }
+                    break;
+                case "BeeShield":
+                    for (int i = 0; i < 60; i++)
+                    {
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) * 2.5f + new Vector2(0, -6.5f), ProjectileID.Bee, 12, 0, Player.whoAmI);
+                    }
                     break;
                 case "WoodShield":
                     break;
