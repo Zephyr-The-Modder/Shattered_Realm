@@ -46,6 +46,7 @@ namespace ShatteredRealm.Content.Globals
         public string shieldType;
         public float shieldDurabilityMult;
         public float shieldCooldownMult;
+        public bool overrideShieldBreak;
         public Color shieldBreakColor;
 
         public int MinimumShieldDamage = 10;
@@ -199,8 +200,17 @@ namespace ShatteredRealm.Content.Globals
             
             if (shieldEquipped && shieldDurability > 0)
             {
-                int shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
-                shieldDurability -= shieldDmg;
+                int shieldDmg;
+                if (!overrideShieldBreak)
+                {
+                    shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
+                    shieldDurability -= shieldDmg;
+                }
+                else
+                {
+                    shieldDmg = OverrideShieldDamage(shieldType, info);
+                    shieldDurability -= shieldDmg;
+                }
 
                 CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), Color.DarkCyan, shieldDmg);
 
@@ -209,6 +219,24 @@ namespace ShatteredRealm.Content.Globals
                     ShieldBreak(shieldType);
                 }
             }
+        }
+        public int OverrideShieldDamage(string type, Player.HurtInfo info)
+        {
+            int modifiedDmg = (int)(info.SourceDamage * (1 - ShieldDR));
+            float ModifiedDR = 0f;
+
+            switch (type)
+            {
+                case "SporeShield":
+                    ModifiedDR = 0.125f;
+                    modifiedDmg = info.SourceDamage / 8;
+                    break;
+                case "StoneShield":
+                    ModifiedDR = 0.15f;
+                    modifiedDmg = info.SourceDamage / 7;
+                    break;
+            }
+            return modifiedDmg;
         }
         public void ShieldBreak(string type)
         {

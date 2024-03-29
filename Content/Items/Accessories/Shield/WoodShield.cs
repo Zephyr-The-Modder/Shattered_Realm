@@ -38,7 +38,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 
             Item.shieldItem().shield = true;
 			Item.shieldItem().absorption = 0.12f;
-			Item.shieldItem().durability = 25;
+			Item.shieldItem().durability = 30;
 			Item.shieldItem().cooldown = 60 * 30;
 			Item.shieldItem().shieldType = "WoodShield";
             Item.shieldItem().shieldBreakColor = new Color(235, 129, 8);

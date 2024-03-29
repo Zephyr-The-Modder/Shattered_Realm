@@ -165,6 +165,8 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
+			Does not follow basic shield resilience rules
+			Instead, shield takes 12.5% of player's hit damage before modifiers
 			While active, grants a dash which leaves behind spores
 			While on cooldown, increases life regeneration by 1.5 HP/sec
 			'''
@@ -307,6 +309,8 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
+			Does not follow basic shield resilience rules
+			Instead, shield takes 14% of the player's damage before modifiers
 			While on cooldown, movement speed is reduced by 25%
 			Armor Penetration is also decreased by 5
 			'''

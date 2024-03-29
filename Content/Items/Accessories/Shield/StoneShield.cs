@@ -37,10 +37,13 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.accessory = true;
             Item.rare = ItemRarityID.Blue;
 
+            Item.shieldItem().overrideShieldDamage = true;
             Item.shieldItem().shield = true;
+
 			Item.shieldItem().absorption = 0.09f;
-			Item.shieldItem().durability = 15;
+			Item.shieldItem().durability = 24;
 			Item.shieldItem().cooldown = 60 * 30;
+
 			Item.shieldItem().shieldType = "StoneShield";
             Item.shieldItem().shieldBreakColor = new Color(199, 195, 190);
 

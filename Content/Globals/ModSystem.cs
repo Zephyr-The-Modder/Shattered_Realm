@@ -16,6 +16,10 @@ namespace ShatteredRealm.Content.Globals
         {
             RecipeGroup group = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.GoldBar)}", ItemID.GoldBar, ItemID.PlatinumBar);
             RecipeGroup.RegisterGroup("GoldBar", group);
+
+
+            RecipeGroup group2 = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.TitaniumBar)}", ItemID.TitaniumBar, ItemID.AdamantiteBar);
+            RecipeGroup.RegisterGroup("TitaniumBar", group2);
         }
     }
 }

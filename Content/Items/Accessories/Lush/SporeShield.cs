@@ -36,14 +36,17 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.value = Item.buyPrice(gold: 11);
 			Item.accessory = true;
 
+			Item.shieldItem().overrideShieldDamage = true;
 			Item.shieldItem().shield = true;
+
 			Item.shieldItem().absorption = 0.2f;
-			Item.shieldItem().durability = 75;
-			Item.shieldItem().cooldown = 60 * 22;
+			Item.shieldItem().durability = 65;
+			Item.shieldItem().cooldown = 60 * 18;
+
 			Item.shieldItem().shieldType = "SporeShield";
 			Item.shieldItem().shieldBreakColor = Color.LawnGreen;
 
-			Item.defense = 2;
+			Item.defense = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

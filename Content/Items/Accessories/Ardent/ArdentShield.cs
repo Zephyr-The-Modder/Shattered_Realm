@@ -35,11 +35,15 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.value = Item.buyPrice(0, 24, 0, 0);
             Item.rare = ItemRarityID.Yellow;
             Item.accessory = true;
-            Item.defense = 5;
+            Item.defense = 7;
+
+            Item.shieldItem().overrideShieldDamage = true;
             Item.shieldItem().shield = true;
+
             Item.shieldItem().absorption = 0.35f;
             Item.shieldItem().durability = 90;
             Item.shieldItem().cooldown = 60 * 18;
+
             Item.shieldItem().shieldType = "ArdentShield"; 
             Item.shieldItem().shieldBreakColor = Color.OrangeRed;
 

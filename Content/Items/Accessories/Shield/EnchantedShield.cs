@@ -48,9 +48,8 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.SpiderFang, 8)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 12)
-                .AddTile(TileID.Anvils)
+                .AddIngredient(ItemID.FallenStar, 10)
+                .AddIngredient(ModContent.ItemType<WoodShield>())
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
