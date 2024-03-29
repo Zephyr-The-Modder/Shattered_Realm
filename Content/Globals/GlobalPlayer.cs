@@ -255,11 +255,11 @@ namespace ShatteredRealm.Content.Globals
                 case "EnchantedShield":
                     break;
                 case "HellstoneShield":
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 8; i++)
                     {
-                        Vector2 newVel = Player.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(19)) * 8;
+                        Vector2 newVel = Player.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(35)) * 6;
                         
-                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, newVel, ModContent.ProjectileType<MagmaStaffProj>(), 29, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, newVel, ModContent.ProjectileType<MagmaStaffProj>(), 17, 0, Player.whoAmI);
                     }
                     break;
                 case "BeeShield":
@@ -267,6 +267,9 @@ namespace ShatteredRealm.Content.Globals
                     {
                         Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) * 2.5f + new Vector2(0, -6.5f), ProjectileID.Bee, 12, 0, Player.whoAmI);
                     }
+                    break;
+                case "TeleportingShield":
+                    Player.Teleport(Main.MouseWorld, TeleportationStyleID.RodOfDiscord);
                     break;
                 case "WoodShield":
                     break;

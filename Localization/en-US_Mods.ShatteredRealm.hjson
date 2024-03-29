@@ -346,7 +346,7 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			On shield break, releases 4 fireballs at the cursor.
+			On shield break, releases 8 fireballs at the cursor.
 			'''
 		DisplayName: Hellstone Shield
 		Tooltip: ""
@@ -361,6 +361,18 @@ Items: {
 			On shield break, bursts into a beesplosion of 60 bees
 			'''
 		DisplayName: Bee Shield
+		Tooltip: ""
+	}
+
+	WarpShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			On shield break, teleport to the cursor without repercussions
+			'''
+		DisplayName: Warp Shield
 		Tooltip: ""
 	}
 }
