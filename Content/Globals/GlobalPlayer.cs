@@ -48,6 +48,7 @@ namespace ShatteredRealm.Content.Globals
         public float shieldDurabilityMult;
         public float shieldCooldownMult;
         public bool overrideShieldBreak;
+        public bool overridePlayerDamage;
         public Color shieldBreakColor;
 
         public int MinimumShieldDamage = 10;
@@ -160,6 +161,8 @@ namespace ShatteredRealm.Content.Globals
             shieldCooldownMult = 1;
             shieldDurabilityMult = 1;
             shieldBreakColor = Color.LightGray;
+            overridePlayerDamage = false;
+            overrideShieldBreak = false;
             base.ResetEffects();
         }
 
@@ -191,10 +194,33 @@ namespace ShatteredRealm.Content.Globals
 
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            if (shieldEquipped && shieldDurability > 0)
+            if (!overridePlayerDamage)
             {
-                modifiers.FinalDamage *= ShieldDR;
+                if (shieldEquipped && shieldDurability > 0)
+                {
+                    modifiers.FinalDamage *= ShieldDR;
+                }
             }
+            else
+            {
+                if (shieldEquipped && shieldDurability > 0)
+                {
+                    modifiers.FinalDamage *= ChangeHurt(shieldType);
+                }
+            }
+
+        }
+
+        public float ChangeHurt(string type)
+        {
+            float HurtModifiers = 1;
+            switch (type)
+            {
+                case "TurtleShield":
+                    HurtModifiers = 0.015f;
+                    break;
+            }
+            return HurtModifiers;
         }
         public override void OnHurt(Player.HurtInfo info)
         {
@@ -235,6 +261,9 @@ namespace ShatteredRealm.Content.Globals
                 case "StoneShield":
                     ModifiedDR = 0.15f;
                     modifiedDmg = info.SourceDamage / 7;
+                    break;
+                case "TurtleShield":
+                    modifiedDmg = info.SourceDamage;
                     break;
             }
             return modifiedDmg;
@@ -294,15 +323,18 @@ namespace ShatteredRealm.Content.Globals
                     }
                     break;
                 case "PlatinumShield":
-                    Player.AddBuff(ModContent.BuffType<PlatinumShieldLuck>(), 900);
+                    Player.AddBuff(ModContent.BuffType<PlatinumShieldLuck>(), 600);
                     break;
                 case "StoneShield":
                     break;
                 case "ArachnidAegis":
                     for (int i = 0; i < 12; i++)
                     {
-                        int proj = Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) + new Vector2(0, -6.5f), ProjectileID.BabySpider, 45, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) + new Vector2(0, -6.5f), ProjectileID.BabySpider, 45, 0, Player.whoAmI);
                     }
+                    break;
+                case "TurtleShield":
+                    Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), 125, 0);
                     break;
 
             }

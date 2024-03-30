@@ -21,6 +21,7 @@ namespace ShatteredRealm.Content.Globals
         public int durability = 0;
         public int cooldown = 0;
         public bool overrideShieldDamage = false;
+        public bool overridePlayerDamage = false;
         public string shieldType = "";
         public Color shieldBreakColor = Color.White;
 
@@ -34,6 +35,7 @@ namespace ShatteredRealm.Content.Globals
             player.GetModPlayer<ShatteredPlayer>().shieldMaxDurability = (int)(item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult);
             player.GetModPlayer<ShatteredPlayer>().shieldMaxCooldown = item.shieldItem().cooldown;
             player.GetModPlayer<ShatteredPlayer>().overrideShieldBreak = item.shieldItem().overrideShieldDamage;
+            player.GetModPlayer<ShatteredPlayer>().overridePlayerDamage = item.shieldItem().overridePlayerDamage;
             player.GetModPlayer<ShatteredPlayer>().ShieldDR = 1 - item.shieldItem().absorption;
             player.GetModPlayer<ShatteredPlayer>().shieldType = shieldType;
             player.GetModPlayer<ShatteredPlayer>().shieldBreakColor = shieldBreakColor;

@@ -51,9 +51,9 @@ namespace ShatteredRealm.Content.UI.Resources
 			area.Append(barFrame);
 			Append(area);
 		}
-
 		public override void Draw(SpriteBatch spriteBatch)
 		{
+			gradientA = Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldBreakColor;
 			// This prevents drawing unless we are using an ExampleCustomResourceWeapon
 			if (!Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().shieldEquipped)
 				return;

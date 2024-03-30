@@ -12,7 +12,7 @@ using ShatteredRealm.Content.Globals;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class WarpShield : ModItem
+	public class TurtleShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
@@ -33,28 +33,29 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(gold: 10, silver: 50);
+			Item.value = Item.buyPrice(gold: 2, silver: 50);
 			Item.accessory = true;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Pink;
+
 
             Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.28f;
-			Item.shieldItem().durability = 85;
-			Item.shieldItem().cooldown = 60 * 35;
-			Item.shieldItem().shieldType = "TeleportingShield";
-            Item.shieldItem().shieldBreakColor = Color.HotPink;
+			Item.shieldItem().durability = 250;
+			Item.shieldItem().cooldown = 60 * 75;
+			Item.shieldItem().shieldType = "TurtleShield";
+            Item.shieldItem().shieldBreakColor = Color.PaleGreen;
+            Item.shieldItem().overrideShieldDamage = true;
+            Item.shieldItem().overridePlayerDamage = true;
 
-            Item.defense = 5;
+            Item.defense = 2;
 		}
-
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            
-        }
 
         public override void AddRecipes()
         {
-
+            CreateRecipe()
+                .AddRecipeGroup("Wood", 5)
+                .AddIngredient(ItemID.GoldBar, 10)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
     }

@@ -375,6 +375,12 @@ Items: {
 		DisplayName: Warp Shield
 		Tooltip: ""
 	}
+
+	TurtleShield: {
+		TooltipWithVar: Mods.ShatteredRealm.Items.TurtleShield.TooltipWithVar
+		DisplayName: Turtle Shield
+		Tooltip: ""
+	}
 }
 
 UI: {

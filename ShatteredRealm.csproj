@@ -34,6 +34,8 @@
     <None Remove="Content\Items\Accessories\Shield\GoldShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\HellstoneShield.png" />
     <None Remove="Content\Items\Accessories\Shield\HellstoneShield_Shield.png" />
+    <None Remove="Content\Items\Accessories\Shield\TurtleShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\TurtleShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\WarpShield.png" />
     <None Remove="Content\Items\Accessories\Shield\WarpShield_Shield.png" />
     <None Remove="Content\Items\Ammos\HellfireRoundsProj.png" />
