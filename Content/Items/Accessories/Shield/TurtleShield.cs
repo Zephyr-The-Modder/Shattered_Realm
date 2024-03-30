@@ -33,20 +33,20 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(gold: 2, silver: 50);
+			Item.value = Item.buyPrice(gold: 11, silver: 50);
 			Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
 
 
             Item.shieldItem().shield = true;
 			Item.shieldItem().durability = 250;
-			Item.shieldItem().cooldown = 60 * 75;
+			Item.shieldItem().cooldown = 60 * 90;
 			Item.shieldItem().shieldType = "TurtleShield";
-            Item.shieldItem().shieldBreakColor = Color.PaleGreen;
+            Item.shieldItem().shieldBreakColor = Color.OliveDrab;
             Item.shieldItem().overrideShieldDamage = true;
             Item.shieldItem().overridePlayerDamage = true;
 
-            Item.defense = 2;
+            Item.defense = 7;
 		}
 
         public override void AddRecipes()

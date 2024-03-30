@@ -28,10 +28,14 @@
   <ItemGroup>
     <None Remove="Content\Items\Accessories\Shield\BeeShield.png" />
     <None Remove="Content\Items\Accessories\Shield\BeeShield_Shield.png" />
+    <None Remove="Content\Items\Accessories\Shield\BubbleShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\BubbleShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\EnchantedShield.png" />
     <None Remove="Content\Items\Accessories\Shield\EnchantedShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\GoldShield.png" />
     <None Remove="Content\Items\Accessories\Shield\GoldShield_Shield.png" />
+    <None Remove="Content\Items\Accessories\Shield\GolemShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\GolemShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\HellstoneShield.png" />
     <None Remove="Content\Items\Accessories\Shield\HellstoneShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\TurtleShield.png" />

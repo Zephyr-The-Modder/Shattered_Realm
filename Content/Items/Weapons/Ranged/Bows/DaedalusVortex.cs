@@ -55,8 +55,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Bows
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			int NumProjectiles = Main.rand.Next(2, 5); // The humber of projectiles that this gun will shoot.
-			Vector2 playerPosition = player.position;
-			playerPosition.Y -= 600;
+			Vector2 playerPosition = player.Center;
+			playerPosition.Y -= 700;
 
 			for (int i = 0; i < NumProjectiles; i++)
 			{

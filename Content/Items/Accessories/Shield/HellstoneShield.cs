@@ -33,7 +33,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(gold: 2, silver: 50);
+			Item.value = Item.buyPrice(gold: 4, silver: 50);
 			Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
 
@@ -44,7 +44,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.shieldItem().shieldType = "HellstoneShield";
             Item.shieldItem().shieldBreakColor = Color.OrangeRed;
 
-            Item.defense = 2;
+            Item.defense = 4;
 		}
 
         public override void AddRecipes()

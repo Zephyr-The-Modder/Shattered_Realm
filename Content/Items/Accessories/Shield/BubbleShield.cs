@@ -12,13 +12,14 @@ using ShatteredRealm.Content.Globals;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class BeeShield : ModItem
+	public class BubbleShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
         {
             TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
         }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player player = Main.LocalPlayer;
@@ -32,30 +33,38 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 		{
 			Item.width = 24;
 			Item.height = 28;
-			Item.value = Item.buyPrice(gold: 6);
+			Item.value = Item.buyPrice(gold: 14);
 			Item.accessory = true;
-            Item.rare = ItemRarityID.Orange;
-			Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.22f;
-			Item.shieldItem().durability = 73;
-			Item.shieldItem().cooldown = 60 * 22;
-			Item.shieldItem().shieldType = "BeeShield";
-            Item.shieldItem().shieldBreakColor = Color.Yellow;
+            Item.rare = ItemRarityID.Yellow;
 
-            Item.defense = 4;
+            Item.shieldItem().shield = true;
+
+			Item.shieldItem().absorption = 0.65f;
+			Item.shieldItem().durability = 1;
+			Item.shieldItem().cooldown = 60 * 16;
+
+			Item.shieldItem().shieldType = "BubbleShield";
+            Item.shieldItem().shieldBreakColor = Color.DarkTurquoise;
+
+            Item.defense = 8;
 		}
-
+        int Timer = 0;
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Summon) += 0.05f;
+            if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown <= 0)
+            {
+                if (Timer >= 14)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), player.Center, Vector2.One.RotatedByRandom(MathHelper.ToRadians(360)), ProjectileID.FlaironBubble, 79, 0, Main.myPlayer, -10);
+                    Timer = 0;
+                }
+                Timer++;
+            }
         }
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.BeeWax, 14)
-                .AddTile(TileID.Anvils)
-                .Register();
+
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
     }

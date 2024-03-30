@@ -170,9 +170,11 @@ namespace ShatteredRealm.Content.Globals
         {
             if (ArdentShieldStat)
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    Projectile.NewProjectileDirect(Player.GetSource_OnHit(npc), Player.Center, Vector2.One, ModContent.ProjectileType<ArdentSparks>(), hurtInfo.SourceDamage + 9, 4);
+                    int damage = hurtInfo.SourceDamage;
+                    MathHelper.Clamp(damage, 25, 70);
+                    Projectile.NewProjectileDirect(Player.GetSource_OnHit(npc), Player.Center, Vector2.One, ModContent.ProjectileType<ArdentSparks>(), damage, 4);
                 }
                
             }
@@ -183,7 +185,7 @@ namespace ShatteredRealm.Content.Globals
             if (ArdentShieldStat)
             {
 
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     Projectile.NewProjectileDirect(Player.GetSource_OnHit(proj), Player.Center, Vector2.One, ModContent.ProjectileType<ArdentSparks>(), hurtInfo.SourceDamage + 9, 4);
                 }
@@ -282,6 +284,15 @@ namespace ShatteredRealm.Content.Globals
                 case "SporeShield":
                     break;
                 case "EnchantedShield":
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Vector2 newPos = Player.Center;
+                        newPos.Y -= 700;
+                        Vector2 newVel = newPos.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(35)) * 14.5f;
+                        newVel *= 1f - Main.rand.NextFloat(0.4f);
+
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), newPos, newVel, ProjectileID.HallowStar, 14, 0, Player.whoAmI);
+                    }
                     break;
                 case "HellstoneShield":
                     for (int i = 0; i < 8; i++)
@@ -336,6 +347,9 @@ namespace ShatteredRealm.Content.Globals
                 case "TurtleShield":
                     Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), 125, 0);
                     break;
+                case "GolemShield":
+                    break;
+
 
             }
         }

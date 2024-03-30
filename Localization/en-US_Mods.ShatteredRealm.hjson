@@ -377,8 +377,41 @@ Items: {
 	}
 
 	TurtleShield: {
-		TooltipWithVar: Mods.ShatteredRealm.Items.TurtleShield.TooltipWithVar
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Cooldown: {2}
+			Rather than having resilience, this shield takes all of the player's damage
+			However, it guards nearly all damage the player takes
+			On break, the player will take 50% of the shield's max hp in damage
+			'''
 		DisplayName: Turtle Shield
+		Tooltip: ""
+	}
+
+	BubbleShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			Spawns bubbles when shielding.
+			"It's a LITERAL BUBBLE! HOW AM I ALIVE?!?!" -Some random guy
+			"For those without skill issues." -Zephyr
+			'''
+		DisplayName: Bubble Shield
+		Tooltip: ""
+	}
+
+	GolemShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			"Who made this so durable?!"
+			'''
+		DisplayName: Lihzhard Plating
 		Tooltip: ""
 	}
 }
