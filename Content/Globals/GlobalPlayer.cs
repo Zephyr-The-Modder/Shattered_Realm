@@ -36,8 +36,8 @@ namespace ShatteredRealm.Content.Globals
         public bool plantyShieldCoating;
 
         //Shield Stats
-        public int shieldDurability; //Do not set this value.
-        public int shieldMaxDurability; //Set this to a damage value
+        public float shieldDurability; //Do not set this value.
+        public float shieldMaxDurability; //Set this to a damage value
         public bool shieldEquipped = false; //Set this in all shields to have this stat
         public float shieldCooldown; //Do not set this
         public int shieldMaxCooldown; //Set this to the cooldown length
@@ -83,7 +83,7 @@ namespace ShatteredRealm.Content.Globals
             {
                 if (shieldEquipped)
                 {
-                    if (shieldDurability < shieldMaxDurability)
+                    if (shieldDurability < shieldMaxDurability * shieldDurabilityMult)
                     {
                         if (shieldDurability > 0)
                         {
@@ -156,11 +156,11 @@ namespace ShatteredRealm.Content.Globals
             {
                 if (shieldCooldown == 0)
                 {
-                    shieldDurability = shieldMaxDurability;
+                    shieldDurability = shieldMaxDurability * shieldDurabilityMult;
                 }
-                if (shieldDurability > shieldMaxDurability)
+                if (shieldDurability > shieldMaxDurability * shieldDurabilityMult)
                 {
-                    shieldDurability = shieldMaxDurability;
+                    shieldDurability = shieldMaxDurability * shieldDurabilityMult;
                 }
             }
             shieldCooldown -= shieldCooldownMult;
@@ -376,7 +376,7 @@ namespace ShatteredRealm.Content.Globals
                     }
                     break;
                 case "TurtleShield":
-                    Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), 125, 0);
+                    Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), 150, 0);
                     break;
                 case "GolemShield":
                     break;

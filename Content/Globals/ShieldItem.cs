@@ -23,6 +23,8 @@ namespace ShatteredRealm.Content.Globals
         public bool overrideShieldDamage = false;
         public bool overridePlayerDamage = false;
         public string shieldType = "";
+        public float DurabilityMult;
+        public float CooldownMult;
         public Color shieldBreakColor = Color.White;
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -39,6 +41,8 @@ namespace ShatteredRealm.Content.Globals
             player.GetModPlayer<ShatteredPlayer>().ShieldDR = 1 - item.shieldItem().absorption;
             player.GetModPlayer<ShatteredPlayer>().shieldType = shieldType;
             player.GetModPlayer<ShatteredPlayer>().shieldBreakColor = shieldBreakColor;
+            player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult += DurabilityMult;
+            player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += CooldownMult;
         }
     }
 }
