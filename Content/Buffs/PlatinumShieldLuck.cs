@@ -45,5 +45,12 @@ namespace ShatteredRealm.Content.Buffs
 				Player.luck += 0.15f;
 			}
         }
-	}
+        public override void ModifyLuck(ref float luck)
+        {
+            if (shield)
+            {
+                luck += 0.15f;
+            }
+        }
+    }
 }
