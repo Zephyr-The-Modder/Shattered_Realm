@@ -414,6 +414,11 @@ Items: {
 		DisplayName: Lihzhard Plating
 		Tooltip: ""
 	}
+
+	PlantyShieldCoating: {
+		DisplayName: Planty Shield Coating
+		Tooltip: ""
+	}
 }
 
 UI: {

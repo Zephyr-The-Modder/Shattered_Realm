@@ -41,10 +41,6 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 			NPCID.Sets.AttackTime[Type] = 90; // The amount of time it takes for the NPC's attack animation to be over once it starts.
 			NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator for the chance for a Town NPC to attack. Lower numbers make the Town NPC appear more aggressive.
 			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
-			NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says that the Town NPC has a Shimmered form. Otherwise, the Town NPC will become transparent when touching Shimmer like other enemies.
-
-			NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
-
 			// Connects this NPC with a custom emote.
 			// This makes it when the NPC is in the world, other NPCs will "talk about him".
 			// By setting this you don't have to override the PickEmote method for the emote to appear.
@@ -118,27 +114,11 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 
 				// You can add multiple elements if you really wanted to
 				// You can also use localization keys (see Localization/en-US.lang)
-				new FlavorTextBestiaryInfoElement("Mods.ExampleMod.Bestiary.ExamplePerson")
 			});
 		}
 
 		// The PreDraw hook is useful for drawing things before our sprite is drawn or running code before the sprite is drawn
 		// Returning false will allow you to manually draw your NPC
-		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-		{
-			// This code slowly rotates the NPC in the bestiary
-			// (simply checking NPC.IsABestiaryIconDummy and incrementing NPC.Rotation won't work here as it gets overridden by drawModifiers.Rotation each tick)
-			if (NPCID.Sets.NPCBestiaryDrawOffset.TryGetValue(Type, out NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers))
-			{
-				drawModifiers.Rotation += 0.001f;
-
-				// Replace the existing NPCBestiaryDrawModifiers with our new one with an adjusted rotation
-				NPCID.Sets.NPCBestiaryDrawOffset.Remove(Type);
-				NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
-			}
-
-			return true;
-		}
 
 		public override bool CanTownNPCSpawn(int numTownNPCs)
 		{ // Requirements for the town NPC to spawn.
