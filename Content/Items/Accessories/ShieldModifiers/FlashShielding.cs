@@ -11,21 +11,23 @@ using Terraria.Localization;
 
 namespace ShatteredRealm.Content.Items.Accessories.ShieldModifiers
 {
-    public class PlantyShieldCoating : ModItem
+    public class FlashShielding : ModItem
     {
         public override void SetDefaults()
         {
             Item.width = 23;
             Item.height = 13;
-            Item.value = Item.buyPrice(0, 4, 50);
+            Item.value = Item.buyPrice(0, 6);
             Item.rare = ItemRarityID.Green;
             Item.accessory = true;
+            Item.shieldItem().CooldownMult = -0.3f;
+            Item.shieldItem().DurabilityMult = -0.4f;
         }
         int Timer = 0;
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ShatteredPlayer>().plantyShieldCoating = true;
+            player.moveSpeed += 0.05f;
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

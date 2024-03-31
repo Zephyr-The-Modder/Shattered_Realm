@@ -18,6 +18,7 @@ using Terraria.GameContent.UI;
 using Terraria.ModLoader.IO;
 using ShatteredRealm.Content.Globals;
 using ShatteredRealm.Content.Items.Accessories.Shield;
+
 namespace ShatteredRealm.Content.NPCs.TownNPCs
 {
 	// [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
@@ -67,12 +68,7 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 				.SetBiomeAffection<JungleBiome>(AffectionLevel.Hate)
 				.SetBiomeAffection<UndergroundBiome>(AffectionLevel.Dislike)
 				.SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
-				.SetNPCAffection(NPCID.Dryad, AffectionLevel.Love) // Loves living near the dryad.
 				.SetNPCAffection(NPCID.Guide, AffectionLevel.Dislike) // Likes living near the guide.
-				.SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike) // Dislikes living near the merchant.
-				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate) // Hates living near the demolitionist.
-				.SetNPCAffection(NPCID.Angler, AffectionLevel.Hate)
-				.SetNPCAffection(NPCID.Steampunker, AffectionLevel.Love)
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Love)
 				.SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
 				.SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate)

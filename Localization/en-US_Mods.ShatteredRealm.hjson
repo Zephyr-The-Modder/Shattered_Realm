@@ -435,25 +435,25 @@ NPCs: {
 		DisplayName: Shieldmaster
 
 		TownNPCMood: {
-			Content: I am content.
-			NoHome: I hate not having a home.
-			FarFromHome: I am too far from home.
-			LoveSpace: I love having so much space.
-			DislikeCrowded: I dislike how crowded I am.
-			HateCrowded: I hate how crowded I am.
-			LoveBiome: I love {BiomeName}.
-			LikeBiome: I like {BiomeName}.
-			DislikeBiome: I dislike {BiomeName}.
-			HateBiome: I hate {BiomeName}.
-			LoveNPC: I love {NPCName}.
-			LikeNPC: I like {NPCName}.
-			DislikeNPC: I dislike {NPCName}.
-			HateNPC: I hate {NPCName}.
-			LikeNPC_Princess: I like {NPCName}.
-			Princess_LovesNPC: I like {NPCName}.
+			Content: Thanks for everything! I don't have any nitpicks...wanna buy something now?
+			NoHome: I wish I had a bed and home like you do! Man, I'm tired.
+			FarFromHome: I'm getting homesick out here!
+			LoveSpace: Wow, this place is nice! I have too much space!
+			DislikeCrowded: This place is a little bit overcrowded. Would ya try doing something about it, please?
+			HateCrowded: This place is WAY too crowded! I can't walk! 
+			LoveBiome: Man, the {BiomeName} rocks! This is one of my favorite places!
+			LikeBiome: Wow, {BiomeName} is pretty nice when ya get to know it, ya know?
+			DislikeBiome: I can't really get the feel of {BiomeName}, sorry.
+			HateBiome: Man, I thought that {BiomeName} would be cool! Hell no! Get me out of here already!
+			LoveNPC: Wow, {NPCName} looks really good today! (Please let us stay near eachother!)
+			LikeNPC: Can you let me stay near {NPCName} ?
+			DislikeNPC: {NPCName} is a little annoying, dont'cha think?
+			HateNPC: I hate {NPCName}. I have to keep my shields up constantly around him!
+			LikeNPC_Princess: {NPCName} is surprisingly nice to be around!
+			Princess_LovesNPC: You know what, I love {NPCName} being around here!
 		}
 
-		Census.SpawnCondition: Conditions unknown
+		Census.SpawnCondition: Have a shield equipped
 	}
 }
 
