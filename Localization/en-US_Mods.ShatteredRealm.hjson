@@ -417,7 +417,7 @@ Items: {
 
 	PlantyShieldCoating: {
 		DisplayName: Planty Shield Coating
-		Tooltip: ""
+		Tooltip: While shields are active, regenerate 1 Shields every 1.5 seconds.
 	}
 }
 
@@ -452,6 +452,8 @@ NPCs: {
 			LikeNPC_Princess: I like {NPCName}.
 			Princess_LovesNPC: I like {NPCName}.
 		}
+
+		Census.SpawnCondition: Conditions unknown
 	}
 }
 

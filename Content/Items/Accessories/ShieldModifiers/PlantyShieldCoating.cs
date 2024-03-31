@@ -22,27 +22,10 @@ namespace ShatteredRealm.Content.Items.Accessories.ShieldModifiers
             Item.accessory = true;
         }
         int Timer = 0;
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (player.GetModPlayer<ShatteredPlayer>().shieldEquipped)
-            {
-                if (player.GetModPlayer<ShatteredPlayer>().shieldDurability < player.GetModPlayer<ShatteredPlayer>().shieldMaxDurability)
-                {
-                    if (player.GetModPlayer<ShatteredPlayer>().shieldDurability > 0)
-                    {
-                        if (Timer >= 74)
-                        {
-                            player.GetModPlayer<ShatteredPlayer>().shieldDurability += 1;
-                        }
-                     
-                    }
-                }
-            }
-            if (Timer >= 74)
-            {
-                Timer = 0;
-            }
-            Timer++;
+            player.GetModPlayer<ShatteredPlayer>().plantyShieldCoating = true;
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

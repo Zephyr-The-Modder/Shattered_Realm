@@ -33,6 +33,7 @@ namespace ShatteredRealm.Content.Globals
         public bool PetalTrinket;
         public bool ArdentShieldStat;
         public bool PetalTrinketUpgrade;
+        public bool plantyShieldCoating;
 
         //Shield Stats
         public int shieldDurability; //Do not set this value.
@@ -62,6 +63,8 @@ namespace ShatteredRealm.Content.Globals
         public int CoordinatedAttacksLushOrbs; //This is stored here so all orbs have the same variable.
         public int CoordinatedDashOrbRand; //Lush
 
+        int plantyShieldCoatingTimer;
+
 
         public override void SaveData(TagCompound tag)
         {
@@ -73,6 +76,33 @@ namespace ShatteredRealm.Content.Globals
             ConsumedForestHeart = tag.GetBool("ForestHeartSave"); // load
 
         }
+
+        public override void PostUpdateEquips()
+        {
+            if (plantyShieldCoating)
+            {
+                if (shieldEquipped)
+                {
+                    if (shieldDurability < shieldMaxDurability)
+                    {
+                        if (shieldDurability > 0)
+                        {
+                            if (plantyShieldCoatingTimer >= 89)
+                            {
+                               shieldDurability += 1;
+                            }
+
+                        }
+                    }
+                }
+                if (plantyShieldCoatingTimer >= 89)
+                {
+                    plantyShieldCoatingTimer = 0;
+                }
+                plantyShieldCoatingTimer++;
+            }
+        }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (verdantSetBonus && Main.rand.Next(1, 4) == 1)
@@ -163,6 +193,7 @@ namespace ShatteredRealm.Content.Globals
             shieldBreakColor = Color.LightGray;
             overridePlayerDamage = false;
             overrideShieldBreak = false;
+
             base.ResetEffects();
         }
 
