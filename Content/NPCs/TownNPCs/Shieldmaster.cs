@@ -18,6 +18,7 @@ using Terraria.GameContent.UI;
 using Terraria.ModLoader.IO;
 using ShatteredRealm.Content.Globals;
 using ShatteredRealm.Content.Items.Accessories.Shield;
+using ShatteredRealm.Content.Items.Accessories.ShieldModifiers;
 
 namespace ShatteredRealm.Content.NPCs.TownNPCs
 {
@@ -204,7 +205,10 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 		public override void AddShops()
 		{
 			var npcShop = new NPCShop(Type, ShopName)
-				.Add(new Item(ModContent.ItemType<WoodShield>())); // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<WoodShield>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<PlantyShieldCoating>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<VileCoating>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<FlashShielding>())); // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 			npcShop.Register(); // Name of this shop tab
 		}
 

@@ -428,6 +428,15 @@ Items: {
 			40% reduced max shield durability
 			'''
 	}
+
+	VileCoating: {
+		DisplayName: Vile Coating
+		Tooltip:
+			'''
+
+			Idk
+			'''
+	}
 }
 
 UI: {
