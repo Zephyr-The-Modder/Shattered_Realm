@@ -52,6 +52,8 @@ namespace ShatteredRealm.Content.Globals
         public bool overridePlayerDamage;
         public Color shieldBreakColor;
 
+        public bool shieldsActive;
+
         public int MinimumShieldDamage = 10;
         public int MaximumShieldDamage = 70;
 
@@ -74,7 +76,6 @@ namespace ShatteredRealm.Content.Globals
         public override void LoadData(TagCompound tag)
         {
             ConsumedForestHeart = tag.GetBool("ForestHeartSave"); // load
-
         }
 
         public override void PostUpdateEquips()
@@ -143,8 +144,10 @@ namespace ShatteredRealm.Content.Globals
         }
         public override void PreUpdate()
         {
+            int maxShieldDurability = (int)(shieldMaxDurability * shieldDurabilityMult);
             if (!shieldEquipped && shieldMaxCooldownPrevious > 0)
             {
+                shieldsActive = false;
                 shieldMaxCooldownPrevious = 0;
                 shieldCooldown = 0;
             }
@@ -154,13 +157,14 @@ namespace ShatteredRealm.Content.Globals
             }
             if (shieldEquipped)
             {
-                if (shieldCooldown == 0)
+                if (shieldCooldown <= 0 && !shieldsActive)
                 {
-                    shieldDurability = shieldMaxDurability;
+                    shieldDurability = maxShieldDurability;
+                    shieldsActive = true;
                 }
-                if (shieldDurability > shieldMaxDurability)
+                if (shieldDurability > maxShieldDurability)
                 {
-                    shieldDurability = shieldMaxDurability;
+                    shieldDurability = maxShieldDurability;
                 }
             }
             shieldCooldown -= shieldCooldownMult;
@@ -232,7 +236,6 @@ namespace ShatteredRealm.Content.Globals
                 if (shieldEquipped && shieldDurability > 0)
                 {
                     modifiers.FinalDamage *= ShieldDR;
-                    modifiers.FinalDamage /= shieldDurabilityMult;
                 }
             }
             else
@@ -240,7 +243,6 @@ namespace ShatteredRealm.Content.Globals
                 if (shieldEquipped && shieldDurability > 0)
                 {
                     modifiers.FinalDamage *= ChangeHurt(shieldType);
-                    modifiers.FinalDamage /= shieldDurabilityMult;
                 }
             }
 
@@ -307,6 +309,7 @@ namespace ShatteredRealm.Content.Globals
         {
             CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), shieldBreakColor, "Shield Break!", dramatic: true);
 
+            shieldsActive = false;
             shieldDurability = 0;
             shieldCooldown = shieldMaxCooldown;
 

@@ -27,7 +27,7 @@ namespace ShatteredRealm.Content.Items.Accessories.ShieldModifiers
         {
             player.moveSpeed += 0.05f;
             player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += 0.3f;
-            player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult += 0.4f;
+            player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult -= 0.4f;
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

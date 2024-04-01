@@ -422,7 +422,11 @@ Items: {
 
 	FlashShielding: {
 		DisplayName: Flash Shielding
-		Tooltip: ""
+		Tooltip:
+			'''
+			30% faster shield cooldown
+			40% reduced max shield durability
+			'''
 	}
 }
 

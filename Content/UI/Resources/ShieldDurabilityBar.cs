@@ -74,6 +74,8 @@ namespace ShatteredRealm.Content.UI.Resources
             hitbox.Y += 8;
             hitbox.Height -= 16;
 
+			int maxShieldDurability = (int)(modPlayer.shieldMaxDurability * modPlayer.shieldDurabilityMult);
+
             // Now, using this hitbox, we draw a gradient by drawing vertical lines while slowly interpolating between the 2 colors.
             int left = hitbox.Left;
             int right = hitbox.Right;
@@ -94,7 +96,7 @@ namespace ShatteredRealm.Content.UI.Resources
             }
 			else
 			{
-				float quotient = (float)modPlayer.shieldDurability / modPlayer.shieldMaxDurability * modPlayer.shieldDurabilityMult; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
+				float quotient = (float)modPlayer.shieldDurability / maxShieldDurability; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
 				quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
 
 				int steps = (int)((right - left) * quotient);
@@ -113,15 +115,17 @@ namespace ShatteredRealm.Content.UI.Resources
 				return;
 
 			var modPlayer = Main.LocalPlayer.GetModPlayer<ShatteredPlayer>();
-			// Setting the text per tick to update and show our resource values.
-			string textlabel;
+			int maxShieldDurability = (int)(modPlayer.shieldMaxDurability * modPlayer.shieldDurabilityMult);
+
+            // Setting the text per tick to update and show our resource values.
+            string textlabel;
 			if (modPlayer.shieldCooldown > 0)
 			{
 				textlabel = "On Cooldown";
 			}
 			else
 			{
-				textlabel = modPlayer.shieldDurability + "/" + modPlayer.shieldMaxDurability;
+				textlabel = modPlayer.shieldDurability + "/" + maxShieldDurability;
             }
 
 			text.SetText(ExampleResourceUISystem.DurabilityResourceText.Format(textlabel));
