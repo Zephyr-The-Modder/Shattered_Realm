@@ -61,17 +61,14 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 			// Set Example Person's biome and neighbor preferences with the NPCHappiness hook. You can add happiness text and remarks with localization (See an example in ExampleMod/Localization/en-US.lang).
 			// NOTE: The following code uses chaining - a style that works due to the fact that the SetXAffection methods return the same NPCHappiness instance they're called on.
 			NPC.Happiness
-				.SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // Example Person prefers the forest.
-				.SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike) // Example Person dislikes the snow.
 				.SetBiomeAffection<HallowBiome>(AffectionLevel.Like) // Example Person likes the Example Surface Biome
 				.SetBiomeAffection<DesertBiome>(AffectionLevel.Love)
 				.SetBiomeAffection<JungleBiome>(AffectionLevel.Hate)
 				.SetBiomeAffection<UndergroundBiome>(AffectionLevel.Dislike)
-				.SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
 				.SetNPCAffection(NPCID.Guide, AffectionLevel.Dislike) // Likes living near the guide.
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Love)
 				.SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
-				.SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate)
+				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate)
 
 			; // < Mind the semicolon!
 

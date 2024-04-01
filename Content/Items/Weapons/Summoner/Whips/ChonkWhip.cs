@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria.GameContent;
+using Terraria.DataStructures;
 
 namespace ShatteredRealm.Content.Items.Weapons.Summoner.Whips
 {
@@ -16,7 +17,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Summoner.Whips
 		{
 			// This method quickly sets the whip's properties.
 			// Mouse over to see its parameters.
-			Item.DefaultToWhip(ModContent.ProjectileType<ChonkWhipProjectile>(), 57, 3, 8f);
+			Item.DefaultToWhip(ModContent.ProjectileType<ChonkWhipProjectile>(), 49, 3, 8f);
 
 			Item.rare = ItemRarityID.Red;
 			Item.value = 300000;
@@ -24,7 +25,18 @@ namespace ShatteredRealm.Content.Items.Weapons.Summoner.Whips
 			
 		}
 
-		public override void AddRecipes()
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+			if (player.GetModPlayer<ChonkWhipPlayer>().hitNumber >= 3)
+			{
+				damage += 33;
+				player.GetModPlayer<ChonkWhipPlayer>().hitNumber = 0;
+                
+
+			}
+		}
+
+        public override void AddRecipes()
 		{
 
 		}
@@ -48,6 +60,10 @@ namespace ShatteredRealm.Content.Items.Weapons.Summoner.Whips
 		}
 	}
 
+	public class ChonkWhipPlayer : ModPlayer
+    {
+		public int hitNumber = 0;
+    }
 	public class ChonkWhipDebuffNPC : GlobalNPC
 	{
 		public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
@@ -105,10 +121,17 @@ namespace ShatteredRealm.Content.Items.Weapons.Summoner.Whips
 			target.AddBuff(ModContent.BuffType<ChonkWhipDebuff>(), 240);
 
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
+			Main.LocalPlayer.GetModPlayer<ChonkWhipPlayer>().hitNumber++;
 		}
 
-		// This method draws a line between all points of the whip, in case there's empty space between the sprites.
-		private void DrawLine(List<Vector2> list)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+			Main.LocalPlayer.GetModPlayer<ChonkWhipPlayer>().hitNumber++;
+		}
+
+
+        // This method draws a line between all points of the whip, in case there's empty space between the sprites.
+        private void DrawLine(List<Vector2> list)
 		{
 			Texture2D texture = TextureAssets.FishingLine.Value;
 			Rectangle frame = texture.Frame();
@@ -129,8 +152,11 @@ namespace ShatteredRealm.Content.Items.Weapons.Summoner.Whips
 				pos += diff;
 			}
 		}
-
-		public override bool PreDraw(ref Color lightColor)
+        public override void OnSpawn(IEntitySource source)
+        {
+            
+        }
+        public override bool PreDraw(ref Color lightColor)
 		{
 			List<Vector2> list = new List<Vector2>();
 			Projectile.FillWhipControlPoints(Projectile, list);

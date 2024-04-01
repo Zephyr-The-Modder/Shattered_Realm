@@ -94,7 +94,7 @@ namespace ShatteredRealm.Content.UI.Resources
             }
 			else
 			{
-				float quotient = (float)modPlayer.shieldDurability / modPlayer.shieldMaxDurability; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
+				float quotient = (float)modPlayer.shieldDurability / modPlayer.shieldMaxDurability * modPlayer.shieldDurabilityMult; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
 				quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
 
 				int steps = (int)((right - left) * quotient);

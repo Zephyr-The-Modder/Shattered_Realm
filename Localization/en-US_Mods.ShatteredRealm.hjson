@@ -419,6 +419,11 @@ Items: {
 		DisplayName: Planty Shield Coating
 		Tooltip: While shields are active, regenerate 1 Shields every 1.5 seconds.
 	}
+
+	FlashShielding: {
+		DisplayName: Flash Shielding
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -440,17 +445,17 @@ NPCs: {
 			FarFromHome: I'm getting homesick out here!
 			LoveSpace: Wow, this place is nice! I have too much space!
 			DislikeCrowded: This place is a little bit overcrowded. Would ya try doing something about it, please?
-			HateCrowded: This place is WAY too crowded! I can't walk! 
-			LoveBiome: Man, the {BiomeName} rocks! This is one of my favorite places!
-			LikeBiome: Wow, {BiomeName} is pretty nice when ya get to know it, ya know?
-			DislikeBiome: I can't really get the feel of {BiomeName}, sorry.
-			HateBiome: Man, I thought that {BiomeName} would be cool! Hell no! Get me out of here already!
-			LoveNPC: Wow, {NPCName} looks really good today! (Please let us stay near eachother!)
-			LikeNPC: Can you let me stay near {NPCName} ?
-			DislikeNPC: {NPCName} is a little annoying, dont'cha think?
-			HateNPC: I hate {NPCName}. I have to keep my shields up constantly around him!
-			LikeNPC_Princess: {NPCName} is surprisingly nice to be around!
-			Princess_LovesNPC: You know what, I love {NPCName} being around here!
+			HateCrowded: This place is WAY too crowded! I can't walk!
+			LoveBiome: Man, the Desert rocks! Just enough things to test out my products, but not too much! (Talking about you, Jungle)
+			LikeBiome: It feels like I'm in a fairy tale here, ya know? I enjoy it a lot!
+			DislikeBiome: I can't really get the feel of the caverns, sorry. The air is too musty for my likings! Also, did you see that spider? Hell no!
+			HateBiome: The Jungle is my NEMESIS. I have to keep my shields up against EVERYTHING here!
+			LoveNPC: Wow, {NPCName} looks really good in those tight clothes! (Please let us stay near eachother!)
+			LikeNPC: "{NPCName} is really nice to me! The only problem is that her wire talk fries my brain."
+			DislikeNPC: Will {NPCName} ever shut up? Like, I would rather DIE than listen to his bantering!
+			HateNPC: I hate {NPCName}. I have to keep my shields up constantly around his explosives!
+			LikeNPC_Princess: "{NPCName} is surprisingly nice to be around! The girl is a princess for god's sake!"
+			Princess_LovesNPC: You know what, I love {NPCName} being around here! He's nice to me!
 		}
 
 		Census.SpawnCondition: Have a shield equipped

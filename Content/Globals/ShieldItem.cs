@@ -41,8 +41,8 @@ namespace ShatteredRealm.Content.Globals
             player.GetModPlayer<ShatteredPlayer>().ShieldDR = 1 - item.shieldItem().absorption;
             player.GetModPlayer<ShatteredPlayer>().shieldType = shieldType;
             player.GetModPlayer<ShatteredPlayer>().shieldBreakColor = shieldBreakColor;
-            player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult += DurabilityMult;
-            player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += CooldownMult;
+            player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult += item.shieldItem().DurabilityMult;
+            player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += item.shieldItem().CooldownMult;
         }
     }
 }

@@ -20,14 +20,14 @@ namespace ShatteredRealm.Content.Items.Accessories.ShieldModifiers
             Item.value = Item.buyPrice(0, 6);
             Item.rare = ItemRarityID.Green;
             Item.accessory = true;
-            Item.shieldItem().CooldownMult = -0.3f;
-            Item.shieldItem().DurabilityMult = -0.4f;
         }
         int Timer = 0;
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.moveSpeed += 0.05f;
+            player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += 0.3f;
+            player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult += 0.4f;
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

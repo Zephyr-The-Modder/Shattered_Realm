@@ -36,8 +36,8 @@ namespace ShatteredRealm.Content.Globals
         public bool plantyShieldCoating;
 
         //Shield Stats
-        public float shieldDurability; //Do not set this value.
-        public float shieldMaxDurability; //Set this to a damage value
+        public int shieldDurability; //Do not set this value.
+        public int shieldMaxDurability; //Set this to a damage value
         public bool shieldEquipped = false; //Set this in all shields to have this stat
         public float shieldCooldown; //Do not set this
         public int shieldMaxCooldown; //Set this to the cooldown length
@@ -83,7 +83,7 @@ namespace ShatteredRealm.Content.Globals
             {
                 if (shieldEquipped)
                 {
-                    if (shieldDurability < shieldMaxDurability * shieldDurabilityMult)
+                    if (shieldDurability < shieldMaxDurability)
                     {
                         if (shieldDurability > 0)
                         {
@@ -156,11 +156,11 @@ namespace ShatteredRealm.Content.Globals
             {
                 if (shieldCooldown == 0)
                 {
-                    shieldDurability = shieldMaxDurability * shieldDurabilityMult;
+                    shieldDurability = shieldMaxDurability;
                 }
-                if (shieldDurability > shieldMaxDurability * shieldDurabilityMult)
+                if (shieldDurability > shieldMaxDurability)
                 {
-                    shieldDurability = shieldMaxDurability * shieldDurabilityMult;
+                    shieldDurability = shieldMaxDurability;
                 }
             }
             shieldCooldown -= shieldCooldownMult;
@@ -232,6 +232,7 @@ namespace ShatteredRealm.Content.Globals
                 if (shieldEquipped && shieldDurability > 0)
                 {
                     modifiers.FinalDamage *= ShieldDR;
+                    modifiers.FinalDamage /= shieldDurabilityMult;
                 }
             }
             else
@@ -239,6 +240,7 @@ namespace ShatteredRealm.Content.Globals
                 if (shieldEquipped && shieldDurability > 0)
                 {
                     modifiers.FinalDamage *= ChangeHurt(shieldType);
+                    modifiers.FinalDamage /= shieldDurabilityMult;
                 }
             }
 
@@ -250,7 +252,7 @@ namespace ShatteredRealm.Content.Globals
             switch (type)
             {
                 case "TurtleShield":
-                    HurtModifiers = 0.015f;
+                    HurtModifiers = 0.00000001f;
                     break;
             }
             return HurtModifiers;
