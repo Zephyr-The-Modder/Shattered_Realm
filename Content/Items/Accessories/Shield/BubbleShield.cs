@@ -40,7 +40,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.shieldItem().shield = true;
 
 			Item.shieldItem().absorption = 0.65f;
-			Item.shieldItem().durability = 1;
+			Item.shieldItem().durability = 5;
 			Item.shieldItem().cooldown = 60 * 16;
 
 			Item.shieldItem().shieldType = "BubbleShield";

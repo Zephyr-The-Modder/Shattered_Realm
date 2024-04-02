@@ -31,7 +31,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
             Item.DamageType = DamageClass.Magic;
             Item.autoReuse = true;
             Item.noMelee = true; // The projectile will do the damage and not the item
-            Item.crit = 30;
+            Item.crit = 20;
             Item.mana = 4;
             Item.ArmorPenetration = 5;
 

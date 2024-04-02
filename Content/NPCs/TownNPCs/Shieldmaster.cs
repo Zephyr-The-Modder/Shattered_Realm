@@ -28,6 +28,7 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 	{
 		public const string ShopName = "Shop";
 		public int NumberOfTimesTalkedTo = 0;
+		public int GuideHelpTime = 1;
 
 		private static Profiles.StackedNPCProfile NPCProfile;
 
@@ -198,6 +199,31 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 			{
 				// We want 3 different functionalities for chat buttons, so we use HasItem to change button 1 between a shop and upgrade action.
 				shop = ShopName; // Name of the shop tab we want to open.
+			}
+			else
+            {
+				if (GuideHelpTime == 1)
+                {
+					Main.npcChatText = "Shields are odd things. When equipping a shield, you should see a bar appear on the top right of your screen. That is your durability.";
+				}
+				if (GuideHelpTime == 2)
+				{
+					Main.npcChatText = "Durability takes a percentage of your damage. This is resilience. Resilience is also the amount of DR the player gets.";
+				}
+				if (GuideHelpTime == 3)
+				{
+					Main.npcChatText = "Each and every shield has a cooldown. This will be the amount of time it will take to replenish your shield.";
+				}
+				if (GuideHelpTime == 4)
+				{
+					Main.npcChatText = "Some shields do not follow the shield resilience rule. These shields take a specific amount of the player's damage. This is stated in the tooltip.";
+				}
+				if (GuideHelpTime == 5)
+				{
+					Main.npcChatText = "I will sell many goods which will boost your shields, and should help you on your way!";
+					GuideHelpTime = 0;
+				}
+				GuideHelpTime++;
 			}
 		}
 

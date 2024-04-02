@@ -423,7 +423,7 @@ Items: {
 	}
 
 	FlashShielding: {
-		DisplayName: Flash Shielding
+		DisplayName: Teardrop Coating
 		Tooltip:
 			'''
 			30% faster shield cooldown
@@ -433,10 +433,7 @@ Items: {
 
 	VileCoating: {
 		DisplayName: Vile Coating
-		Tooltip:
-			'''
-			When shields are active, fires out 4 mini eaters.
-			'''
+		Tooltip: When shields are active, fires out 4 mini eaters.
 	}
 
 	ApoideaBlaster: {
