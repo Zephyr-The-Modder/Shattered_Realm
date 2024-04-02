@@ -52,6 +52,8 @@ namespace ShatteredRealm.Content.Globals
         public bool overridePlayerDamage;
         public Color shieldBreakColor;
 
+        public bool CrystalCoating = false;
+
         public bool shieldsActive;
 
         public int MinimumShieldDamage = 10;
@@ -145,6 +147,7 @@ namespace ShatteredRealm.Content.Globals
         public override void PreUpdate()
         {
             int maxShieldDurability = (int)(shieldMaxDurability * shieldDurabilityMult);
+            MathHelper.Clamp(maxShieldDurability, 1, 9999);
             if (!shieldEquipped && shieldMaxCooldownPrevious > 0)
             {
                 shieldsActive = false;
@@ -213,6 +216,14 @@ namespace ShatteredRealm.Content.Globals
                 }
                
             }
+            if (CrystalCoating && shieldsActive)
+            {
+                npc.life -= hurtInfo.SourceDamage *= 2;
+                if (npc.life < 0)
+                {
+                    npc.life = 0;
+                }
+            }    
         }
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
@@ -225,6 +236,16 @@ namespace ShatteredRealm.Content.Globals
                     Projectile.NewProjectileDirect(Player.GetSource_OnHit(proj), Player.Center, Vector2.One, ModContent.ProjectileType<ArdentSparks>(), hurtInfo.SourceDamage + 9, 4);
                 }
 
+            }
+
+            if (CrystalCoating && proj.hostile && shieldsActive)
+            {
+                proj.velocity *= -2f;
+                proj.velocity = proj.velocity.RotatedByRandom(MathHelper.ToRadians(10));
+                proj.friendly = true;
+                proj.hostile = false;
+                proj.penetrate--;
+                hurtInfo.Damage *= (int)0.01f;
             }
         }
 
@@ -265,18 +286,42 @@ namespace ShatteredRealm.Content.Globals
             if (shieldEquipped && shieldDurability > 0)
             {
                 int shieldDmg;
-                if (!overrideShieldBreak)
+                if (!CrystalCoating)
                 {
-                    shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
-                    shieldDurability -= shieldDmg;
+                    if (!overrideShieldBreak)
+                    {
+                        shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
+                        shieldDurability -= shieldDmg;
+                    }
+                    else
+                    {
+                        shieldDmg = OverrideShieldDamage(shieldType, info);
+                        shieldDurability -= shieldDmg;
+                    } 
                 }
                 else
                 {
-                    shieldDmg = OverrideShieldDamage(shieldType, info);
-                    shieldDurability -= shieldDmg;
+                    if (info.DamageSource == Terraria.DataStructures.PlayerDeathReason.ByProjectile(Main.myPlayer, info.DamageSource.SourceProjectileType))
+                    {
+                        shieldDmg = info.SourceDamage;
+                        shieldDurability -= shieldDmg;
+                    }
+                    else
+                    {
+                        if (!overrideShieldBreak)
+                        {
+                            shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
+                            shieldDurability -= shieldDmg;
+                        }
+                        else
+                        {
+                            shieldDmg = OverrideShieldDamage(shieldType, info);
+                            shieldDurability -= shieldDmg;
+                        }
+                    }
                 }
 
-                CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), Color.DarkCyan, shieldDmg);
+                CombatText.NewText(Player.getRect(), Color.DarkCyan, shieldDmg);
 
                 if (shieldDurability <= 0)
                 {
@@ -381,7 +426,7 @@ namespace ShatteredRealm.Content.Globals
                     }
                     break;
                 case "TurtleShield":
-                    Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), 150, 0);
+                    Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), shieldDurability / 2, 0);
                     break;
                 case "GolemShield":
                     break;

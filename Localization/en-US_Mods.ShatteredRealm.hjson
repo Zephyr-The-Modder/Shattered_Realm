@@ -444,6 +444,23 @@ Items: {
 			"Make sure you're dressed up like a beekeeper!"
 			'''
 	}
+
+	ReinforcedShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			"Made of steel, here to guard your injuries!"
+			'''
+		DisplayName: Reinforced Shield
+		Tooltip: ""
+	}
+
+	CrystalCoating: {
+		DisplayName: Crystal Coating
+		Tooltip: ""
+	}
 }
 
 UI: {

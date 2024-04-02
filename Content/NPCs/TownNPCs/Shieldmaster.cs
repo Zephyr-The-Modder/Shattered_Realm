@@ -232,9 +232,11 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 		{
 			var npcShop = new NPCShop(Type, ShopName)
 				.Add(new Item(ModContent.ItemType<WoodShield>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<ReinforcedShield>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 				.Add(new Item(ModContent.ItemType<PlantyShieldCoating>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 				.Add(new Item(ModContent.ItemType<VileCoating>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
-				.Add(new Item(ModContent.ItemType<FlashShielding>())); // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<FlashShielding>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<CrystalCoating>())); // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 			npcShop.Register(); // Name of this shop tab
 		}
 
