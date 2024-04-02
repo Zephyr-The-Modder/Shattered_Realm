@@ -358,7 +358,8 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			On shield break, bursts into a beesplosion of 60 bees
+			On shield break, bursts into a beesplosion of 60 bees.
+			"Better than beenades!"
 			'''
 		DisplayName: Bee Shield
 		Tooltip: ""
@@ -370,7 +371,8 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			On shield break, teleport to the cursor without repercussions
+			On shield break, teleport to the cursor without repercussions.
+			"Yer a wizard, Harry!"
 			'''
 		DisplayName: Warp Shield
 		Tooltip: ""
@@ -433,8 +435,16 @@ Items: {
 		DisplayName: Vile Coating
 		Tooltip:
 			'''
+			When shields are active, fires out 4 mini eaters.
+			'''
+	}
 
-			Idk
+	ApoideaBlaster: {
+		DisplayName: Apocrita Blunderbuss
+		Tooltip:
+			'''
+			Fires bees when using musket balls
+			"Make sure you're dressed up like a beekeeper!"
 			'''
 	}
 }
@@ -486,14 +496,9 @@ Buffs: {
 		Description: Damaged boosted by 1.35x
 	}
 
-	LethalInjectionDebuff: {
-		DisplayName: Lethal Injection Debuff
-		Description: Mods.ShatteredRealm.Buffs.LethalInjectionDebuff.Description
-	}
-
 	ChonkWhipDebuff: {
 		DisplayName: Chonk Whip Debuff
-		Description: Mods.ShatteredRealm.Buffs.ChonkWhipDebuff.Description
+		Description: Take 9 damage more from summon weapons
 	}
 
 	PlatinumShieldLuck: {

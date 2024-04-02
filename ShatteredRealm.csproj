@@ -8,6 +8,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Content\Items\Weapons\Ranged\Guns\ApoideaBlaster.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include=".git\ms-persist.xml" />
   </ItemGroup>
   <ItemGroup>
