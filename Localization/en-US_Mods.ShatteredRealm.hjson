@@ -471,13 +471,13 @@ Items: {
 	}
 
 	ShieldPermeationPotion: {
-		DisplayName: Shield Permeation Potion
-		Tooltip: ""
+		DisplayName: Shield Cooldown Potion
+		Tooltip: Increases luck by 20%
 	}
 }
 
 UI: {
-	Durability: Shields: {0}
+	Durability: Durability: {0}
 	DurabilityResource: Mods.ShatteredRealm.UI.DurabilityResource
 }
 
@@ -534,7 +534,7 @@ Buffs: {
 	}
 
 	ShieldPermeationBuff: {
-		DisplayName: Shield Permeation Buff
-		Description: Mods.ShatteredRealm.Buffs.ShieldPermeationBuff.Description
+		DisplayName: Shield Cooldown Potion
+		Description: Shield cooldown reduced by 15%
 	}
 }
