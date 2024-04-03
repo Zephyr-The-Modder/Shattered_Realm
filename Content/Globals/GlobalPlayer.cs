@@ -53,6 +53,7 @@ namespace ShatteredRealm.Content.Globals
         public Color shieldBreakColor;
 
         public bool CrystalCoating = false;
+        public bool ReflexiveCharm = false;
 
         public bool shieldsActive;
 
@@ -216,15 +217,7 @@ namespace ShatteredRealm.Content.Globals
                     Projectile.NewProjectileDirect(Player.GetSource_OnHit(npc), Player.Center, Vector2.One, ModContent.ProjectileType<ArdentSparks>(), damage, 4);
                 }
                
-            }
-            if (CrystalCoating && shieldDurability > 0)
-            {
-                npc.life -= hurtInfo.SourceDamage *= 2;
-                if (npc.life < 0)
-                {
-                    npc.life = 0;
-                }
-            }    
+            }  
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
@@ -308,22 +301,25 @@ namespace ShatteredRealm.Content.Globals
                 if (!overrideShieldBreak)
                 {
                     shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
-                    shieldDurability -= shieldDmg;
                 }
                 else
                 {
                     shieldDmg = OverrideShieldDamage(shieldType, info);
-                    shieldDurability -= shieldDmg;
                 }
 
-
-                CombatText.NewText(Player.getRect(), Color.DarkCyan, shieldDmg);
+                DamageShield(shieldDmg, 1);
 
                 if (shieldDurability <= 0)
                 {
                     ShieldBreak(shieldType);
                 }
             }
+        }
+
+        public void DamageShield(int dmg, float damageModifier)
+        {
+            shieldDurability -= (int)(dmg * damageModifier);
+            CombatText.NewText(Player.getRect(), Color.DarkCyan, dmg);
         }
         public int OverrideShieldDamage(string type, Player.HurtInfo info)
         {
