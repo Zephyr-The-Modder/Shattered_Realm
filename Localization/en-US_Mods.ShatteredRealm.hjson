@@ -125,6 +125,7 @@ Items: {
 			Consuming a health potion will boost damage by 1.3x
 			Also boosts regen significantly for a short time
 			This effect lasts for longer depending on the potion
+			+8% damage
 			'''
 	}
 
@@ -468,6 +469,11 @@ Items: {
 			After reflecting, the projectile deals 2x damage
 			'''
 	}
+
+	ShieldPermeationPotion: {
+		DisplayName: Shield Permeation Potion
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -525,5 +531,10 @@ Buffs: {
 	PlatinumShieldLuck: {
 		DisplayName: Platinum Shield Luck
 		Description: Luck moderately increased
+	}
+
+	ShieldPermeationBuff: {
+		DisplayName: Shield Permeation Buff
+		Description: Mods.ShatteredRealm.Buffs.ShieldPermeationBuff.Description
 	}
 }

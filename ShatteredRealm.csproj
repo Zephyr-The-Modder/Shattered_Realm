@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\Items\Accessories\Shield\ReinforcedShield_Shield.png" />
+    <None Remove="Content\Items\Consumables\Potions\ShieldPermeationBuff.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\ApoideaBlaster.png" />
   </ItemGroup>
   <ItemGroup>

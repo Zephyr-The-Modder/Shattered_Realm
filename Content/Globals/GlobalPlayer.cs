@@ -217,7 +217,7 @@ namespace ShatteredRealm.Content.Globals
                 }
                
             }
-            if (CrystalCoating && shieldsActive)
+            if (CrystalCoating && shieldDurability > 0)
             {
                 npc.life -= hurtInfo.SourceDamage *= 2;
                 if (npc.life < 0)
