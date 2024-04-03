@@ -26,7 +26,7 @@ namespace ShatteredRealm.Content.Items.Accessories.ShieldModifiers
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<ShatteredPlayer>().CrystalCoating = true;
-
+            player.thorns += 3f;
         }
 
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

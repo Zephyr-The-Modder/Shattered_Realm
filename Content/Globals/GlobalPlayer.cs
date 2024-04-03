@@ -200,6 +200,7 @@ namespace ShatteredRealm.Content.Globals
             shieldBreakColor = Color.LightGray;
             overridePlayerDamage = false;
             overrideShieldBreak = false;
+            CrystalCoating = false;
 
             base.ResetEffects();
         }
@@ -226,6 +227,32 @@ namespace ShatteredRealm.Content.Globals
             }    
         }
 
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        {
+            if (CrystalCoating && proj.hostile && proj.active && shieldsActive)
+            {
+                NPC closestNPC = SRUtils.GetClosestNPC(Player.Center, 1500);
+                if (closestNPC == null)
+                {
+                    proj.velocity *= -1f;
+                }
+                else
+                {
+                    float magnitude = Vector2.Distance(proj.velocity, Vector2.Zero);
+                    Vector2 vel = Vector2.Normalize(closestNPC.Center - Player.Center) * magnitude;
+                    proj.velocity = vel;
+                }
+
+                proj.hostile = false;
+                proj.friendly = true;
+                proj.penetrate = 1;
+                proj.damage = (int)(proj.damage * 2f);
+
+
+                SoundEngine.PlaySound(SoundID.Item154, Player.Center);
+            }
+        }
+
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {
             if (ArdentShieldStat)
@@ -238,15 +265,7 @@ namespace ShatteredRealm.Content.Globals
 
             }
 
-            if (CrystalCoating && proj.hostile && shieldsActive)
-            {
-                proj.velocity *= -2f;
-                proj.velocity = proj.velocity.RotatedByRandom(MathHelper.ToRadians(10));
-                proj.friendly = true;
-                proj.hostile = false;
-                proj.penetrate--;
-                hurtInfo.Damage *= (int)0.01f;
-            }
+            
         }
 
 
@@ -282,44 +301,21 @@ namespace ShatteredRealm.Content.Globals
         }
         public override void OnHurt(Player.HurtInfo info)
         {
-            
+
             if (shieldEquipped && shieldDurability > 0)
             {
                 int shieldDmg;
-                if (!CrystalCoating)
+                if (!overrideShieldBreak)
                 {
-                    if (!overrideShieldBreak)
-                    {
-                        shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
-                        shieldDurability -= shieldDmg;
-                    }
-                    else
-                    {
-                        shieldDmg = OverrideShieldDamage(shieldType, info);
-                        shieldDurability -= shieldDmg;
-                    } 
+                    shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
+                    shieldDurability -= shieldDmg;
                 }
                 else
                 {
-                    if (info.DamageSource == Terraria.DataStructures.PlayerDeathReason.ByProjectile(Main.myPlayer, info.DamageSource.SourceProjectileType))
-                    {
-                        shieldDmg = info.SourceDamage;
-                        shieldDurability -= shieldDmg;
-                    }
-                    else
-                    {
-                        if (!overrideShieldBreak)
-                        {
-                            shieldDmg = (int)(info.SourceDamage * (1 - ShieldDR));
-                            shieldDurability -= shieldDmg;
-                        }
-                        else
-                        {
-                            shieldDmg = OverrideShieldDamage(shieldType, info);
-                            shieldDurability -= shieldDmg;
-                        }
-                    }
+                    shieldDmg = OverrideShieldDamage(shieldType, info);
+                    shieldDurability -= shieldDmg;
                 }
+
 
                 CombatText.NewText(Player.getRect(), Color.DarkCyan, shieldDmg);
 

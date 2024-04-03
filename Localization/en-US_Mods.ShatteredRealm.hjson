@@ -423,7 +423,7 @@ Items: {
 	}
 
 	FlashShielding: {
-		DisplayName: Teardrop Coating
+		DisplayName: Teardrop Shield Coating
 		Tooltip:
 			'''
 			30% faster shield cooldown
@@ -432,7 +432,7 @@ Items: {
 	}
 
 	VileCoating: {
-		DisplayName: Vile Coating
+		DisplayName: Vile Shield Coating
 		Tooltip: When shields are active, fires out 4 mini eaters.
 	}
 
@@ -459,7 +459,14 @@ Items: {
 
 	CrystalCoating: {
 		DisplayName: Crystal Coating
-		Tooltip: ""
+		Tooltip:
+			'''
+			While shields are active:
+			Reflect 300% of contact damage
+			Reflects projectiles that hit you toward nearby enemies
+			Reflected projectiles still deal full damage to you
+			After reflecting, the projectile deals 2x damage
+			'''
 	}
 }
 
