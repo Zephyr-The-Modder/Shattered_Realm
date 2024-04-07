@@ -11,6 +11,8 @@
     <None Remove="Content\Items\Accessories\Shield\ReinforcedShield_Shield.png" />
     <None Remove="Content\Items\Consumables\Potions\ShieldPermeationBuff.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\ApoideaBlaster.png" />
+    <None Remove="Content\Items\Weapons\Ranged\Guns\LaserPistol.png" />
+    <None Remove="Content\Items\Weapons\Ranged\Guns\LaserPistolDummy.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".git\ms-persist.xml" />
