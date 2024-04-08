@@ -8,6 +8,8 @@ using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.Audio;
+using ShatteredRealm;
+using System.Collections.Generic;
 
 namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 {
@@ -34,7 +36,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 
 			// Weapon Properties
 			Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-			Item.damage = 198; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.damage = 294; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
 			Item.knockBack = 4f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
@@ -126,13 +128,14 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 				{
 					chargeLevel++;
 				}
-				else
+				if (chargeLevel == 4)
                 {
 					for (int i = 0; i<10; i++)
                     {
 						Dust.NewDustPerfect(owner.Center, DustID.GemRuby);
                     }
-                }
+					chargeLevel = 5;
+				}
 			}
 			ChargeTime++;
 			// Reset the animation and item timer while charging.
@@ -155,9 +158,9 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		public override void OnKill(int timeLeft)
 		{
 			Player owner = Main.player[Projectile.owner];
-			if (chargeLevel == 4)
+			if (chargeLevel == 5)
             {
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center, Projectile.DirectionTo(Main.MouseWorld) * Projectile.ai[2] * 2, (int)Projectile.ai[1], Projectile.damage * 3, Projectile.knockBack, Projectile.owner);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center, owner.Center.DirectionTo(SRUtils.GetClosestNPC(owner.Center, 1400).Center) * (Projectile.ai[2] * 2), (int)Projectile.ai[1], (int)(Projectile.damage * 2.25f), Projectile.knockBack, Projectile.owner);
 			}
 			else
             {
@@ -165,5 +168,156 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			}
 			
 		}
+	}
+	public class LaserBolt : ModProjectile
+	{
+		NPC enemy;
+		List<int> enemiesHit = new List<int>();
+		public override void SetStaticDefaults()
+		{
+			// DisplayName.SetDefault("Wind"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 48;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+		}
+
+		int StateTimer = 0;
+		float turn = 0;
+		public override void SetDefaults()
+		{
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.width = 8;
+			Projectile.height = 8;
+			Projectile.aiStyle = -1;
+			Projectile.friendly = true;
+			Projectile.penetrate = 7;
+			Projectile.timeLeft = 999999;
+			Projectile.light = 1f;
+			Projectile.ignoreWater = false;
+			Projectile.tileCollide = true;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
+			Projectile.extraUpdates = 3;
+		}
+		public override Color? GetAlpha(Color lightColor)
+		{
+			return Color.White * Projectile.Opacity;
+		}
+		public override bool PreDraw(ref Color lightColor)
+		{
+			// SpriteEffects helps to flip texture horizontally and vertically
+			SpriteEffects spriteEffects = SpriteEffects.None;
+
+			// Getting texture of projectile
+			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+
+			// Calculating frameHeight and current Y pos dependence of frame
+			// If texture without animation frameHeight is always texture.Height and startY is always 0
+			int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+			int startY = frameHeight * Projectile.frame;
+
+			// Get this frame on texture
+			Rectangle sourceRectangle = new Rectangle(0, startY, texture.Width, frameHeight);
+
+			// Alternatively, you can skip defining frameHeight and startY and use this:
+			// Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+
+			Vector2 origin = sourceRectangle.Size() / 2f;
+			// Applying lighting and draw current frame
+			Color drawColor = Projectile.GetAlpha(lightColor);
+
+			Texture2D projectileTexture = TextureAssets.Projectile[Projectile.type].Value;
+			Vector2 drawOrigin = origin;
+			spriteEffects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+			for (int k = 0; k < Projectile.oldPos.Length && k < StateTimer; k++)
+			{
+				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY) + new Vector2(4f, 4f);
+				Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+				color.A = (byte)(color.A * 0.75f);
+				Main.spriteBatch.Draw(projectileTexture, drawPos, sourceRectangle, color, Projectile.oldRot[k], drawOrigin, Projectile.scale - k * 0.02f, spriteEffects, 0f);
+			}
+
+			Main.EntitySpriteDraw(texture,
+				Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
+				sourceRectangle, drawColor, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
+
+			// It's important to return false, otherwise we also draw the original texture.
+			return false;
+		}
+
+		public override bool OnTileCollide(Vector2 oldVelocity)
+		{
+			int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.SparksMech, oldVelocity.X, oldVelocity.Y, 0, default(Color), 1f);
+			Main.dust[dust].noGravity = true;
+			// If collide with tile, reduce the penetrate.
+			// So the projectile can reflect at most 5 times
+			Projectile.penetrate--;
+			if (Projectile.penetrate <= 0)
+			{
+				Projectile.Kill();
+			}
+			else
+			{
+				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+
+
+
+			}
+			return false;
+		}
+		int NewTarget(float range)
+		{
+			float num1 = range;
+			int targetWithLineOfSight = -1;
+
+			for (int index = 0; index < 200; ++index)
+			{
+				NPC npc = Main.npc[index];
+				bool flag = npc.CanBeChasedBy(Projectile);
+				if (Projectile.localNPCImmunity[index] != 0)
+					flag = false;
+
+				if (flag)
+				{
+					float num2 = Projectile.Distance(Main.npc[index].Center);
+					if ((double)num2 < (double)num1 && Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
+					{
+						if (!enemiesHit.Contains(npc.whoAmI))
+						{
+							num1 = num2;
+							targetWithLineOfSight = npc.whoAmI;
+							break;
+						}
+						else
+                        {
+							continue;
+                        }
+
+					}
+				}
+			}
+			if (targetWithLineOfSight == -1)
+            {
+				Projectile.Kill();
+            }
+
+			return targetWithLineOfSight;
+		}
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			int enemy1 = NewTarget(700f);
+			if (enemy1 != -1)
+            {
+				enemy = Main.npc[enemy1];
+				Projectile.velocity = Projectile.DirectionTo(enemy.Center) * 12f;
+			}
+			Projectile.damage = (int)(Projectile.damage * 0.945f);
+		}
+
+		public override void AI()
+		{
+			StateTimer++;
+			Projectile.rotation = Projectile.velocity.ToRotation();
+		}
+
 	}
 }
