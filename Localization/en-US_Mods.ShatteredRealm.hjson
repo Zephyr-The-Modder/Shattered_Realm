@@ -481,6 +481,21 @@ Items: {
 		DisplayName: Laser Pistol
 		Tooltip: ""
 	}
+
+	StaticLeggings: {
+		Tooltip: ""
+		DisplayName: Static Leggings
+	}
+
+	StaticHelmet: {
+		Tooltip: ""
+		DisplayName: Static Helmet
+	}
+
+	StaticBreastplate: {
+		Tooltip: ""
+		DisplayName: Static Breastplate
+	}
 }
 
 UI: {
@@ -544,4 +559,11 @@ Buffs: {
 		DisplayName: Shield Cooldown Potion
 		Description: Shield cooldown reduced by 15%
 	}
+
+	Drained: {
+		Description: Mods.ShatteredRealm.Buffs.Drained.Description
+		DisplayName: Drained
+	}
 }
+
+Keybinds.StaticSetBonus.DisplayName: Static Set Bonus

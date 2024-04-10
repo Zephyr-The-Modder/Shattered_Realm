@@ -59,6 +59,7 @@ namespace ShatteredRealm.Content.Globals
 
         public int MinimumShieldDamage = 10;
         public int MaximumShieldDamage = 70;
+        public bool StaticLegs;
 
 
 
@@ -202,6 +203,7 @@ namespace ShatteredRealm.Content.Globals
             overridePlayerDamage = false;
             overrideShieldBreak = false;
             CrystalCoating = false;
+            StaticLegs = false;
 
             base.ResetEffects();
         }

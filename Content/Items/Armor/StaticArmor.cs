@@ -17,7 +17,7 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 0, silver: 75); // How many coins the item is worth
 			Item.rare = ItemRarityID.Blue; // The rarity of the item
-			Item.defense = 6; // The amount of defense the item will give when equipped
+			Item.defense = 19; // The amount of defense the item will give when equipped
 		}
 
 		public override void UpdateEquip(Player player)
@@ -50,11 +50,13 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
 			Item.rare = ItemRarityID.Blue; // The rarity of the item
-			Item.defense = 5; // The amount of defense the item will give when equipped
+			Item.defense = 9; // The amount of defense the item will give when equipped
 		}
 		public override void UpdateEquip(Player player)
 		{
 			player.buffImmune[BuffID.Electrified] = true;
+			player.GetDamage(DamageClass.Ranged) *= 1.08f;
+			player.GetCritChance(DamageClass.Ranged) *= 1.06f;
 		}
 		// IsArmorSet determines what armor pieces are needed for the setbonus to take effect
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -81,12 +83,14 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
 			Item.rare = ItemRarityID.Green; // The rarity of the item
-			Item.defense = 4; // The amount of defense the item will give when equipped
+			Item.defense = 14; // The amount of defense the item will give when equipped
 		}
 
 		public override void UpdateEquip(Player player)
 		{
-
+			player.GetCritChance(DamageClass.Ranged) *= 1.06f;
+			player.moveSpeed *= 1.24f;
+			player.GetModPlayer<ShatteredPlayer>().StaticLegs = true;
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
