@@ -30,13 +30,13 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
 			Item.autoReuse = false; // Whether or not you can hold click to automatically use it again.
 			Item.channel = true;
-			Item.reuseDelay = 8;
+			Item.reuseDelay = 4;
 
 			// The sound that this item plays when used.
 
 			// Weapon Properties
 			Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-			Item.damage = 294; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.damage = 241; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
 			Item.knockBack = 4f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
@@ -124,11 +124,11 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 
 			if (ChargeTime % owner.HeldItem.useTime == 0) // 1 segment per 12 ticks of charge.
 			{
-				if (chargeLevel < 4)
+				if (chargeLevel < 3)
 				{
 					chargeLevel++;
 				}
-				if (chargeLevel == 4)
+				if (chargeLevel == 3)
                 {
 					for (int i = 0; i<10; i++)
                     {
@@ -160,11 +160,15 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			Player owner = Main.player[Projectile.owner];
 			if (chargeLevel == 5)
             {
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center, owner.Center.DirectionTo(SRUtils.GetClosestNPC(owner.Center, 1400).Center) * (Projectile.ai[2] * 2), (int)Projectile.ai[1], (int)(Projectile.damage * 2.25f), Projectile.knockBack, Projectile.owner);
+				int NumProjectiles = Main.rand.Next(3, 7);
+				for (int i = 0; i < NumProjectiles; i++)
+                {
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(8f)) * (Projectile.ai[2] * 1.4f), ModContent.ProjectileType<LaserBolt>(), (int)(Projectile.damage * 0.85f), Projectile.knockBack, Projectile.owner);
+				}
 			}
 			else
             {
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center, Projectile.DirectionTo(Main.MouseWorld) * Projectile.ai[2], (int)Projectile.ai[1], Projectile.damage, Projectile.knockBack, Projectile.owner);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.DirectionTo(Main.MouseWorld) * Projectile.ai[2], (int)Projectile.ai[1], Projectile.damage, Projectile.knockBack, Projectile.owner);
 			}
 			
 		}
@@ -189,13 +193,13 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			Projectile.height = 8;
 			Projectile.aiStyle = -1;
 			Projectile.friendly = true;
-			Projectile.penetrate = 7;
+			Projectile.penetrate = 9;
 			Projectile.timeLeft = 999999;
 			Projectile.light = 1f;
 			Projectile.ignoreWater = false;
 			Projectile.tileCollide = true;
 			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 10;
+			Projectile.localNPCHitCooldown = -1;
 			Projectile.extraUpdates = 3;
 		}
 		public override Color? GetAlpha(Color lightColor)
@@ -258,9 +262,12 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			else
 			{
 				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
-
-
-
+				int enemy1 = NewTarget(700f);
+				if (enemy1 != -1)
+				{
+					enemy = Main.npc[enemy1];
+					Projectile.velocity = Projectile.DirectionTo(enemy.Center) * 12f;
+				}
 			}
 			return false;
 		}
@@ -285,6 +292,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 						{
 							num1 = num2;
 							targetWithLineOfSight = npc.whoAmI;
+							enemiesHit.Add(npc.whoAmI);
 							break;
 						}
 						else
@@ -295,22 +303,27 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 					}
 				}
 			}
-			if (targetWithLineOfSight == -1)
-            {
-				Projectile.Kill();
-            }
 
 			return targetWithLineOfSight;
 		}
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			int enemy1 = NewTarget(700f);
+			if (enemy1 == -1)
+            {
+				if (Projectile.penetrate == 9)
+                {
+					hit.Damage = (int)(hit.Damage * 1.75f);
+                }
+				Projectile.Kill();
+            }
+			Projectile.penetrate--;
 			if (enemy1 != -1)
             {
 				enemy = Main.npc[enemy1];
 				Projectile.velocity = Projectile.DirectionTo(enemy.Center) * 12f;
 			}
-			Projectile.damage = (int)(Projectile.damage * 0.945f);
+			Projectile.damage = (int)(Projectile.damage * 0.89f);
 		}
 
 		public override void AI()

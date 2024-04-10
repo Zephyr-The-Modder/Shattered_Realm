@@ -21,6 +21,7 @@ Projectiles: {
 	LightningBulletsProj.DisplayName: Lightning Bullets Proj
 	ChonkWhipProjectile.DisplayName: Chonk Whip Projectile
 	LaserPistolDummy.DisplayName: Laser Pistol Dummy
+	LaserBolt.DisplayName: Laser Bolt
 }
 
 Items: {

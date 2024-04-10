@@ -9,6 +9,13 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\Items\Accessories\Shield\ReinforcedShield_Shield.png" />
+    <None Remove="Content\Items\Armor\StaticBreastplate.png" />
+    <None Remove="Content\Items\Armor\StaticBreastplate_Body.png" />
+    <None Remove="Content\Items\Armor\StaticHelmet.png" />
+    <None Remove="Content\Items\Armor\StaticHelmet_Head.png" />
+    <None Remove="Content\Items\Armor\StaticLeggings.png" />
+    <None Remove="Content\Items\Armor\StaticLeggings_Legs.png" />
+    <None Remove="Content\Items\Armor\ViperBreastplate_Body.png" />
     <None Remove="Content\Items\Consumables\Potions\ShieldPermeationBuff.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\ApoideaBlaster.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\LaserPistol.png" />
