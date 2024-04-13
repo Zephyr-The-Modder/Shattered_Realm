@@ -65,6 +65,7 @@ namespace ShatteredRealm.Content.Globals
         public bool ShockBonus1;
         public bool StaticSet;
         public int TimeBetweenShots;
+        public bool GoblinShield = false;
 
 
         //Misc
@@ -210,6 +211,7 @@ namespace ShatteredRealm.Content.Globals
             StaticLegs = false;
             ShockBonus1 = false;
             StaticSet = false;
+            GoblinShield = false;
 
             base.ResetEffects();
         }
@@ -229,6 +231,10 @@ namespace ShatteredRealm.Content.Globals
             if (ShockBonus1)
             {
                 npc.AddBuff(ModContent.BuffType<Drained>(), 600);
+            }
+            if (GoblinShield)
+            {
+                npc.AddBuff(BuffID.ShadowFlame, 300);
             }
         }
 
@@ -434,6 +440,26 @@ namespace ShatteredRealm.Content.Globals
                     Player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason("Was poked to death by their shield"), shieldDurability / 2, 0);
                     break;
                 case "GolemShield":
+                    break;
+                case "GoblinShield":
+                    float distanceFromTarget2 = 650;
+
+                    // This code is required either way, used for finding a target
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC npc = Main.npc[i];
+
+                        if (npc.CanBeChasedBy())
+                        {
+                            float between = Vector2.Distance(npc.Center, this.Player.Center);
+                            bool inRange = between < distanceFromTarget2;
+
+                            if (inRange)
+                            {
+                                npc.AddBuff(BuffID.ShadowFlame, 660);
+                            }
+                        }
+                    }
                     break;
 
 

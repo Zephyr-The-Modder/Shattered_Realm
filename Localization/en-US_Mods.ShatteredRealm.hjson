@@ -22,6 +22,7 @@ Projectiles: {
 	ChonkWhipProjectile.DisplayName: Chonk Whip Projectile
 	LaserPistolDummy.DisplayName: Laser Pistol Dummy
 	LaserBolt.DisplayName: Laser Bolt
+	StingerProjectile.DisplayName: Stinger Projectile
 }
 
 Items: {
@@ -443,7 +444,8 @@ Items: {
 		DisplayName: Apocrita Blunderbuss
 		Tooltip:
 			'''
-			Fires bees when using musket balls
+			33% chance to fire bees when firing
+			Musket balls are replaced by piercing thorns 50% of the time
 			"Make sure you're dressed up like a beekeeper!"
 			'''
 	}
@@ -498,9 +500,17 @@ Items: {
 	}
 
 	GoblinShield: {
-		TooltipWithVar: Mods.ShatteredRealm.Items.GoblinShield.TooltipWithVar
 		DisplayName: Goblin Shield
-		Tooltip: ""
+		TooltipWithVar: '''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			Hit enemies get inflicted with shadowflame when the shield is active
+			On shield break, shield inflicts nearby enemies with shadowflame
+			When shield is active, defense increases by one
+			Otherwise, defense decreases by two but movement speed increases by 20%
+			"Shadowflame, shadowflame, get better f***ing aim."
+			'''
 	}
 }
 
@@ -567,7 +577,7 @@ Buffs: {
 	}
 
 	Drained: {
-		Description: Mods.ShatteredRealm.Buffs.Drained.Description
+		Description: Weakened in many ways
 		DisplayName: Drained
 	}
 }

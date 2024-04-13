@@ -23,8 +23,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Melee.Swords
         }
         public override void SetDefaults()
 		{
-			Projectile.width = 52; // The width of projectile hitbox
-			Projectile.height = 52; // The height of projectile hitbox
+			Projectile.width = 26; // The width of projectile hitbox
+			Projectile.height = 26; // The height of projectile hitbox
 			Projectile.scale = 1.55f;
 
 			// Ccopy the ai of any given projectile using AIType, since we want

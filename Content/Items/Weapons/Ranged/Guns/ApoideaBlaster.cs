@@ -32,7 +32,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 
 			// Weapon Properties
 			Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-			Item.damage = 25; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.damage = 18; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
 			Item.knockBack = 4f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
@@ -48,7 +48,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			Vector2 newVelocity = velocity;
-			int NumProjectiles = Main.rand.Next(3, 6); // The humber of projectiles that this gun will shoot.
+			int NumProjectiles = Main.rand.Next(4, 9); // The humber of projectiles that this gun will shoot.
 			for (int i = 0; i < NumProjectiles; i++)
 			{
 				// Rotate the velocity randomly by 30 degrees at max.
@@ -57,8 +57,16 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 				// Decrease velocity randomly for nicer visuals.
 				newVelocity *= 1f - Main.rand.NextFloat(0.15f);
 
+				if (Main.rand.NextBool(4))
+				{
+					Projectile.NewProjectileDirect(source, position, newVelocity, ProjectileID.Bee, (int)(damage * 1.3), knockback, player.whoAmI);
+				}
+				else
+                {
+					Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
+				}
 				// Create a projectile.
-				Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
+				
 			}
 
 			return false; // Return false because we don't want tModLoader to shoot projectile
@@ -66,19 +74,12 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
 			Vector2 muzzleOffset = Vector2.Normalize(velocity) * 11.5f;
-
-			if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
-			{
-				position += muzzleOffset;
-			}
 			if (type == ProjectileID.Bullet)
-			{
-				damage = 16;
-				type = ProjectileID.Bee; 
-			}
-			else
             {
-				damage = 25;
+				if (Main.rand.NextBool())
+                {
+					type = ModContent.ProjectileType<StingerProjectile>();
+				}
             }
 
 		}
@@ -96,5 +97,41 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			.Register();
         }
 
+    }
+    public class StingerProjectile : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.DamageType = DamageClass.Default;
+            Projectile.width = 5;
+            Projectile.height = 9;
+            Projectile.aiStyle = 0;
+            Projectile.friendly = true;
+            Projectile.penetrate = 3;
+            Projectile.timeLeft = 900;
+            Projectile.light = 1f;
+            Projectile.ignoreWater = false;
+            Projectile.tileCollide = true;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.JungleGrass, oldVelocity.X, oldVelocity.Y, 0, default(Color), 1f);
+            Main.dust[dust].noGravity = true;
+            return true;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.Poisoned, 120);
+        }
+
+        public override void AI()
+        {
+			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+		}
     }
 }

@@ -52,11 +52,17 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown <= 0)
+            if (player.GetModPlayer<ShatteredPlayer>().shieldDurability <= 0)
             {
                 player.moveSpeed *= 1.2f;
                 player.statDefense -= 2;
             }
+            else
+            {
+                player.GetModPlayer<ShatteredPlayer>().GoblinShield = true;
+                player.statDefense += 1;
+            }    
+            
         }
 
         public override void AddRecipes()
