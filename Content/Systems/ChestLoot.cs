@@ -69,19 +69,19 @@ namespace ShatteredRealm.Content.Systems
         {
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
             {
-                Chest chest = Main.chest[chestIndex];
-                int itemsToPlaceInChests4 = itemType;
+                Chest chest = Main.chest[chestIndex]; //The chestIndex in the world
+                int itemsToPlaceInChests4 = itemType; //The item we're adding in the chest. Taken from input.
 
-                if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == chestID * 36)
+                if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == chestID * 36) //ID, etc.
                 {
                     for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
                     {
                         if (chest.item[inventoryIndex].type == ItemID.None)
                         {
-                            if (Main.rand.NextBool(chanceDenom))
+                            if (Main.rand.NextBool(chanceDenom)) //Denominator
                             {
                                 chest.item[inventoryIndex].SetDefaults(itemsToPlaceInChests4);
-                                chest.item[inventoryIndex].stack = stack;
+                                chest.item[inventoryIndex].stack = stack; //Stack
                             }
                             break;
                         }
