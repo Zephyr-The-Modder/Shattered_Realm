@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using ShatteredRealm.Content.Globals;
+using Microsoft.Xna.Framework;
+using ShatteredRealm.Content.Items.Weapons.Ranged.Guns;
 
 namespace ShatteredRealm.Content.Items.Armor
 {
@@ -19,10 +21,10 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.rare = ItemRarityID.Blue; // The rarity of the item
 			Item.defense = 19; // The amount of defense the item will give when equipped
 		}
-
+		int Timer = 0;
 		public override void UpdateEquip(Player player)
 		{
-			
+			player.GetModPlayer<ShatteredPlayer>().ShockBonus1 = true;
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
@@ -67,7 +69,7 @@ namespace ShatteredRealm.Content.Items.Armor
 		// UpdateArmorSet allows you to give set bonuses to the armor.
 		public override void UpdateArmorSet(Player player)
 		{
-			
+			player.GetModPlayer<ShatteredPlayer>().StaticSet = true;
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

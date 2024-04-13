@@ -8,6 +8,8 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Content\Items\Accessories\Shield\GoblinShield.png" />
+    <None Remove="Content\Items\Accessories\Shield\GoblinShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\ReinforcedShield_Shield.png" />
     <None Remove="Content\Items\Armor\StaticBreastplate.png" />
     <None Remove="Content\Items\Armor\StaticBreastplate_Body.png" />

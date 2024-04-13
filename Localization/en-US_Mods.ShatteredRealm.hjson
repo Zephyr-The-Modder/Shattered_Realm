@@ -496,6 +496,12 @@ Items: {
 		Tooltip: ""
 		DisplayName: Static Breastplate
 	}
+
+	GoblinShield: {
+		TooltipWithVar: Mods.ShatteredRealm.Items.GoblinShield.TooltipWithVar
+		DisplayName: Goblin Shield
+		Tooltip: ""
+	}
 }
 
 UI: {

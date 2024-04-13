@@ -66,6 +66,12 @@ namespace ShatteredRealm.Content.Items.Armor
             player.moveSpeed *= 0.35f;
             player.lifeRegen = -16;
         }
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.defense -= 25;
+            npc.velocity *= 0.7f;
+            npc.lifeRegen = -12;
+        }
     }
 
 }

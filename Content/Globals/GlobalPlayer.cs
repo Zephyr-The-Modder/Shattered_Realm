@@ -15,6 +15,8 @@ using ShatteredRealm.Content.Items.Accessories.Combos;
 using System.Security.Permissions;
 using Microsoft.CodeAnalysis;
 using ShatteredRealm.Content.Items.Weapons.Mage.Staffs;
+using ShatteredRealm.Content.Items.Armor;
+using Terraria.DataStructures;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -60,7 +62,9 @@ namespace ShatteredRealm.Content.Globals
         public int MinimumShieldDamage = 10;
         public int MaximumShieldDamage = 70;
         public bool StaticLegs;
-
+        public bool ShockBonus1;
+        public bool StaticSet;
+        public int TimeBetweenShots;
 
 
         //Misc
@@ -204,6 +208,8 @@ namespace ShatteredRealm.Content.Globals
             overrideShieldBreak = false;
             CrystalCoating = false;
             StaticLegs = false;
+            ShockBonus1 = false;
+            StaticSet = false;
 
             base.ResetEffects();
         }
@@ -220,6 +226,10 @@ namespace ShatteredRealm.Content.Globals
                 }
                
             }  
+            if (ShockBonus1)
+            {
+                npc.AddBuff(ModContent.BuffType<Drained>(), 600);
+            }
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
@@ -294,6 +304,7 @@ namespace ShatteredRealm.Content.Globals
             }
             return HurtModifiers;
         }
+
         public override void OnHurt(Player.HurtInfo info)
         {
 
@@ -448,5 +459,18 @@ namespace ShatteredRealm.Content.Globals
                  }
             }
         }
+        public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (TimeBetweenShots >= 240)
+            {
+                damage *= 3;
+            }
+            if (StaticSet)
+            {
+                TimeBetweenShots = 0;
+            }
+            return base.Shoot(item, source, position, velocity, type, damage, knockback);
+        }
+        
     }
 }
