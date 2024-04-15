@@ -16,7 +16,7 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.width = 18; // Width of the item
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 0, silver: 75); // How many coins the item is worth
-			Item.rare = ItemRarityID.Blue; // The rarity of the item
+			Item.rare = ItemRarityID.Green; // The rarity of the item
 			Item.defense = 6; // The amount of defense the item will give when equipped
 		}
 
@@ -50,7 +50,7 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.width = 18; // Width of the item
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
-			Item.rare = ItemRarityID.Blue; // The rarity of the item
+			Item.rare = ItemRarityID.Green; // The rarity of the item
 			Item.defense = 5; // The amount of defense the item will give when equipped
 		}
 		public override void UpdateEquip(Player player)
@@ -67,11 +67,11 @@ namespace ShatteredRealm.Content.Items.Armor
 		// UpdateArmorSet allows you to give set bonuses to the armor.
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Makes you immune to poison and venom and attacks inflict these debuffs. +1 minion slot."; // This is the setbonus tooltip: "Increases dealt damage by 20%"
+			player.setBonus = "Makes you immune to poison and venom and attacks inflict these debuffs. +2 minion slots."; // This is the setbonus tooltip: "Increases dealt damage by 20%"
 			player.buffImmune[BuffID.Venom] = true;
 			player.buffImmune[BuffID.Poisoned] = true;
 			Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().verdantSetBonus = true;
-			player.maxMinions += 1;
+			player.maxMinions += 2;
 		}
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

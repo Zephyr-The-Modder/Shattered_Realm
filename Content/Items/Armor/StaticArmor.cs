@@ -18,7 +18,7 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.width = 18; // Width of the item
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 0, silver: 75); // How many coins the item is worth
-			Item.rare = ItemRarityID.Blue; // The rarity of the item
+			Item.rare = ItemRarityID.Yellow; // The rarity of the item
 			Item.defense = 19; // The amount of defense the item will give when equipped
 		}
 		int Timer = 0;
@@ -51,7 +51,7 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.width = 18; // Width of the item
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
-			Item.rare = ItemRarityID.Blue; // The rarity of the item
+			Item.rare = ItemRarityID.Yellow; // The rarity of the item
 			Item.defense = 9; // The amount of defense the item will give when equipped
 		}
 		public override void UpdateEquip(Player player)
@@ -84,7 +84,7 @@ namespace ShatteredRealm.Content.Items.Armor
 			Item.width = 18; // Width of the item
 			Item.height = 18; // Height of the item
 			Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
-			Item.rare = ItemRarityID.Green; // The rarity of the item
+			Item.rare = ItemRarityID.Yellow; // The rarity of the item
 			Item.defense = 14; // The amount of defense the item will give when equipped
 		}
 

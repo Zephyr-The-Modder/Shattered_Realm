@@ -40,8 +40,8 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.shieldItem().shield = true;
 
             Item.shieldItem().absorption = 0.20f;
-            Item.shieldItem().durability = 40;
-            Item.shieldItem().cooldown = 60 * 25;
+            Item.shieldItem().durability = 55;
+            Item.shieldItem().cooldown = 60 * 20;
 
             Item.shieldItem().shieldType = "GoblinShield";
             Item.shieldItem().shieldBreakColor = Color.Magenta;

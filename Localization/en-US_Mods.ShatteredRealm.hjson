@@ -250,11 +250,11 @@ Items: {
 	}
 
 	Firebird: {
-		DisplayName: Helbird
+		DisplayName: Hell Falcon
 		Tooltip:
 			'''
 			Fires 2-3 bullets in a small spread.
-			It feels light, somewhat like a bird. 
+			It's design is somewhat sleek and smooth, used for speed. 
 			It also burns your hand.
 			'''
 	}
@@ -278,6 +278,7 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
+			Used to guard from attacks!
 			'''
 	}
 
@@ -402,8 +403,7 @@ Items: {
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
 			Spawns bubbles when shielding.
-			"It's a LITERAL BUBBLE! HOW AM I ALIVE?!?!" -Some random guy
-			"For those without skill issues." -Zephyr
+			"For those without skill issues."
 			'''
 		DisplayName: Bubble Shield
 		Tooltip: ""
@@ -422,7 +422,7 @@ Items: {
 	}
 
 	PlantyShieldCoating: {
-		DisplayName: Planty Shield Coating
+		DisplayName: Plant-based Shield Coating
 		Tooltip: While shields are active, regenerate 1 Shields every 1.5 seconds.
 	}
 
@@ -476,32 +476,38 @@ Items: {
 
 	ShieldPermeationPotion: {
 		DisplayName: Shield Cooldown Potion
-		Tooltip: Increases luck by 20%
+		Tooltip: Decreases shield cooldown by 20%
 	}
 
 	LaserPistol: {
 		DisplayName: Laser Pistol
-		Tooltip: ""
+		Tooltip: Upon charging, shoot many ricocheting lasers.
 	}
 
 	StaticLeggings: {
-		Tooltip: ""
+		Tooltip: Teleport using a keybind, but inflict yourself with Drained
 		DisplayName: Static Leggings
 	}
 
 	StaticHelmet: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			Immune to Electrified.
+			+8% ranged damage
+			+8% ranged crit chance
+			'''
 		DisplayName: Static Helmet
 	}
 
 	StaticBreastplate: {
-		Tooltip: ""
+		Tooltip: On hit by and NPC, inflict them with Drained
 		DisplayName: Static Breastplate
 	}
 
 	GoblinShield: {
-		DisplayName: Goblin Shield
-		TooltipWithVar: '''
+		DisplayName: Shadowflame Shield
+		TooltipWithVar:
+			'''
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
@@ -511,6 +517,7 @@ Items: {
 			Otherwise, defense decreases by two but movement speed increases by 20%
 			"Shadowflame, shadowflame, get better f***ing aim."
 			'''
+		Tooltip: ""
 	}
 }
 

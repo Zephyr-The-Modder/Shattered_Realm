@@ -52,10 +52,10 @@ namespace ShatteredRealm.Content.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            Main.debuff[Type] = false;  // Is it a debuff?
+            Main.debuff[Type] = true;  // Is it a debuff?
             Main.pvpBuff[Type] = true; // Players can give other players buffs, which are listed as pvpBuff
             Main.buffNoSave[Type] = true; // Causes this buff not to persist when exiting and rejoining the world
-            BuffID.Sets.LongerExpertDebuff[Type] = false; // If this buff is a debuff, setting this to true will make this buff last twice as long on players in expert mode
+            BuffID.Sets.LongerExpertDebuff[Type] = true; // If this buff is a debuff, setting this to true will make this buff last twice as long on players in expert mode
         }
 
         // Allows you to make this buff give certain effects to the given player
@@ -63,14 +63,14 @@ namespace ShatteredRealm.Content.Items.Armor
         {
             player.GetDamage(DamageClass.Generic) *= 0.85f;
             player.statDefense -= 20;
-            player.moveSpeed *= 0.35f;
-            player.lifeRegen = -16;
+            player.moveSpeed *= 0.55f;
+            player.lifeRegen = -14;
         }
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.defense -= 25;
             npc.velocity *= 0.7f;
-            npc.lifeRegen = -12;
+            npc.lifeRegen = -10;
         }
     }
 

@@ -149,7 +149,8 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 				"Alyx",
 				"Peyton",
 				"Kye",
-				"Aeron"
+				"Aeron",
+				"Zane"
 			};
 		}
 
@@ -190,7 +191,7 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 		public override void SetChatButtons(ref string button, ref string button2)
 		{ // What the chat buttons are when you open up the chat UI
 			button = Language.GetTextValue("Shop");
-			button2 = "Shields Info";
+			button2 = "Info";
 		}
 
 		public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -219,8 +220,12 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 					Main.npcChatText = "Some shields do not follow the shield resilience rule. These shields take a specific amount of the player's damage. This is stated in the tooltip.";
 				}
 				if (GuideHelpTime == 5)
+                {
+					Main.npcChatText = "The majority of shields also have a break effect or effect when shielding or on cooldown. For example, the Gold Shield inflicts nearby enemies with Midas.";
+				}
+				if (GuideHelpTime == 6)
 				{
-					Main.npcChatText = "I will sell many goods which will boost your shields, and should help you on your way!";
+					Main.npcChatText = "I will sell many goods which will boost your shields and their abilities, and should help you on your way!";
 					GuideHelpTime = 0;
 				}
 				GuideHelpTime++;

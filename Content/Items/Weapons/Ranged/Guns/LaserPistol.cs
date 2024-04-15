@@ -43,7 +43,6 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			// Gun Properties
 			Item.shoot = ProjectileID.SuperStar; // For some reason, all the guns in the vanilla source have this.
 			Item.shootSpeed = 8f; // The speed of the projectile (measured in pixels per frame.)
-			Item.UseSound = SoundID.Item41;
 			Item.useAmmo = AmmoID.Bullet;
 		}
 
@@ -157,6 +156,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		}
 		public override void OnKill(int timeLeft)
 		{
+			SoundEngine.PlaySound(SoundID.Item12, Projectile.Center);
 			Player owner = Main.player[Projectile.owner];
 			if (chargeLevel == 5)
             {
