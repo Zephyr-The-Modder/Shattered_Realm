@@ -46,7 +46,7 @@ namespace ShatteredRealm.Content.Items.Consumables.Potions
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += 0.15f;
+			player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult += 0.08f;
 		}
 	}
 }

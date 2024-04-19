@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Terraria.Localization;
 using ShatteredRealm.Content.Globals;
+using System.Linq;
 
 namespace ShatteredRealm.Content.Items.Accessories.Lush
 {
@@ -24,8 +25,13 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Player player = Main.LocalPlayer;
 			TooltipLine tooltip;
 			tooltip = new TooltipLine(Mod, "tooltipWithVar", TooltipWithVar.Format(Item.shieldItem().durability * player.GetModPlayer<ShatteredPlayer>().shieldDurabilityMult, Math.Round(Item.shieldItem().absorption * 10000) / 100 + "%", Math.Round(Item.shieldItem().cooldown / player.GetModPlayer<ShatteredPlayer>().shieldCooldownMult / 60f * 100) / 100 + " seconds"));
-			tooltips.Add(tooltip);
-		}
+
+            TooltipLine line = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "Tooltip0" && x.Mod == "Terraria");
+            if (line != null)
+            {
+                line.Text += tooltip.Text;
+            }
+        }
 
 
 		public override void SetDefaults()

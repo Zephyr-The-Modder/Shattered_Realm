@@ -23,6 +23,7 @@ Projectiles: {
 	LaserPistolDummy.DisplayName: Laser Pistol Dummy
 	LaserBolt.DisplayName: Laser Bolt
 	StingerProjectile.DisplayName: Stinger Projectile
+	ArdentMagicTridentProj.DisplayName: Ardent Magic Trident Proj
 }
 
 Items: {
@@ -290,7 +291,7 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			On shield break, nearby enemies are inflicted with Midas for 15 seconds
+			On shield break, nearby enemies are inflicted with Midas for 15 seconds; duration scales with shield effect power
 			'''
 	}
 
@@ -302,7 +303,7 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			On shield break, luck is increased for 15 seconds
+			On shield break, luck is increased for 10 seconds; duration scales with shield effect power
 			'''
 	}
 
@@ -377,6 +378,7 @@ Items: {
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
 			On shield break, teleport to the cursor without repercussions.
+			Gain half a second of invincibility after teleporting; scales with shield effect power.
 			"Yer a wizard, Harry!"
 			'''
 		DisplayName: Warp Shield
@@ -476,7 +478,7 @@ Items: {
 
 	ShieldPermeationPotion: {
 		DisplayName: Shield Cooldown Potion
-		Tooltip: Decreases shield cooldown by 20%
+		Tooltip: Decreases shield cooldown by 8%
 	}
 
 	LaserPistol: {
@@ -512,12 +514,22 @@ Items: {
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
 			Hit enemies get inflicted with shadowflame when the shield is active
-			On shield break, shield inflicts nearby enemies with shadowflame
+			On shield break, shield inflicts nearby enemies with shadowflame. Duration scales with shield effect power.
 			When shield is active, defense increases by one
 			Otherwise, defense decreases by two but movement speed increases by 20%
 			"Shadowflame, shadowflame, get better f***ing aim."
 			'''
 		Tooltip: ""
+	}
+
+	ArdentMagicTrident: {
+		DisplayName: Raging Fire's Three Peaks
+		Tooltip:
+			'''
+			Strike the enemy with multiple searing tridents!
+			Targets the enemy closest to the cursor
+			Strikes up to 3 enemies at a time
+			'''
 	}
 }
 
@@ -580,7 +592,7 @@ Buffs: {
 
 	ShieldPermeationBuff: {
 		DisplayName: Shield Cooldown Potion
-		Description: Shield cooldown reduced by 15%
+		Description: Shield cooldown reduced by 8%
 	}
 
 	Drained: {
@@ -590,3 +602,76 @@ Buffs: {
 }
 
 Keybinds.StaticSetBonus.DisplayName: Static Set Bonus
+
+Prefixes: {
+	PrefixSturdy: {
+		DisplayName: Sturdy
+		AdditionalTooltip: +10% max durability
+	}
+
+	PrefixReinforced: {
+		DisplayName: Reinforced
+		AdditionalTooltip:
+			'''
+			+20% max durability
+			+2 defense
+			'''
+		NegativeTooltip: 10% longer shield cooldown
+	}
+
+	PrefixWeaponized: {
+		DisplayName: Weaponized
+		NegativeTooltip:
+			'''
+			-1 defense
+			-5% max durability
+			5% longer shield cooldown
+			'''
+		AdditionalTooltip:
+			'''
+			+10% shield effect power
+			+10% damage
+			'''
+	}
+
+	PrefixUseless: {
+		DisplayName: Useless
+		NegativeTooltip:
+			'''
+			-2 defense
+			-20% max durability
+			20% longer shield cooldown
+			'''
+	}
+
+	PrefixPotent: {
+		DisplayName: Potent
+		NegativeTooltip: 5% longer shield cooldown
+		AdditionalTooltip: +10% shield effect power
+	}
+
+	PrefixIncorrigible: {
+		DisplayName: Incorrigible
+		NegativeTooltip: 20% longer shield cooldown
+	}
+
+	PrefixDauntless: {
+		DisplayName: Dauntless
+		AdditionalTooltip: +30% max durability
+	}
+
+	PrefixDamaged: {
+		DisplayName: Damaged
+		NegativeTooltip:
+			'''
+			-1 defense
+			-15% max durability
+			'''
+	}
+
+	PrefixBrittle: {
+		DisplayName: Brittle
+		NegativeTooltip: -30% max durability
+		AdditionalTooltip: 15% faster shield cooldown
+	}
+}

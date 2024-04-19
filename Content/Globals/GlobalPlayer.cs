@@ -17,6 +17,7 @@ using Microsoft.CodeAnalysis;
 using ShatteredRealm.Content.Items.Weapons.Mage.Staffs;
 using ShatteredRealm.Content.Items.Armor;
 using Terraria.DataStructures;
+using Steamworks;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -53,6 +54,8 @@ namespace ShatteredRealm.Content.Globals
         public bool overrideShieldBreak;
         public bool overridePlayerDamage;
         public Color shieldBreakColor;
+
+        public float ShieldEffectPower;
 
         public bool CrystalCoating = false;
         public bool ReflexiveCharm = false;
@@ -212,7 +215,7 @@ namespace ShatteredRealm.Content.Globals
             ShockBonus1 = false;
             StaticSet = false;
             GoblinShield = false;
-
+            ShieldEffectPower = 1;
             base.ResetEffects();
         }
 
@@ -383,7 +386,7 @@ namespace ShatteredRealm.Content.Globals
                         Vector2 newVel = newPos.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(35)) * 14.5f;
                         newVel *= 1f - Main.rand.NextFloat(0.4f);
 
-                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), newPos, newVel, ProjectileID.HallowStar, 14, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), newPos, newVel, ProjectileID.HallowStar, SRUtils.ScaleShieldEffectPower(28, Player), 0, Player.whoAmI);
                     }
                     break;
                 case "HellstoneShield":
@@ -391,17 +394,22 @@ namespace ShatteredRealm.Content.Globals
                     {
                         Vector2 newVel = Player.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.ToRadians(35)) * 6;
                         
-                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, newVel, ModContent.ProjectileType<MagmaStaffProj>(), 17, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, newVel, ModContent.ProjectileType<MagmaStaffProj>(), SRUtils.ScaleShieldEffectPower(17, Player), 0, Player.whoAmI);
                     }
                     break;
                 case "BeeShield":
                     for (int i = 0; i < 60; i++)
                     {
-                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) * 2.5f + new Vector2(0, -6.5f), ProjectileID.Bee, 12, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) * 2.5f + new Vector2(0, -6.5f), ProjectileID.Bee, SRUtils.ScaleShieldEffectPower(12, Player), 0, Player.whoAmI);
                     }
                     break;
                 case "TeleportingShield":
                     Player.Teleport(Main.MouseWorld, TeleportationStyleID.RodOfDiscord);
+                    if (Player.immuneTime < SRUtils.ScaleShieldEffectPower(30, Player))
+                    {
+                        Player.immuneTime = SRUtils.ScaleShieldEffectPower(30, Player);
+                    }
+
                     break;
                 case "WoodShield":
                     break;
@@ -420,20 +428,20 @@ namespace ShatteredRealm.Content.Globals
 
                             if (inRange)
                             {
-                                npc.AddBuff(BuffID.Midas, 900);
+                                npc.AddBuff(BuffID.Midas, SRUtils.ScaleShieldEffectPower(900, Player));
                             }
                         }
                     }
                     break;
                 case "PlatinumShield":
-                    Player.AddBuff(ModContent.BuffType<PlatinumShieldLuck>(), 600);
+                    Player.AddBuff(ModContent.BuffType<PlatinumShieldLuck>(), SRUtils.ScaleShieldEffectPower(600, Player));
                     break;
                 case "StoneShield":
                     break;
                 case "ArachnidAegis":
                     for (int i = 0; i < 12; i++)
                     {
-                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) + new Vector2(0, -6.5f), ProjectileID.BabySpider, 45, 0, Player.whoAmI);
+                        Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, Main.rand.NextVector2Circular(5, 5) + new Vector2(0, -6.5f), ProjectileID.BabySpider, SRUtils.ScaleShieldEffectPower(45, Player), 0, Player.whoAmI);
                     }
                     break;
                 case "TurtleShield":
@@ -456,7 +464,7 @@ namespace ShatteredRealm.Content.Globals
 
                             if (inRange)
                             {
-                                npc.AddBuff(BuffID.ShadowFlame, 660);
+                                npc.AddBuff(BuffID.ShadowFlame, SRUtils.ScaleShieldEffectPower(660, Player));
                             }
                         }
                     }

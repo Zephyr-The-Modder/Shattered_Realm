@@ -50,6 +50,15 @@ namespace ShatteredRealm
         {
             return (int)(origDmg * player.GetTotalDamage(damageClass).Additive * player.GetTotalDamage(damageClass).Multiplicative + player.GetTotalDamage(damageClass).Flat);
         }
+        public static int ScaleShieldEffectPower(int stat, Player player, float effectiveness = 1)
+        {
+            return (int)(stat * ((player.GetModPlayer<ShatteredPlayer>().ShieldEffectPower - 1) * effectiveness + 1));
+        }
+        public static float ScaleShieldEffectPower(float stat, Player player, float effectiveness = 1)
+        {
+            return stat * ((player.GetModPlayer<ShatteredPlayer>().ShieldEffectPower - 1) * effectiveness + 1);
+        }
+
         public static ShieldItem shieldItem(this Item item)
         {
             return item.GetGlobalItem<ShieldItem>();

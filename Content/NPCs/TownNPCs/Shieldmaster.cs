@@ -223,7 +223,12 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
                 {
 					Main.npcChatText = "The majority of shields also have a break effect or effect when shielding or on cooldown. For example, the Gold Shield inflicts nearby enemies with Midas.";
 				}
-				if (GuideHelpTime == 6)
+
+                if (GuideHelpTime == 6)
+                {
+                    Main.npcChatText = "Shield effects can be modified by a stat called \"shield effect power\". This stat usually increases the damage of shield effects, but can also benefit other certain shield effects as well.";
+                }
+                if (GuideHelpTime == 7)
 				{
 					Main.npcChatText = "I will sell many goods which will boost your shields and their abilities, and should help you on your way!";
 					GuideHelpTime = 0;
@@ -239,9 +244,9 @@ namespace ShatteredRealm.Content.NPCs.TownNPCs
 				.Add(new Item(ModContent.ItemType<WoodShield>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 				.Add(new Item(ModContent.ItemType<ReinforcedShield>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 				.Add(new Item(ModContent.ItemType<PlantyShieldCoating>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
-				.Add(new Item(ModContent.ItemType<VileCoating>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
-				.Add(new Item(ModContent.ItemType<FlashShielding>())) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
-				.Add(new Item(ModContent.ItemType<CrystalCoating>())); // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<VileCoating>()), Condition.DownedEaterOfWorlds) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<FlashShielding>()), Condition.DownedEyeOfCthulhu) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+				.Add(new Item(ModContent.ItemType<CrystalCoating>()), Condition.DownedQueenSlime); // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
 			npcShop.Register(); // Name of this shop tab
 		}
 
