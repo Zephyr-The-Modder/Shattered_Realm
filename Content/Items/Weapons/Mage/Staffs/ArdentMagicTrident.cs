@@ -191,22 +191,43 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = TextureAssets.Projectile[115].Value;
-            Rectangle rectangle25 = new Rectangle(0, 0, texture.Width, texture.Height);
-            Vector2 origin33 = rectangle25.Size() / 2f;
-            Color alpha13 = Projectile.GetAlpha(lightColor);
+            // SpriteEffects helps to flip texture horizontally and vertically
+            SpriteEffects spriteEffects = SpriteEffects.None;
 
+            // Getting texture of projectile
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+
+            // Calculating frameHeight and current Y pos dependence of frame
+            // If texture without animation frameHeight is always texture.Height and startY is always 0
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            int startY = frameHeight * Projectile.frame;
+
+            // Get this frame on texture
+            Rectangle sourceRectangle = new Rectangle(0, startY, texture.Width, frameHeight);
+
+            // Alternatively, you can skip defining frameHeight and startY and use this:
+            // Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+
+            Vector2 origin = sourceRectangle.Size() / 2f;
+            // Applying lighting and draw current frame
+            Color drawColor = Projectile.GetAlpha(lightColor);
+
+            Texture2D projectileTexture = TextureAssets.Projectile[Projectile.type].Value;
+            Vector2 drawOrigin = origin;
+            spriteEffects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             for (int k = 0; k < Projectile.oldPos.Length && k < StateTimer; k++)
             {
                 Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY) + new Vector2(4f, 4f);
                 Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                 color.A = (byte)(color.A * 0.75f);
-                Main.spriteBatch.Draw(texture, drawPos, rectangle25, color, Projectile.oldRot[k], origin33, Projectile.scale - k * 0.01f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(projectileTexture, drawPos, sourceRectangle, color, Projectile.oldRot[k], drawOrigin, Projectile.scale - k * 0.02f, spriteEffects, 0f);
             }
 
-            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), rectangle25, alpha13, Projectile.rotation, origin33, Projectile.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(texture,
+                Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
+                sourceRectangle, drawColor, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
 
-
+            // It's important to return false, otherwise we also draw the original texture.
             return false;
         }
     }

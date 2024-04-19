@@ -19,6 +19,7 @@
     <None Remove="Content\Items\Armor\StaticLeggings_Legs.png" />
     <None Remove="Content\Items\Armor\ViperBreastplate_Body.png" />
     <None Remove="Content\Items\Consumables\Potions\ShieldPermeationBuff.png" />
+    <None Remove="Content\Items\Weapons\Mage\Staffs\ArdentMagicTridentProj.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\ApoideaBlaster.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\LaserPistol.png" />
     <None Remove="Content\Items\Weapons\Ranged\Guns\LaserPistolDummy.png" />
