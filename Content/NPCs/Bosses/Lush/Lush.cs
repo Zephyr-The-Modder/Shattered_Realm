@@ -66,14 +66,7 @@ namespace ShatteredRealm.Content.NPCs.Bosses.Lush
         }
         public void randAtkPhase1(int rand)
         {
-            if (rand == 1)
-            {
-                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().CoordinatedDashOrbRand = Main.rand.Next(1, 9);
-            }
-            if (rand == 2)
-            {
-                Main.LocalPlayer.GetModPlayer<ShatteredPlayer>().CoordinatedDashOrbRand = Main.rand.Next(1, 9);
-            }
+
         }
 
 
