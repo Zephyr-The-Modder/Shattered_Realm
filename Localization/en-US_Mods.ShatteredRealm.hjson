@@ -24,6 +24,7 @@ Projectiles: {
 	LaserBolt.DisplayName: Laser Bolt
 	StingerProjectile.DisplayName: Stinger Projectile
 	ArdentMagicTridentProj.DisplayName: Ardent Magic Trident Proj
+	ReflexiveProj.DisplayName: Reflexive Proj
 }
 
 Items: {
@@ -424,7 +425,7 @@ Items: {
 	}
 
 	PlantyShieldCoating: {
-		DisplayName: Plant-based Shield Coating
+		DisplayName: Herbal Shield Coating
 		Tooltip: While shields are active, regenerate 1 Shields every 1.5 seconds.
 	}
 
@@ -529,6 +530,16 @@ Items: {
 			Strike the enemy with multiple searing tridents!
 			Targets the enemy closest to the cursor
 			Strikes up to 3 enemies at a time
+			'''
+	}
+
+	ReflexiveCharm: {
+		DisplayName: Reflexive Charm
+		Tooltip:
+			'''
+			Taking damage releases reflexive energy toward a nearby enemy
+			Range scales with damage taken
+			5% increased shield effect power
 			'''
 	}
 }

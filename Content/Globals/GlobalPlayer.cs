@@ -18,6 +18,7 @@ using ShatteredRealm.Content.Items.Weapons.Mage.Staffs;
 using ShatteredRealm.Content.Items.Armor;
 using Terraria.DataStructures;
 using Steamworks;
+using log4net.Core;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -69,7 +70,6 @@ namespace ShatteredRealm.Content.Globals
         public bool StaticSet;
         public int TimeBetweenShots;
         public bool GoblinShield = false;
-
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -216,6 +216,7 @@ namespace ShatteredRealm.Content.Globals
             StaticSet = false;
             GoblinShield = false;
             ShieldEffectPower = 1;
+            ReflexiveCharm = false;
             base.ResetEffects();
         }
 
@@ -329,7 +330,7 @@ namespace ShatteredRealm.Content.Globals
                     shieldDmg = OverrideShieldDamage(shieldType, info);
                 }
 
-                DamageShield(shieldDmg, 1);
+                DamageShield(shieldDmg, 1, info);
 
                 if (shieldDurability <= 0)
                 {
@@ -338,11 +339,32 @@ namespace ShatteredRealm.Content.Globals
             }
         }
 
-        public void DamageShield(int dmg, float damageModifier)
+        public void DamageShield(int dmg, float damageModifier, Player.HurtInfo info)
         {
             shieldDurability -= (int)(dmg * damageModifier);
             CombatText.NewText(Player.getRect(), Color.DarkCyan, dmg);
+            ShieldDamageEffects(info);
         }
+
+        public void ShieldDamageEffects(Player.HurtInfo info)
+        {
+            if (ReflexiveCharm)
+            {
+                NPC target = SRUtils.GetClosestNPC(Player.Center, 1500);
+                Vector2 projVel;
+                if (target == null)
+                {
+                    projVel = Player.Center.DirectionTo(Main.MouseWorld) * (0.75f + info.SourceDamage * 0.01f);
+                }
+                else
+                {
+                    projVel = Player.Center.DirectionTo(target.Center) * (0.75f + info.SourceDamage * 0.01f);
+                }
+                Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), Player.Center, projVel, ModContent.ProjectileType<ReflexiveProj>(), SRUtils.ScaleShieldEffectPower(42, Player), 0, Player.whoAmI);
+
+            }
+        }
+
         public int OverrideShieldDamage(string type, Player.HurtInfo info)
         {
             int modifiedDmg = (int)(info.SourceDamage * (1 - ShieldDR));
