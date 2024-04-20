@@ -25,13 +25,13 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
 
         public override void SetDefaults()
         {
-            Item.damage = 87;
-            Item.mana = 12;
+            Item.damage = 157;
+            Item.mana = 14;
             Item.DamageType = DamageClass.Magic;
             Item.width = 42;
             Item.height = 46;
-            Item.useTime = 23;
-            Item.useAnimation = 23;
+            Item.useTime = 33;
+            Item.useAnimation = 33;
             Item.useStyle = 5;
             Item.knockBack = 0.5f;
             Item.value = 10000;
@@ -130,7 +130,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
             Projectile.height = 12;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 2;
             Projectile.timeLeft = 60;
             Projectile.light = 1f;
             Projectile.stopsDealingDamageAfterPenetrateHits = true;
