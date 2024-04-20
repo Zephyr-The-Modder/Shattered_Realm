@@ -20,12 +20,18 @@ using System.Collections.Generic;
 
 namespace ShatteredRealm.Content.NPCs.Bosses.Lush
 {
-    // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
     public class Lush : ModNPC
     {
         private enum ActionState
         {
             FloatTowardsPlayer,
+
+            EightThorns,
+            SporeDash,
+            ThornyVines,
+            TrappingVines,
+            VineExplosion,
+            Minions,
 
             OrbLeafCircle,
             OrbLeafShot,
@@ -62,8 +68,8 @@ namespace ShatteredRealm.Content.NPCs.Bosses.Lush
             Main.npcFrameCount[NPC.type] = 5; // make sure to set this for your modnpcs.
 
             // Specify the debuffs it is immune to
-            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
-            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Venom] = true;
 
             NPCID.Sets.TrailCacheLength[NPC.type] = 6;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
@@ -222,6 +228,24 @@ namespace ShatteredRealm.Content.NPCs.Bosses.Lush
                 case (float)ActionState.OrbCircleDash:
                     OrbCircleDash();
                     break;
+                case (float)ActionState.EightThorns:
+                    EightThorns();
+                    break;
+                case (float)ActionState.SporeDash:
+                    SporeDash();
+                    break;
+                case (float)ActionState.ThornyVines:
+                    ThornyVines();
+                    break;
+                case (float)ActionState.TrappingVines:
+                    TrappingVines();
+                    break;
+                case (float)ActionState.VineExplosion:
+                    VineExplosion();
+                    break;
+                case (float)ActionState.Minions:
+                    Minions();
+                    break;
             }
         }
         // Here in FindFrame, we want to set the animation frame our npc will use depending on what it is doing.
@@ -333,6 +357,48 @@ namespace ShatteredRealm.Content.NPCs.Bosses.Lush
                 AI_Timer = 0;
             }
             AI_Timer++;
+        }
+        private void EightThorns()
+        {
+            AI_Timer += 1;
+            int dmg = 25;
+            if (Main.expertMode)
+            {
+                dmg = 40;
+            }
+            if (Main.masterMode)
+            {
+                dmg = 65;
+            }
+            if (AI_Timer == 480)
+            {
+                for (int i = 0; i < 360; i += 45)
+                {
+                    Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.One.RotatedBy(MathHelper.ToRadians(i)), ProjectileID.Stinger, dmg, 1.5f);
+                }
+                AI_State = (float)ActionState.OrbCircleDash;
+                AI_Timer = 0;
+            }
+        }
+        private void SporeDash()
+        {
+
+        }
+        private void ThornyVines()
+        {
+
+        }
+        private void TrappingVines()
+        {
+
+        }
+        private void VineExplosion()
+        {
+
+        }
+        private void Minions()
+        {
+
         }
     }
 }

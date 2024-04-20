@@ -38,7 +38,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Flamethrowers
 			Projectile.timeLeft = 150; // Each update timeLeft is decreased by 1. Once timeLeft hits 0, the Projectile will naturally despawn. (60 ticks = 1 second)
 
 			Projectile.penetrate = 2;
-			Projectile.ArmorPenetration = 10;
+			Projectile.ArmorPenetration = 7;
 			// 1: Projectile.penetrate = 1; // Will hit even if npc is currently immune to player
 			// 2a: Projectile.penetrate = -1; // Will hit and unless 3 is use, set 10 ticks of immunity
 			// 2b: Projectile.penetrate = 3; // Same, but max 3 hits before dying
