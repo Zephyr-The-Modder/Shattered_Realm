@@ -28,9 +28,17 @@ namespace ShatteredRealm.Content.Globals
                     }
 
                 }
+                
             }
-            
+            if (player.GetModPlayer<ShatteredPlayer>().reversedSolar)
+            {
+                if (projectile.minion == true)
+                {
+                    target.AddBuff(BuffID.Daybreak, damageDone * 3);
+                }
+            }
         }
+        
 
     }
 }

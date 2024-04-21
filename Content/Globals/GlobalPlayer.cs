@@ -70,6 +70,11 @@ namespace ShatteredRealm.Content.Globals
         public bool StaticSet;
         public int TimeBetweenShots;
         public bool GoblinShield = false;
+        public bool InversePolarity = false;
+        public bool reversedSolar;
+        public bool reversedNebula;
+        public bool reversedVortex;
+        public bool reversedStardust;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer

@@ -180,7 +180,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
 
             if (Projectile.timeLeft >= 45)
             {
-                Projectile.alpha -= 17;
+                Projectile.alpha -= 13;
             }
             if (Projectile.timeLeft < 15)
             {
