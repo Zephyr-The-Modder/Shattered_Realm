@@ -542,6 +542,26 @@ Items: {
 			5% increased shield effect power
 			'''
 	}
+
+	SolarShield: {
+		TooltipWithVar:
+			'''
+			True melee strikes inflict Daybroken when shield is active
+			+10% melee damage when shield is active
+			When reversed, minions will inflict Daybroken
+			+10% summon damage when shield is active
+			When shield is active, gain 10 defense, but move 10% slower
+			Otherwise, lose 5 but move 20% faster
+			These effects are inversed when the shield is reversed
+			'''
+		DisplayName: Solar Shield
+		Tooltip: ""
+	}
+
+	ReversePolarity: {
+		DisplayName: Reverse Polarity
+		Tooltip: Reverses the fragments of the pillar shields
+	}
 }
 
 UI: {

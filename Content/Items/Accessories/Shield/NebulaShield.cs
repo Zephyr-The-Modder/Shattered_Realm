@@ -17,7 +17,7 @@ using Terraria.GameContent;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class SolarShield : ModItem
+	public class NebulaShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
@@ -50,14 +50,14 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.shieldItem().overrideShieldDamage = false;
             Item.shieldItem().shield = true;
 
-			Item.shieldItem().absorption = 0.45f;
-			Item.shieldItem().durability = 200;
-			Item.shieldItem().cooldown = 60 * 30;
+			Item.shieldItem().absorption = 0.40f;
+			Item.shieldItem().durability = 150;
+			Item.shieldItem().cooldown = 60 * 25;
 
-			Item.shieldItem().shieldType = "SolarShield";
-            Item.shieldItem().shieldBreakColor = Color.OrangeRed;
+			Item.shieldItem().shieldType = "NebulaShield";
+            Item.shieldItem().shieldBreakColor = Color.Purple;
 
-            Item.defense = 12;
+            Item.defense = 8;
 		}
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -79,34 +79,13 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             if (!player.GetModPlayer<ShatteredPlayer>().InversePolarity)
             {
-                if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown < 0)
-                {
-                    player.moveSpeed *= 0.9f;
-                    player.statDefense += 10;
-                }
-                else
-                {
-                    player.moveSpeed *= 1.2f;
-                    player.statDefense -= 5;
-                }
-                player.GetDamage(DamageClass.Melee) *= 1.1f;
-                player.GetModPlayer<ShatteredPlayer>().solarShield = true;
+                player.GetDamage(DamageClass.Magic) *= 1.1f;
+                player.GetModPlayer<ShatteredPlayer>().nebulaShield = true;
             }
             else
             {
-                if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown < 0)
-                {
-                    player.moveSpeed *= 1.2f;
-                    player.statDefense -= 5;
-                }
-                else
-                {
-                    player.moveSpeed *= 0.9f;
-                    player.statDefense += 10;
-                }
-                player.GetDamage(DamageClass.Summon) *= 1.1f;
-                player.GetModPlayer<ShatteredPlayer>().reversedSolar = true;
-                player.GetModPlayer<ShatteredPlayer>().solarShield = false;
+                player.GetDamage(DamageClass.Ranged) *= 1.1f;
+                player.GetModPlayer<ShatteredPlayer>().reversedNebula = true;
             }
 
         }
@@ -116,7 +95,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             CreateRecipe()
                 .AddIngredient(ItemID.FragmentSolar, 8)
                 .AddTile(TileID.MythrilAnvil)
-                .AddCondition(Condition.TimeDay)
+                .AddCondition(Condition.TimeNight)
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

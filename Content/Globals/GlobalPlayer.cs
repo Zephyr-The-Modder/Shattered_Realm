@@ -19,6 +19,7 @@ using ShatteredRealm.Content.Items.Armor;
 using Terraria.DataStructures;
 using Steamworks;
 using log4net.Core;
+using ShatteredRealm.Content.Items.Accessories.ShieldModifiers;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -27,7 +28,6 @@ namespace ShatteredRealm.Content.Globals
         //Armors
         public bool verdantSetBonus; //Verdant Armor
 
-       
         //Permanent buffs
         public bool ConsumedForestHeart; //Forest Heart Perm Buff
 
@@ -62,6 +62,7 @@ namespace ShatteredRealm.Content.Globals
         public bool ReflexiveCharm = false;
 
         public bool shieldsActive;
+        public NPC nebulaTarget;
 
         public int MinimumShieldDamage = 10;
         public int MaximumShieldDamage = 70;
@@ -75,6 +76,11 @@ namespace ShatteredRealm.Content.Globals
         public bool reversedNebula;
         public bool reversedVortex;
         public bool reversedStardust;
+        public bool solarShield;
+        public bool nebulaShield;
+        public bool vortexShield;
+        public bool stardustShield;
+        public int nebulaDamage;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -130,6 +136,28 @@ namespace ShatteredRealm.Content.Globals
             if (ArdentShieldStat)
             {
                 target.AddBuff(BuffID.OnFire3, Main.rand.Next(150, 300));
+            }
+            if (target == nebulaTarget && !InversePolarity)
+            {
+                if (hit.DamageType == DamageClass.Magic)
+                {
+                    nebulaDamage += hit.Damage;
+                }
+                else
+                {
+                    nebulaDamage += hit.Damage / 5;
+                }
+            }
+            if (target == nebulaTarget && InversePolarity)
+            {
+                if (hit.DamageType == DamageClass.Ranged)
+                {
+                    nebulaDamage += hit.Damage;
+                }
+                else
+                {
+                    nebulaDamage += hit.Damage / 5;
+                }
             }
         }
         public override void UpdateBadLifeRegen()
@@ -222,6 +250,15 @@ namespace ShatteredRealm.Content.Globals
             GoblinShield = false;
             ShieldEffectPower = 1;
             ReflexiveCharm = false;
+            reversedSolar = false;
+            reversedNebula = false;
+            reversedVortex = false;
+            reversedStardust = false;
+            solarShield = false;
+            nebulaShield = false;
+            vortexShield = false;
+            stardustShield = false;
+            InversePolarity = false; 
             base.ResetEffects();
         }
 
@@ -496,9 +533,43 @@ namespace ShatteredRealm.Content.Globals
                         }
                     }
                     break;
+                case "SolarShield":
+                    float distanceFromTarget3 = 650;
+
+                    // This code is required either way, used for finding a target
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        NPC npc = Main.npc[i];
+
+                        if (npc.CanBeChasedBy())
+                        {
+                            float between = Vector2.Distance(npc.Center, this.Player.Center);
+                            bool inRange = between < distanceFromTarget3;
+
+                            if (inRange)
+                            {
+                                npc.AddBuff(BuffID.Daybreak, SRUtils.ScaleShieldEffectPower(400, Player));
+                            }
+                        }
+                    }
+                    break;
+                case "NebulaShield":
+                    DamageNPC(nebulaDamage / 3);
+                    nebulaDamage = 0;
+                    FindNebulaTarget();
+                    break;
 
 
             }
+        }
+        public void FindNebulaTarget()
+        {
+            nebulaTarget = SRUtils.GetClosestNPC(Player.Center, 4000);
+        }
+        public void DamageNPC(float damage)
+        {
+            int rng = Main.rand.Next(-25, 26);
+            nebulaTarget. -= damage + rng;
         }
         public void AutoConsumePotion()
         {
@@ -520,6 +591,14 @@ namespace ShatteredRealm.Content.Globals
                  }
             }
         }
+        public override void UpdateEquips()
+        {
+            if (Main.LocalPlayer.HasItem(ModContent.ItemType<ReversePolarity>()))
+            {
+                InversePolarity = true;
+            }
+
+        }
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             if (TimeBetweenShots >= 240)
@@ -532,6 +611,35 @@ namespace ShatteredRealm.Content.Globals
             }
             return base.Shoot(item, source, position, velocity, type, damage, knockback);
         }
-        
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (item.DamageType == DamageClass.Melee && solarShield)
+            {
+                target.AddBuff(BuffID.Daybreak, damageDone * 5);
+            }
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (reversedSolar && shieldDurability > 0)
+            {
+                if (proj.minion == true)
+                {
+                    target.AddBuff(BuffID.Daybreak, damageDone * 2);
+                }
+            }
+            if (verdantSetBonus && Main.rand.Next(1, 7) == 1)
+            {
+                if (Main.hardMode)
+                {
+                    target.AddBuff(BuffID.Venom, 180);
+                }
+                else
+                {
+                    target.AddBuff(BuffID.Poisoned, 300);
+                }
+
+            }
+        }
+
     }
 }
