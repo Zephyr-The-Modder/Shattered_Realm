@@ -566,10 +566,10 @@ namespace ShatteredRealm.Content.Globals
         {
             nebulaTarget = SRUtils.GetClosestNPC(Player.Center, 4000);
         }
-        public void DamageNPC(float damage)
+        public void DamageNPC(int damage)
         {
             int rng = Main.rand.Next(-25, 26);
-            nebulaTarget. -= damage + rng;
+            nebulaTarget.life -= damage + rng;
         }
         public void AutoConsumePotion()
         {
