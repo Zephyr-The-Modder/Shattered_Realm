@@ -546,6 +546,9 @@ Items: {
 	SolarShield: {
 		TooltipWithVar:
 			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
 			True melee strikes inflict Daybroken when shield is active
 			+10% melee damage when shield is active
 			When reversed, minions will inflict Daybroken
@@ -561,6 +564,37 @@ Items: {
 	ReversePolarity: {
 		DisplayName: Reverse Polarity
 		Tooltip: Reverses the fragments of the pillar shields
+	}
+
+	NebulaShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			+10% magic damage or +10% ranged damage when reversed
+			When shield is equipped, the strongest nearby enemy will be targeted
+			When attacking the targeted enemy with magic weapons, damage charges a "nebula energy"
+			On shield break, one third of the energy stored will convert into damage
+			When this shield is reversed, these same effects apply, but the damage type is replaced with ranged
+			'''
+		DisplayName: Nebula Shield
+		Tooltip: ""
+	}
+
+	VortexShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			+10% ranged damage or melee damage when reversed
+			On shield break, get inflicted with Distorted for eight seconds
+			However, you also gain extreme amounts of defense as well as 35% ranged damage
+			When reversed, these effects still apply, but the damage boost is replaced with melee damage
+			'''
+		DisplayName: Vortex Shield
+		Tooltip: ""
 	}
 }
 
@@ -629,6 +663,26 @@ Buffs: {
 	Drained: {
 		Description: Weakened in many ways
 		DisplayName: Drained
+	}
+
+	PauseCooldown: {
+		DisplayName: Pause Cooldown
+		Description: Mods.ShatteredRealm.Buffs.PauseCooldown.Description
+	}
+
+	PauseCooldownVortex: {
+		DisplayName: Pause Cooldown Vortex
+		Description: Mods.ShatteredRealm.Buffs.PauseCooldownVortex.Description
+	}
+
+	PauseCooldownVortexOne: {
+		DisplayName: Pause Cooldown Vortex One
+		Description: Mods.ShatteredRealm.Buffs.PauseCooldownVortexOne.Description
+	}
+
+	PauseCooldownVortexTwo: {
+		DisplayName: Pause Cooldown Vortex Two
+		Description: Mods.ShatteredRealm.Buffs.PauseCooldownVortexTwo.Description
 	}
 }
 

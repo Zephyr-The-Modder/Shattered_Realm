@@ -19,6 +19,7 @@ using ShatteredRealm.Content.Items.Armor;
 using Terraria.DataStructures;
 using Steamworks;
 using log4net.Core;
+using ShatteredRealm.Content.Buffs.Debuffs;
 using ShatteredRealm.Content.Items.Accessories.ShieldModifiers;
 
 namespace ShatteredRealm.Content.Globals
@@ -81,6 +82,7 @@ namespace ShatteredRealm.Content.Globals
         public bool vortexShield;
         public bool stardustShield;
         public int nebulaDamage;
+        public bool nebulaTargetFound = false;
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -148,7 +150,7 @@ namespace ShatteredRealm.Content.Globals
                     nebulaDamage += hit.Damage / 5;
                 }
             }
-            if (target == nebulaTarget && InversePolarity)
+            if (target == nebulaTarget && reversedNebula)
             {
                 if (hit.DamageType == DamageClass.Ranged)
                 {
@@ -156,7 +158,7 @@ namespace ShatteredRealm.Content.Globals
                 }
                 else
                 {
-                    nebulaDamage += hit.Damage / 5;
+                    nebulaDamage += hit.Damage / 10;
                 }
             }
         }
@@ -189,6 +191,21 @@ namespace ShatteredRealm.Content.Globals
         }
         public override void PreUpdate()
         {
+            if (!nebulaTargetFound || nebulaTarget == null && nebulaShield)
+            {
+                FindNebulaTarget();
+            }
+            else
+            {
+                if (!nebulaTarget.active || nebulaTarget == null)
+                {
+                    FindNebulaTarget();
+                }
+                else
+                {
+                    Dust.NewDust(nebulaTarget.position, nebulaTarget.width, nebulaTarget.height, DustID.CorruptTorch);
+                }
+            }
             int maxShieldDurability = (int)(shieldMaxDurability * shieldDurabilityMult);
             MathHelper.Clamp(maxShieldDurability, 1, 9999);
             if (!shieldEquipped && shieldMaxCooldownPrevious > 0)
@@ -430,7 +447,7 @@ namespace ShatteredRealm.Content.Globals
         }
         public void ShieldBreak(string type)
         {
-            CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height), shieldBreakColor, "Shield Break!", dramatic: true);
+            CombatText.NewText(Player.getRect(), shieldBreakColor, "Shield Break!", dramatic: true);
 
             shieldsActive = false;
             shieldDurability = 0;
@@ -555,8 +572,20 @@ namespace ShatteredRealm.Content.Globals
                     break;
                 case "NebulaShield":
                     DamageNPC(nebulaDamage / 3);
-                    nebulaDamage = 0;
+                    nebulaTargetFound = false;
                     FindNebulaTarget();
+                    break;
+                case "VortexShield":
+                    if (!reversedVortex)
+                    {
+                        Player.AddBuff(ModContent.BuffType<PauseCooldownVortexOne>(), 480);
+                    }   
+                    else
+                    {
+                        Player.AddBuff(ModContent.BuffType<PauseCooldownVortexTwo>(), 480);
+                    }
+                    Player.AddBuff(BuffID.VortexDebuff, 480);
+
                     break;
 
 
@@ -564,12 +593,27 @@ namespace ShatteredRealm.Content.Globals
         }
         public void FindNebulaTarget()
         {
-            nebulaTarget = SRUtils.GetClosestNPC(Player.Center, 4000);
+            nebulaDamage = 0;
+            nebulaTarget = SRUtils.GetStrongestNearbyNPC(Player.Center, 4000);
+            if (nebulaTarget == null)
+            {
+                nebulaTargetFound = false;
+            }
+            else
+            {
+                nebulaTargetFound = true;
+            }
+            
         }
         public void DamageNPC(int damage)
         {
             int rng = Main.rand.Next(-25, 26);
             nebulaTarget.life -= damage + rng;
+            for (int i = 0; i<50; i++)
+            {
+                Dust.NewDust(nebulaTarget.position, nebulaTarget.width, nebulaTarget.height, DustID.CorruptTorch);
+            }
+            CombatText.NewText(nebulaTarget.getRect(), Color.Purple, damage + rng, dramatic: true);
         }
         public void AutoConsumePotion()
         {

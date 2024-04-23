@@ -17,7 +17,7 @@ using Terraria.GameContent;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class NebulaShield : ModItem
+	public class VortexShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
@@ -51,11 +51,11 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.shieldItem().shield = true;
 
 			Item.shieldItem().absorption = 0.40f;
-			Item.shieldItem().durability = 150;
-			Item.shieldItem().cooldown = 60 * 25;
+			Item.shieldItem().durability = 120;
+			Item.shieldItem().cooldown = 60 * 20;
 
-			Item.shieldItem().shieldType = "NebulaShield";
-            Item.shieldItem().shieldBreakColor = Color.Purple;
+			Item.shieldItem().shieldType = "VortexShield";
+            Item.shieldItem().shieldBreakColor = Color.SeaGreen;
 
             Item.defense = 8;
 		}
@@ -79,14 +79,14 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             if (!player.GetModPlayer<ShatteredPlayer>().InversePolarity)
             {
-                player.GetDamage(DamageClass.Magic) *= 1.1f;
-                player.GetModPlayer<ShatteredPlayer>().nebulaShield = true;
+                player.GetDamage(DamageClass.Ranged) *= 1.1f;
+                player.GetModPlayer<ShatteredPlayer>().vortexShield = true;
             }
             else
             {
-                player.GetDamage(DamageClass.Ranged) *= 1.1f;
-                player.GetModPlayer<ShatteredPlayer>().nebulaShield = true;
-                player.GetModPlayer<ShatteredPlayer>().reversedNebula = true;
+                player.GetDamage(DamageClass.Melee) *= 1.1f;
+                player.GetModPlayer<ShatteredPlayer>().vortexShield = true;
+                player.GetModPlayer<ShatteredPlayer>().reversedVortex = true;
             }
 
         }
@@ -94,9 +94,8 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FragmentNebula, 8)
+                .AddIngredient(ItemID.FragmentVortex, 8)
                 .AddTile(TileID.MythrilAnvil)
-                .AddCondition(Condition.TimeNight)
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
