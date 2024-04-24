@@ -24,7 +24,7 @@ using System.Diagnostics.Contracts;
 namespace ShatteredRealm.Content.Prefixes.Shield
 {
     // [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
-    public class PrefixSturdy : ModPrefix
+    public class PrefixFlawless : ModPrefix
     {
         // We declare a custom *virtual* property here, so that another type, ExampleDerivedPrefix, could override it and change the effective power for itself.
 
@@ -37,7 +37,7 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
         public override float RollChance(Item item)
         {
-            return 4f;
+            return 0.75f;
         }
 
         // Determines if it can roll at all.
@@ -51,12 +51,14 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // This is used to modify most other stats of items which have this modifier.
         public override void Apply(Item item)
         {
-            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.10f);
+            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.25f);
+            item.shieldItem().cooldown = (int)(item.shieldItem().cooldown * 0.9f);
+            item.shieldItem().absorption = (int)(item.shieldItem().absorption * 1.05f);   
         }
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult = 1.1f;
+            valueMult = 1.4f;
         }
 
         // This prefix doesn't affect any non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern can be followed for a prefix that does affect other stats.

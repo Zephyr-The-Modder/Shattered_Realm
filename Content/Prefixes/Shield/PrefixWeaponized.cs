@@ -57,7 +57,7 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         public override void ApplyAccessoryEffects(Player player)
         {
             player.statDefense -= 1;
-            player.GetDamage(DamageClass.Generic) += 0.1f;
+            player.GetDamage(DamageClass.Generic) += 0.075f;
             player.GetModPlayer<ShatteredPlayer>().ShieldEffectPower += 0.1f;
         }
         public override void ModifyValue(ref float valueMult)

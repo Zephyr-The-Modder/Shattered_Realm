@@ -37,7 +37,7 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
         public override float RollChance(Item item)
         {
-            return 4f;
+            return 2f;
         }
 
         // Determines if it can roll at all.
@@ -51,7 +51,7 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // This is used to modify most other stats of items which have this modifier.
         public override void Apply(Item item)
         {
-            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.3f);
+            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.2f);
         }
 
         public override void ModifyValue(ref float valueMult)

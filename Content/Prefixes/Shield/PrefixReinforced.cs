@@ -51,7 +51,7 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // This is used to modify most other stats of items which have this modifier.
         public override void Apply(Item item)
         {
-            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.20f);
+            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.15f);
             item.shieldItem().cooldown = (int)(item.shieldItem().cooldown * 1.10f);
         }
         public override void ApplyAccessoryEffects(Player player)

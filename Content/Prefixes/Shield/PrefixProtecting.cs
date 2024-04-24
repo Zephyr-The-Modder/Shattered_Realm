@@ -24,7 +24,7 @@ using System.Diagnostics.Contracts;
 namespace ShatteredRealm.Content.Prefixes.Shield
 {
     // [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
-    public class PrefixSturdy : ModPrefix
+    public class PrefixProtecting : ModPrefix
     {
         // We declare a custom *virtual* property here, so that another type, ExampleDerivedPrefix, could override it and change the effective power for itself.
 
@@ -37,7 +37,7 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
         public override float RollChance(Item item)
         {
-            return 4f;
+            return 3f;
         }
 
         // Determines if it can roll at all.
@@ -51,12 +51,15 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // This is used to modify most other stats of items which have this modifier.
         public override void Apply(Item item)
         {
-            item.shieldItem().durability = (int)(item.shieldItem().durability * 1.10f);
+            item.shieldItem().cooldown = (int)(item.shieldItem().absorption * 1.08f);
         }
+        public override void ApplyAccessoryEffects(Player player)
+        {
 
+        }
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult = 1.1f;
+            valueMult = 1.15f;
         }
 
         // This prefix doesn't affect any non-standard stats, so these additional tooltiplines aren't actually necessary, but this pattern can be followed for a prefix that does affect other stats.
@@ -77,11 +80,13 @@ namespace ShatteredRealm.Content.Prefixes.Shield
         // AdditionalTooltip shows off how to do the inheritable localized properties approach. This is necessary this this example uses inheritance and we want different translations for each inheriting class. https://github.com/tModLoader/tModLoader/wiki/Localization#inheritable-localized-properties
         public LocalizedText AdditionalTooltip => this.GetLocalization(nameof(AdditionalTooltip));
 
+
         public override void SetStaticDefaults()
         {
             // this.GetLocalization is not used here because we want to use a shared key
             // This seemingly useless code is required to properly register the key for AdditionalTooltip
             _ = AdditionalTooltip;
+
         }
     }
 }

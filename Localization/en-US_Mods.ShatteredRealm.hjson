@@ -698,10 +698,10 @@ Prefixes: {
 		DisplayName: Reinforced
 		AdditionalTooltip:
 			'''
-			+20% max durability
+			+15% max durability
 			+2 defense
 			'''
-		NegativeTooltip: 10% longer shield cooldown
+		NegativeTooltip: +10% cooldown time
 	}
 
 	PrefixWeaponized: {
@@ -710,12 +710,12 @@ Prefixes: {
 			'''
 			-1 defense
 			-5% max durability
-			5% longer shield cooldown
+			+5% cooldown time
 			'''
 		AdditionalTooltip:
 			'''
 			+10% shield effect power
-			+10% damage
+			+7.5% damage
 			'''
 	}
 
@@ -725,24 +725,24 @@ Prefixes: {
 			'''
 			-2 defense
 			-20% max durability
-			20% longer shield cooldown
+			+20% cooldown time
 			'''
 	}
 
 	PrefixPotent: {
 		DisplayName: Potent
-		NegativeTooltip: 5% longer shield cooldown
+		NegativeTooltip: +5% cooldown time
 		AdditionalTooltip: +10% shield effect power
 	}
 
 	PrefixIncorrigible: {
 		DisplayName: Incorrigible
-		NegativeTooltip: 20% longer shield cooldown
+		NegativeTooltip: +20% cooldown time
 	}
 
 	PrefixDauntless: {
 		DisplayName: Dauntless
-		AdditionalTooltip: +30% max durability
+		AdditionalTooltip: +20% max durability
 	}
 
 	PrefixDamaged: {
@@ -758,5 +758,33 @@ Prefixes: {
 		DisplayName: Brittle
 		NegativeTooltip: -30% max durability
 		AdditionalTooltip: 15% faster shield cooldown
+	}
+
+	PrefixFlawless: {
+		AdditionalTooltip:
+			'''
+			+25% max durability
+			-10% cooldown time
+			+5% shield resilience
+			'''
+		DisplayName: Flawless
+	}
+
+	PrefixFrail: {
+		AdditionalTooltip: -30% cooldown time
+		NegativeTooltip: -40% durability
+		DisplayName: Frail
+	}
+
+	PrefixImpenetrable: {
+		AdditionalTooltip: +35% shield durability
+		NegativeTooltip: +20% cooldown time
+		DisplayName: Impenetrable
+	}
+
+	PrefixProtecting: {
+		AdditionalTooltip: +10% shield resilience
+		DisplayName: Protecting
+		NegativeTooltip: Mods.ShatteredRealm.Prefixes.PrefixProtecting.NegativeTooltip
 	}
 }
