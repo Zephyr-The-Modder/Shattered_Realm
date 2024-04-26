@@ -17,7 +17,7 @@ using Terraria.GameContent;
 namespace ShatteredRealm.Content.Items.Accessories.Shield
 {
 	[AutoloadEquip(EquipType.Shield)] // Load the spritesheet you create as a shield for the player when it is equipped.
-	public class SolarShield : ModItem
+	public class StardustShield : ModItem
 	{
         public static LocalizedText TooltipWithVar { get; private set; }
         public override void SetStaticDefaults()
@@ -50,14 +50,14 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.shieldItem().overrideShieldDamage = false;
             Item.shieldItem().shield = true;
 
-			Item.shieldItem().absorption = 0.45f;
-			Item.shieldItem().durability = 200;
-			Item.shieldItem().cooldown = 60 * 30;
+			Item.shieldItem().absorption = 0.30f;
+			Item.shieldItem().durability = 125;
+			Item.shieldItem().cooldown = 60 * 20;
 
-			Item.shieldItem().shieldType = "SolarShield";
-            Item.shieldItem().shieldBreakColor = Color.OrangeRed;
+			Item.shieldItem().shieldType = "StardustShield";
+            Item.shieldItem().shieldBreakColor = Color.LightCyan;
 
-            Item.defense = 12;
+            Item.defense = 7;
 		}
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -65,15 +65,15 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Player player = Main.LocalPlayer;
             if (player.GetModPlayer<ShatteredPlayer>().InversePolarity)
             {
-                Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("ShatteredRealm/Content/Items/Accessories/Shield/AltSolarShield");
-                Item.shieldItem().shieldBreakColor = Color.LightCyan;
+                Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("ShatteredRealm/Content/Items/Accessories/Shield/AltStardustShield");
+                Item.shieldItem().shieldBreakColor = Color.Purple;
                 spriteBatch.Draw(texture, position, default, drawColor, default, origin, scale, default, default);
                 return false;
             }
             else
             {
                 return true;
-                Item.shieldItem().shieldBreakColor = Color.OrangeRed;
+                Item.shieldItem().shieldBreakColor = Color.LightCyan;
             }
             
         }
@@ -92,34 +92,18 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             if (!player.GetModPlayer<ShatteredPlayer>().InversePolarity)
             {
-                if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown < 0)
-                {
-                    player.moveSpeed *= 0.9f;
-                    player.statDefense += 10;
-                }
-                else
-                {
-                    player.moveSpeed *= 1.2f;
-                    player.statDefense -= 5;
-                }
-                player.GetDamage(DamageClass.Melee) *= 1.1f;
-                player.GetModPlayer<ShatteredPlayer>().solarShield = true;
+                player.moveSpeed += 0.2f;
+                player.GetDamage(DamageClass.Summon) *= 1.1f;
+                Item.shieldItem().cooldown = 60 * 20;
+                player.GetModPlayer<ShatteredPlayer>().stardustShield = true;
             }
             else
             {
-                if (player.GetModPlayer<ShatteredPlayer>().shieldCooldown < 0)
-                {
-                    player.moveSpeed *= 1.2f;
-                    player.statDefense -= 5;
-                }
-                else
-                {
-                    player.moveSpeed *= 0.9f;
-                    player.statDefense += 10;
-                }
-                player.GetDamage(DamageClass.Summon) *= 1.1f;
-                player.GetModPlayer<ShatteredPlayer>().reversedSolar = true;
-                player.GetModPlayer<ShatteredPlayer>().solarShield = false;
+                player.moveSpeed += 0.2f;
+                player.GetDamage(DamageClass.Magic) *= 1.1f;
+                Item.shieldItem().cooldown = 60 * 15;
+                player.GetModPlayer<ShatteredPlayer>().reversedStardust = true;
+                player.GetModPlayer<ShatteredPlayer>().stardustShield = false;
             }
 
         }
@@ -127,9 +111,8 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FragmentSolar, 8)
+                .AddIngredient(ItemID.FragmentStardust, 8)
                 .AddTile(TileID.LunarCraftingStation)
-                .AddCondition(Condition.TimeDay)
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

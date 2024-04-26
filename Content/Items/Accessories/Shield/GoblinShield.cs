@@ -70,7 +70,17 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             }    
             
         }
-
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if (!player.GetModPlayer<ShatteredPlayer>().shieldEquipped)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public override void AddRecipes()
         {
 

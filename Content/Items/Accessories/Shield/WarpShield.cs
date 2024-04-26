@@ -52,7 +52,17 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 
             Item.defense = 5;
 		}
-
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if (!player.GetModPlayer<ShatteredPlayer>().shieldEquipped)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             

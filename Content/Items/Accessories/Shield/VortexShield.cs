@@ -65,15 +65,28 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Player player = Main.LocalPlayer;
             if (player.GetModPlayer<ShatteredPlayer>().InversePolarity)
             {
-                Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("ShatteredRealm/Content/Items/Accessories/Shield/AltNebulaShield");
+                Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("ShatteredRealm/Content/Items/Accessories/Shield/AltVortexShield");
+                Item.shieldItem().shieldBreakColor = Color.OrangeRed;
                 spriteBatch.Draw(texture, position, default, drawColor, default, origin, scale, default, default);
                 return false;
             }
             else
             {
+                Item.shieldItem().shieldBreakColor = Color.SeaGreen;
                 return true;
             }
             
+        }
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if (!player.GetModPlayer<ShatteredPlayer>().shieldEquipped)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -95,7 +108,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             CreateRecipe()
                 .AddIngredient(ItemID.FragmentVortex, 8)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
         // Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.

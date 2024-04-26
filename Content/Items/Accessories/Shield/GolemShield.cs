@@ -20,7 +20,17 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             TooltipWithVar = this.GetLocalization(nameof(TooltipWithVar));
         }
-
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if (!player.GetModPlayer<ShatteredPlayer>().shieldEquipped)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player player = Main.LocalPlayer;

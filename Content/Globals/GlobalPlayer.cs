@@ -587,6 +587,19 @@ namespace ShatteredRealm.Content.Globals
                     Player.AddBuff(BuffID.VortexDebuff, 480);
 
                     break;
+                case "StardustShield":
+                    if (!reversedStardust)
+                    {
+                        Player.Heal((int)(Player.statLifeMax2 * 0.15f));
+                        Player.CheckMana(-50, true);
+                    }
+                    else
+                    {
+                        Player.statMana = Player.statManaMax2;
+                    }
+                    Player.AddBuff(BuffID.VortexDebuff, 480);
+
+                    break;
 
 
             }

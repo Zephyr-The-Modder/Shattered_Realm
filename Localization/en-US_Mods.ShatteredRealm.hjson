@@ -578,7 +578,7 @@ Items: {
 			On shield break, one third of the energy stored will convert into damage
 			When this shield is reversed, these same effects apply, but the damage type is replaced with ranged
 			'''
-		DisplayName: Nebula Shield
+		DisplayName: Nebulous Plating
 		Tooltip: ""
 	}
 
@@ -593,7 +593,21 @@ Items: {
 			However, you also gain extreme amounts of defense as well as 35% ranged damage
 			When reversed, these effects still apply, but the damage boost is replaced with melee damage
 			'''
-		DisplayName: Vortex Shield
+		DisplayName: Vortex Bulwark
+		Tooltip: ""
+	}
+
+	StardustShield: {
+		TooltipWithVar:
+			'''
+			Shield Durability: {0}
+			Shield Resilience: {1}
+			Shield Cooldown: {2}
+			+10% summon damage or mage damage when reversed
+			On shield break, heal 15% of your max hp along with 50 mana.
+			When reversed, heal all mana and lose all mana sickness.
+			'''
+		DisplayName: Stardust Aegis
 		Tooltip: ""
 	}
 }

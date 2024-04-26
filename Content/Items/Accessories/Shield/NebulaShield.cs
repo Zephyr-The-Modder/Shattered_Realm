@@ -37,7 +37,17 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
                 line.Text += tooltip.Text;
             }
         }
-
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            if (!player.GetModPlayer<ShatteredPlayer>().shieldEquipped)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public override void SetDefaults()
 		{
@@ -50,13 +60,14 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.shieldItem().overrideShieldDamage = false;
             Item.shieldItem().shield = true;
 
-			Item.shieldItem().absorption = 0.40f;
+			Item.shieldItem().absorption = 0.35f;
 			Item.shieldItem().durability = 150;
 			Item.shieldItem().cooldown = 60 * 25;
 
 			Item.shieldItem().shieldType = "NebulaShield";
             Item.shieldItem().shieldBreakColor = Color.Purple;
 
+            Item.scale = 1f;
             Item.defense = 8;
 		}
 
@@ -66,11 +77,13 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             if (player.GetModPlayer<ShatteredPlayer>().InversePolarity)
             {
                 Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("ShatteredRealm/Content/Items/Accessories/Shield/AltNebulaShield");
+                Item.shieldItem().shieldBreakColor = Color.SeaGreen;
                 spriteBatch.Draw(texture, position, default, drawColor, default, origin, scale, default, default);
                 return false;
             }
             else
             {
+                Item.shieldItem().shieldBreakColor = Color.Purple;
                 return true;
             }
             
@@ -95,7 +108,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
         {
             CreateRecipe()
                 .AddIngredient(ItemID.FragmentNebula, 8)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.LunarCraftingStation)
                 .AddCondition(Condition.TimeNight)
                 .Register();
         }

@@ -15,6 +15,7 @@
     <None Remove="Content\Items\Accessories\Shield\NebulaShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\ReinforcedShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\SolarShield_Shield.png" />
+    <None Remove="Content\Items\Accessories\Shield\StardustShield_Shield.png" />
     <None Remove="Content\Items\Accessories\Shield\VortexShield_Shield.png" />
     <None Remove="Content\Items\Armor\StaticBreastplate.png" />
     <None Remove="Content\Items\Armor\StaticBreastplate_Body.png" />
