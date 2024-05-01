@@ -25,6 +25,7 @@ Projectiles: {
 	StingerProjectile.DisplayName: Stinger Projectile
 	ArdentMagicTridentProj.DisplayName: Ardent Magic Trident Proj
 	ReflexiveProj.DisplayName: Reflexive Proj
+	TotalityProj.DisplayName: Totality Proj
 }
 
 Items: {
@@ -610,6 +611,11 @@ Items: {
 		DisplayName: Stardust Aegis
 		Tooltip: ""
 	}
+
+	Totality: {
+		DisplayName: Dead Star
+		Tooltip: Fire a blazing star at the cursor
+	}
 }
 
 UI: {
@@ -679,24 +685,14 @@ Buffs: {
 		DisplayName: Drained
 	}
 
-	PauseCooldown: {
-		DisplayName: Pause Cooldown
-		Description: Mods.ShatteredRealm.Buffs.PauseCooldown.Description
-	}
-
-	PauseCooldownVortex: {
-		DisplayName: Pause Cooldown Vortex
-		Description: Mods.ShatteredRealm.Buffs.PauseCooldownVortex.Description
-	}
-
 	PauseCooldownVortexOne: {
-		DisplayName: Pause Cooldown Vortex One
-		Description: Mods.ShatteredRealm.Buffs.PauseCooldownVortexOne.Description
+		DisplayName: Paused Cooldown
+		Description: Cooldown stopped!
 	}
 
 	PauseCooldownVortexTwo: {
-		DisplayName: Pause Cooldown Vortex Two
-		Description: Mods.ShatteredRealm.Buffs.PauseCooldownVortexTwo.Description
+		DisplayName: Paused Cooldown
+		Description: Cooldown stopped!
 	}
 }
 
