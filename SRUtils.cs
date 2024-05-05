@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria;
 
 namespace ShatteredRealm
 {
@@ -46,6 +47,8 @@ namespace ShatteredRealm
 
             return closestNPC;
         }
+        
+
         public static NPC GetStrongestNearbyNPC(Vector2 position, float maxDetectDistance, params NPC[] ignoreNPCs)
         {
             int MinimumHP = 6;

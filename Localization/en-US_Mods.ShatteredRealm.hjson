@@ -26,6 +26,8 @@ Projectiles: {
 	ArdentMagicTridentProj.DisplayName: Ardent Magic Trident Proj
 	ReflexiveProj.DisplayName: Reflexive Proj
 	TotalityProj.DisplayName: Totality Proj
+	FirebirdDummy.DisplayName: Firebird Dummy
+	FireFeather.DisplayName: Fire Feather
 }
 
 Items: {
@@ -253,12 +255,11 @@ Items: {
 	}
 
 	Firebird: {
-		DisplayName: Hell Falcon
+		DisplayName: Firebird
 		Tooltip:
 			'''
-			Fires 2-3 bullets in a small spread.
-			It's design is somewhat sleek and smooth, used for speed. 
-			It also burns your hand.
+			Fires many bullets in a spread.
+			The longer you hold out the gun, the faster they fire, and some even turn into flame.
 			'''
 	}
 
@@ -613,8 +614,8 @@ Items: {
 	}
 
 	Totality: {
-		DisplayName: Dead Star
-		Tooltip: Fire a blazing star at the cursor
+		DisplayName: Book of the Crescent Sun
+		Tooltip: Fire a solar bead at the cursor
 	}
 }
 
@@ -793,8 +794,7 @@ Prefixes: {
 	}
 
 	PrefixProtecting: {
-		AdditionalTooltip: +10% shield resilience
+		AdditionalTooltip: +8% shield resilience
 		DisplayName: Protecting
-		NegativeTooltip: Mods.ShatteredRealm.Prefixes.PrefixProtecting.NegativeTooltip
 	}
 }

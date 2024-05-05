@@ -11,7 +11,6 @@ using Terraria.ModLoader;
 
 namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
 {
-
     public class LavaBolt : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -126,7 +125,6 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
             // It's important to return false, otherwise we also draw the original texture.
             return false;
         }
-
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.SparksMech, oldVelocity.X, oldVelocity.Y, 0, default(Color), 1f);

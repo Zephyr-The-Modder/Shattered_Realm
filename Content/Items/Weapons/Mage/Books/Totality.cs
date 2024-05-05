@@ -22,14 +22,14 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
 
         public override void SetDefaults()
         {
-            Item.damage = 84;
+            Item.damage = 112;
             Item.mana = 24;
             Item.DamageType = DamageClass.Magic;
             Item.width = 42;
             Item.height = 46;
-            Item.useTime = 30;
-            Item.useAnimation = 30;
-            Item.reuseDelay = 135;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.reuseDelay = 175;
             Item.useStyle = 5;
             Item.knockBack = 0.5f;
             Item.value = 10000;
@@ -42,7 +42,6 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-
             int proj = Projectile.NewProjectile(source, position, velocity.RotatedByRandom(MathHelper.ToRadians(8)), type, damage, knockback, player.whoAmI);
             return false;
         }
@@ -62,8 +61,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
         public override void SetDefaults()
         {
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.width = 128;
-            Projectile.height = 128;
+            Projectile.width = 24;
+            Projectile.height = 24;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
@@ -136,17 +135,24 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Books
         int timer = 0;
         public override void AI()
         {
-            Projectile.velocity = Projectile.Center.DirectionTo(Main.MouseWorld) * Projectile.Center.Distance(Main.MouseWorld) / 50;
+            float speed = Projectile.Center.Distance(Main.MouseWorld) / 50;
+            Projectile.velocity = Projectile.Center.DirectionTo(Main.MouseWorld) * speed;
             if (timer % 2 == 0)
             {
-                Dust.NewDustPerfect(Projectile.Center, DustID.Torch, Vector2.Zero, Scale: 3f);
+                Dust.NewDustPerfect(Projectile.Center, DustID.OrangeTorch, Vector2.Zero, Scale: 2f);
             }
             if (timer == 60)
             {
-                for (int i = 0; i < 360; i += 4)
+                if (speed > 3)
                 {
-                    Vector2 randCircle = Vector2.One.RotatedBy(MathHelper.ToRadians(i));
-                    Dust.NewDustPerfect(Projectile.Center,DustID.OrangeTorch, randCircle, Scale: 2f);
+                    for (int i = 0; i < 360; i += 4)
+                    {
+                        Vector2 CappedVelocity = Projectile.velocity;
+                        MathHelper.Clamp(CappedVelocity.X, -3, 3);
+                        MathHelper.Clamp(CappedVelocity.Y, -2, 2);
+                        Vector2 randCircle = Vector2.One.RotatedBy(MathHelper.ToRadians(i));
+                        Dust.NewDustPerfect(Projectile.Center, DustID.OrangeTorch, randCircle * CappedVelocity.RotatedBy(90) / 4, Scale: 2f);
+                    }
                 }
                 timer = 0;
             }
