@@ -10,6 +10,10 @@
 
 	<!-- References -->
 	<ItemGroup>
+	  <None Remove="Content\Items\Armor\Vanity\TemplateLush_Head.png" />
+	  <None Remove="Content\Items\Armor\ViperHelmet_Head.png" />
+	  <None Remove="Content\Items\Weapons\Ranged\Bows\EaterBow.png" />
+	  <None Remove="Content\Items\Weapons\Ranged\Guns\Blunderbuss.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Guns\FirebirdDummy.png" />
 	</ItemGroup>
 

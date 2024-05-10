@@ -197,13 +197,16 @@ namespace ShatteredRealm.Content.Globals
             }
             else
             {
-                if (!nebulaTarget.active || nebulaTarget == null)
+                if (!nebulaTarget.active || nebulaTarget == null && nebulaShield)
                 {
                     FindNebulaTarget();
                 }
                 else
                 {
-                    Dust.NewDust(nebulaTarget.position, nebulaTarget.width, nebulaTarget.height, DustID.CorruptTorch);
+                    if (nebulaShield)
+                    {
+                        Dust.NewDust(nebulaTarget.position, nebulaTarget.width, nebulaTarget.height, DustID.CorruptTorch);
+                    }
                 }
             }
             int maxShieldDurability = (int)(shieldMaxDurability * shieldDurabilityMult);

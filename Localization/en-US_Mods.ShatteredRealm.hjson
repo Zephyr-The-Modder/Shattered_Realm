@@ -103,8 +103,8 @@ Items: {
 	}
 
 	VerdantTulip: {
-		Tooltip: Summons a verdant goliath in a mysterious arena
-		DisplayName: Verdant Tulip
+		Tooltip: May attract a carnivorous predator to you
+		DisplayName: Glucose Lure
 	}
 
 	DarkForce: {
@@ -616,6 +616,31 @@ Items: {
 	Totality: {
 		DisplayName: Book of the Crescent Sun
 		Tooltip: Fire a solar bead at the cursor
+	}
+
+	Blunderbuss: {
+		DisplayName: Blunderbuss
+		Tooltip: " A rather flimsy shotgun, although it can pack a punch."
+	}
+
+	EaterBow: {
+		DisplayName: Eater Tribow
+		Tooltip:
+			'''
+			Fires 3 arrows
+			Occasionally fires a Tiny Eater
+			'''
+	}
+
+	XLR8: {
+		DisplayName: XLR8
+		Tooltip:
+			'''
+			Fires 1-2 bullets
+			If one bullet, fire a laser bolt
+			If else, fire normal bullets
+			Holding this weapon for longer accelerates its reload time
+			'''
 	}
 }
 
