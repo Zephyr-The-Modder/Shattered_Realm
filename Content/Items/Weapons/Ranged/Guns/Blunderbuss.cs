@@ -42,6 +42,9 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
             Item.shootSpeed = 6.5f; // The speed of the projectile (measured in pixels per frame.)
             Item.UseSound = SoundID.Item41;
             Item.useAmmo = AmmoID.Bullet;
+            Item.blunderbussItem().reloadShots = 8;
+            Item.blunderbussItem().reloadTime = 4;
+            Item.blunderbussItem().isShotgun = true;
         }
 
         int shotNum = 1;

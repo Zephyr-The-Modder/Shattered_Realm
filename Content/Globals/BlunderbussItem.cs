@@ -72,6 +72,10 @@ namespace ShatteredRealm.Content.Globals
         }
         public override void PreUpdate()
         {
+            if (reloadShots > reloadShotsMax)
+            {
+                reloadShots = reloadShotsMax;
+            }
             if (reloading)
             {
                 reloadTimer--;
