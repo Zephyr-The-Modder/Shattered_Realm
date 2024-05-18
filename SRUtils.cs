@@ -101,6 +101,10 @@ namespace ShatteredRealm
         {
             return item.GetGlobalItem<ShieldItem>();
         }
+        public static BlunderbussItem blunderbussItem(this Item item)
+        {
+            return item.GetGlobalItem<BlunderbussItem>();
+        }
     }
     class NPCandValue : IComparable<NPCandValue>
     {

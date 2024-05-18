@@ -41,4 +41,5 @@ namespace ShatteredRealm.Content.Globals
 		}
 		
     }
+
 }

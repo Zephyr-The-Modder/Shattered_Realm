@@ -41,6 +41,9 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			Item.shootSpeed = 14f; // The speed of the projectile (measured in pixels per frame.)
 			Item.UseSound = SoundID.Item41;
 			Item.useAmmo = AmmoID.Bullet;
+			Item.blunderbussItem().reloadShots = 15;
+			Item.blunderbussItem().reloadTime = 5;
+			Item.blunderbussItem().isShotgun = true;
 		}
 
 		int shotNum = 1;
@@ -73,7 +76,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		}
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			Vector2 muzzleOffset = Vector2.Normalize(velocity) * 11.5f;
+			Vector2 muzzleOffset = Vector2.Normalize(velocity) * 42f;
 			if (type == ProjectileID.Bullet)
             {
 				if (Main.rand.NextBool())
