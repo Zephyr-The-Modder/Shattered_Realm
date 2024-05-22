@@ -78,6 +78,10 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
             }
 
         }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-10f, -2f);
+        }
 
         public override void AddRecipes()
         {

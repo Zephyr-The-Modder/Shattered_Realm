@@ -28,6 +28,8 @@ Projectiles: {
 	TotalityProj.DisplayName: Totality Proj
 	FirebirdDummy.DisplayName: Firebird Dummy
 	FireFeather.DisplayName: Fire Feather
+	CactusThorn.DisplayName: Cactus Thorn
+	GravitationalRock.DisplayName: Gravitational Rock
 }
 
 Items: {
@@ -641,6 +643,20 @@ Items: {
 			If else, fire normal bullets
 			Holding this weapon for longer accelerates its reload time
 			'''
+	}
+
+	ManyThorns: {
+		DisplayName: Book of Many Thorns
+		Tooltip: Fires thousands of piercing thorns
+	}
+
+	GravitationalStaff: {
+		Tooltip:
+			'''
+			Launches orbs of color, each doing different things
+			Right-clicking will shoot a rainbow shot
+			'''
+		DisplayName: Scorned Wand of the Forgotten Hero
 	}
 }
 

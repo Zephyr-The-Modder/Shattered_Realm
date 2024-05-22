@@ -8,6 +8,7 @@ using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.Audio;
+using Terraria.Graphics;
 
 namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 {
@@ -32,7 +33,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 
 			// Weapon Properties
 			Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-			Item.damage = 18; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.damage = 14; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
 			Item.knockBack = 4f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
 			Item.noMelee = true; // So the item's animation doesn't do damage.
 
@@ -76,8 +77,14 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		}
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			Vector2 muzzleOffset = Vector2.Normalize(velocity) * 42f;
-			if (type == ProjectileID.Bullet)
+            Vector2 muzzleOffset = Vector2.Normalize(velocity) * 42f;
+
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+            {
+                position += muzzleOffset;
+            }
+
+            if (type == ProjectileID.Bullet)
             {
 				if (Main.rand.NextBool())
                 {
@@ -88,7 +95,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		}
         public override Vector2? HoldoutOffset()
         {
-			return new Vector2(2f, -2f);
+			return new Vector2(-10f, -2f);
 		}
 
         public override void AddRecipes()

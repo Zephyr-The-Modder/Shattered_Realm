@@ -29,8 +29,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Bows
 			Item.rare = ItemRarityID.Green; // The color that the item's name will be in-game.
 
 			// Use Properties
-			Item.useTime = 33; // The item's use time in ticks (60 ticks == 1 second.)
-			Item.useAnimation = 33; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+			Item.useTime = 37; // The item's use time in ticks (60 ticks == 1 second.)
+			Item.useAnimation = 37; // The length of the item's use animation in ticks (60 ticks == 1 second.)
 			Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
 			Item.autoReuse = true; // Whether or not you can hold click to automatically use it again.
 

@@ -35,7 +35,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-            Item.damage = 25; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+            Item.damage = 31; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
             Item.knockBack = 4f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
             Item.noMelee = true; // So the item's animation doesn't do damage.
 
@@ -67,7 +67,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
         {
             player.GetModPlayer<XLR8Player>().ResetTimer = 20;
             player.GetModPlayer<XLR8Player>().Timer++;
-			int NumProjectiles = Main.rand.Next(1, 3);
+			int NumProjectiles = 1;
             for (int i = 0; i < NumProjectiles; i++)
             {
 				Vector2 newVelocity = velocity;
@@ -99,9 +99,19 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
         // The following method makes the gun slightly inaccurate
 
         // This method lets you adjust position of the gun in the player's hands. Play with these values until it looks good with your graphics.
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            Vector2 muzzleOffset = Vector2.Normalize(velocity) * 42f;
+
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+            {
+                position += muzzleOffset;
+            }
+
+        }
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-6f, -2f);
+            return new Vector2(-10f, -2f);
         }
 
     }
@@ -156,8 +166,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 		public override void SetDefaults()
 		{
 			Projectile.DamageType = DamageClass.Magic;
-			Projectile.width = 8;
-			Projectile.height = 8;
+			Projectile.width = 20;
+			Projectile.height = 5;
 			Projectile.aiStyle = -1;
 			Projectile.friendly = true;
 			Projectile.penetrate = 9;
@@ -202,7 +212,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 			spriteEffects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 			for (int k = 0; k < Projectile.oldPos.Length && k < StateTimer; k++)
 			{
-				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY) + new Vector2(4f, 4f);
+				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY) + new Vector2(Projectile.width / 2, Projectile.height / 2); ;
 				Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
 				color.A = (byte)(color.A * 0.75f);
 				Main.spriteBatch.Draw(projectileTexture, drawPos, sourceRectangle, color, Projectile.oldRot[k], drawOrigin, Projectile.scale - k * 0.02f, spriteEffects, 0f);
@@ -214,6 +224,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Ranged.Guns
 
 			// It's important to return false, otherwise we also draw the original texture.
 			return false;
+
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)

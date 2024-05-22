@@ -12,6 +12,8 @@
 	<ItemGroup>
 	  <None Remove="Content\Items\Armor\Vanity\TemplateLush_Head.png" />
 	  <None Remove="Content\Items\Armor\ViperHelmet_Head.png" />
+	  <None Remove="Content\Items\Weapons\Mage\Books\ManyThorns.png" />
+	  <None Remove="Content\Items\Weapons\Mage\Staffs\GravitationalStaff.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Bows\EaterBow.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Guns\Blunderbuss.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Guns\FirebirdDummy.png" />
