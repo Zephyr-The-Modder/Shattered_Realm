@@ -67,7 +67,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            Vector2 muzzleOffset = Vector2.Normalize(velocity) * 48f;
+            Vector2 muzzleOffset = Vector2.Normalize(velocity) * 40f;
 
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
             {
@@ -84,7 +84,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
             // DisplayName.SetDefault("Wind"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 54;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-            Main.projFrames[Type] = 8;
+            Main.projFrames[Type] = 56;
         }
 
         string colorAI = "black";
@@ -93,8 +93,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
         public override void SetDefaults()
         {
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 34;
+            Projectile.height = 18;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
@@ -104,7 +104,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
             Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 3;
-            Projectile.alpha = 255;
+            Projectile.alpha = 0;
         }
         public override void OnSpawn(IEntitySource source)
         {
@@ -116,37 +116,38 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
             if (Projectile.ai[0] == 2)
             {
                 colorAI = "purple";
-                Projectile.frame = 1;
+                Projectile.frame = 7;
             }
             if (Projectile.ai[0] == 3)
             {
                 colorAI = "pink";
-                Projectile.frame = 2;
+                Projectile.frame = 15;
             }
             if (Projectile.ai[0] == 4)
             {
                 colorAI = "red";
-                Projectile.frame = 3;
+                Projectile.frame = 23;
             }
             if (Projectile.ai[0] == 5)
             {
-                colorAI = "lightpurple";
-                Projectile.frame = 4;
+                colorAI = "orange";
+                Projectile.frame = 31;
             }
             if (Projectile.ai[0] == 6)
             {
-                colorAI = "yellow";
-                Projectile.frame = 5;
+                colorAI = "blue";
+                Projectile.frame = 39;
             }
             if (Projectile.ai[0] == 7)
             {
                 colorAI = "white";
-                Projectile.frame = 6;
+                Projectile.frame = 47;
             }
             if (Projectile.ai[0] >= 8)
             {
+                Projectile.alpha = 255;
                 colorAI = "rainbow";
-                Projectile.frame = 7;
+                Projectile.frame = 1;
             }
         }
         public override Color? GetAlpha(Color lightColor)
@@ -198,13 +199,15 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
 
         int Timer = 0;
         int DustTimer = 0;
+        int FrameTimer = 0;
+        int FrameCounter = 1;
         public override void AI()
         {
             switch (colorAI)
             {
                 case "black":
                     Projectile.velocity *= 1.01f;
-                    if (DustTimer >= 4)
+                    if (DustTimer >= 15)
                     {
                         Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
                         DustTimer = 0;
@@ -212,7 +215,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     break;
                 case "purple":
                     Projectile.velocity.Y += 0.01f;
-                    if (DustTimer >= 4)
+                    if (DustTimer >= 15)
                     {
                         Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Clentaminator_Purple);
                         DustTimer = 0;
@@ -220,22 +223,22 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     break;
                 case "pink":
                     Projectile.velocity.Y -= 0.01f;
-                    if (DustTimer >= 4)
+                    if (DustTimer >= 15)
                     {
                         Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.PinkFairy);
                         DustTimer = 0;
                     }
                     break;
                 case "red":
-                    if (DustTimer >= 4)
+                    if (DustTimer >= 15)
                     {
                         Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Clentaminator_Red);
                         DustTimer = 0;
                     }
                     Projectile.velocity *= 0.99f;
                     break;
-                case "lightpurple":
-                    if (DustTimer >= 4)
+                case "orange":
+                    if (DustTimer >= 15)
                     {
                         Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.OrangeTorch);
                         DustTimer = 0;
@@ -247,10 +250,10 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     }
                     Timer++;
                     break;
-                case "yellow":
-                    if (DustTimer >= 4)
+                case "blue":
+                    if (DustTimer >= 15)
                     {
-                        Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.YellowStarDust);
+                        Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.BlueTorch);
                         DustTimer = 0;
                     }
                     if (Timer == 300)
@@ -260,7 +263,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     Timer++;
                     break;
                 case "white":
-                    if (DustTimer >= 4)
+                    if (DustTimer >= 15)
                     {
                         Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.WhiteTorch);
                         DustTimer = 0;
@@ -303,7 +306,20 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     break;
 
             }
+            if (FrameTimer >= 15)
+            {
+                FrameTimer = 0;
+                if (FrameCounter == 8)
+                {
+                    Projectile.frame -= 7;
+                    FrameCounter = 1;
+                }
+                    Projectile.frame++;
+                FrameCounter++;
+
+            }
             DustTimer++;
+            FrameTimer++;
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
@@ -326,7 +342,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     target.AddBuff(BuffID.OnFire, 500);
                     Projectile.velocity *= 0.95f;
                     break;
-                case "lightpurple":
+                case "orange":
                     if (Timer == 30)
                     {
                         Projectile.velocity = Projectile.velocity.RotatedByRandom(MathHelper.ToRadians(5));
@@ -335,8 +351,8 @@ namespace ShatteredRealm.Content.Items.Weapons.Mage.Staffs
                     target.AddBuff(BuffID.OnFire3, 900);
                     Timer++;
                     break;
-                case "yellow":
-                    target.AddBuff(BuffID.Ichor, 500);
+                case "blue":
+                    target.AddBuff(BuffID.Wet, 500);
                     if (Timer == 300)
                     {
                         Projectile.velocity *= -1;

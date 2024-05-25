@@ -655,8 +655,19 @@ Items: {
 			'''
 			Launches orbs of color, each doing different things
 			Right-clicking will shoot a rainbow shot
+			Suggested by "some guy with a long name."
 			'''
-		DisplayName: Scorned Wand of the Forgotten Hero
+		DisplayName: Ruined Wand of the Forgotten God
+	}
+
+	GravitationalStaffUpgrade: {
+		DisplayName: Wand of the Forgotten God
+		Tooltip:
+			'''
+			Launches orbs of color, each doing different things
+			Right-clicking will shoot a rainbow shot
+			Suggested by "some guy with an even longer name."
+			'''
 	}
 }
 

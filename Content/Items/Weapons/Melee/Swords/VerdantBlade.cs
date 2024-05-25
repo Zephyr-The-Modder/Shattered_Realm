@@ -35,7 +35,7 @@ namespace ShatteredRealm.Content.Items.Weapons.Melee.Swords
 		}
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-			if (Main.rand.Next(1, 6) >= 3)
+			if (Main.rand.NextBool(3))
             {
 				Projectile.NewProjectileDirect(Item.GetSource_FromThis(), target.Center, Item.velocity, ModContent.ProjectileType<SporeGasCloud>(), Item.damage - 10, Item.knockBack, player.whoAmI);
 			}
