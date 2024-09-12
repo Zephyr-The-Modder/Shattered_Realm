@@ -21,6 +21,9 @@ using Steamworks;
 using log4net.Core;
 using ShatteredRealm.Content.Buffs.Debuffs;
 using ShatteredRealm.Content.Items.Accessories.ShieldModifiers;
+using MonoMod.Logs;
+using Terraria.GameInput;
+using ShatteredRealm.Content.Systems;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -67,6 +70,7 @@ namespace ShatteredRealm.Content.Globals
 
         public int MinimumShieldDamage = 10;
         public int MaximumShieldDamage = 70;
+        public int ShieldChargeWarp = 0;
         public bool StaticLegs;
         public bool ShockBonus1;
         public bool StaticSet;
@@ -83,6 +87,7 @@ namespace ShatteredRealm.Content.Globals
         public bool stardustShield;
         public int nebulaDamage;
         public bool nebulaTargetFound = false;
+
 
         //Misc
         public int plantburnerConsume = 1; //Used to consume ammo on the Spore Spewer
@@ -129,6 +134,16 @@ namespace ShatteredRealm.Content.Globals
             }
         }
 
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (WarpShieldKeybind.WarpShield.JustPressed && shieldType == "TeleportingShield")
+            {
+                if (ShieldChargeWarp >= 1)
+                {
+                    TeleportCursor(true, 40);
+                }
+            }
+        }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (verdantSetBonus && Main.rand.Next(1, 4) == 1)
@@ -278,7 +293,7 @@ namespace ShatteredRealm.Content.Globals
             nebulaShield = false;
             vortexShield = false;
             stardustShield = false;
-            InversePolarity = false; 
+            InversePolarity = false;
             base.ResetEffects();
         }
 
@@ -488,12 +503,9 @@ namespace ShatteredRealm.Content.Globals
                     }
                     break;
                 case "TeleportingShield":
-                    Player.Teleport(Main.MouseWorld, TeleportationStyleID.RodOfDiscord);
-                    if (Player.immuneTime < SRUtils.ScaleShieldEffectPower(30, Player))
-                    {
-                        Player.immuneTime = SRUtils.ScaleShieldEffectPower(30, Player);
-                    }
-
+                    ShieldChargeWarp += 3;
+                    CombatText.NewText(Player.getRect(), Color.HotPink, "+3, Total: " + ShieldChargeWarp, false);
+                    MathHelper.Clamp(ShieldChargeWarp, 0, 10);
                     break;
                 case "WoodShield":
                     break;
@@ -605,6 +617,36 @@ namespace ShatteredRealm.Content.Globals
                     break;
 
 
+            }
+        }
+        public void TeleportCursor(bool warpShield, int iframes)
+        {
+            if (warpShield)
+            {
+                if (ShieldChargeWarp > 0)
+                {
+                    Player.Teleport(Main.MouseWorld, TeleportationStyleID.RodOfDiscord);
+                    if (Player.immuneTime < SRUtils.ScaleShieldEffectPower(iframes, Player))
+                    {
+                        Player.immuneTime = SRUtils.ScaleShieldEffectPower(iframes, Player);
+                    }
+                }
+            }
+            else
+            {
+                Player.Teleport(Main.MouseWorld, TeleportationStyleID.RodOfDiscord);
+                if (Player.immuneTime < iframes)
+                {
+                    Player.immuneTime = iframes;
+                }
+            }
+
+
+            if (warpShield)
+            {
+                ShieldChargeWarp--;
+                CombatText.NewText(Player.getRect(), Color.HotPink, "-1, Total: " + ShieldChargeWarp, false);
+                MathHelper.Clamp(ShieldChargeWarp, 0, 10);
             }
         }
         public void FindNebulaTarget()

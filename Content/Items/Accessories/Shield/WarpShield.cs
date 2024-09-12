@@ -44,9 +44,9 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
             Item.rare = ItemRarityID.LightRed;
 
             Item.shieldItem().shield = true;
-			Item.shieldItem().absorption = 0.28f;
-			Item.shieldItem().durability = 85;
-			Item.shieldItem().cooldown = 60 * 35;
+			Item.shieldItem().absorption = 0.35f;
+			Item.shieldItem().durability = 35;
+			Item.shieldItem().cooldown = 60 * 10;
 			Item.shieldItem().shieldType = "TeleportingShield";
             Item.shieldItem().shieldBreakColor = Color.HotPink;
 

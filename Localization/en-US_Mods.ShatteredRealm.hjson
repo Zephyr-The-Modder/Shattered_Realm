@@ -30,6 +30,8 @@ Projectiles: {
 	FireFeather.DisplayName: Fire Feather
 	CactusThorn.DisplayName: Cactus Thorn
 	GravitationalRock.DisplayName: Gravitational Rock
+	ZephyrWandProj.DisplayName: Zephyr Wand Proj
+	GodHammerProj.DisplayName: God Hammer Proj
 }
 
 Items: {
@@ -382,9 +384,10 @@ Items: {
 			Shield Durability: {0}
 			Shield Resilience: {1}
 			Shield Cooldown: {2}
-			On shield break, teleport to the cursor without repercussions.
-			Gain half a second of invincibility after teleporting; scales with shield effect power.
-			"Yer a wizard, Harry!"
+			On shield break, gain three charges.
+			Press X (or your keybind) to teleport to the cursor at the cost of a charge.
+			Gain 40 frames of invincibility after teleporting; scales with shield effect power.
+			"Don't teleport inside a wall!"
 			'''
 		DisplayName: Warp Shield
 		Tooltip: ""
@@ -567,7 +570,7 @@ Items: {
 
 	ReversePolarity: {
 		DisplayName: Reverse Polarity
-		Tooltip: Reverses the fragments of the pillar shields
+		Tooltip: Reverses the fragments of the celestial shields
 	}
 
 	NebulaShield: {
@@ -669,6 +672,62 @@ Items: {
 			Suggested by "some guy with an even longer name."
 			'''
 	}
+
+	ZephyrWand: {
+		DisplayName: Wand of the Crystalline God
+		Tooltip:
+			'''
+			Fires many shards of piercing crystals
+			-Dev Item-
+			'''
+	}
+
+	GamblersPouch: {
+		DisplayName: Gambler's Pouch
+		Tooltip: Adds RNG to your attacks!
+	}
+
+	GodHammer: {
+		DisplayName: Godly Hammer of Lightning
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			{0}
+			{1}
+			A powerful hammer, forged by a god.
+			Throw it with left-click.
+			Recall it with right-click.
+			It upgrades with frequent use.
+			'''
+	}
+
+	GodHammer2: {
+		DisplayName: Godly Hammer of Fire
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			{0}
+			{1}
+			A powerful hammer, forged by a god.
+			Throw it with left-click.
+			Recall it with right-click.
+			It upgrades with frequent use.
+			'''
+	}
+
+	GodHammer3: {
+		DisplayName: Godly Hammer of Healing
+		Tooltip: ""
+		TooltipWithVar:
+			'''
+			{0}
+			{1}
+			A powerful hammer, forged by a god.
+			Throw it with left-click.
+			Recall it with right-click.
+			It upgrades with frequent use.
+			'''
+	}
 }
 
 UI: {
@@ -749,7 +808,10 @@ Buffs: {
 	}
 }
 
-Keybinds.StaticSetBonus.DisplayName: Static Set Bonus
+Keybinds: {
+	StaticSetBonus.DisplayName: Static Set Bonus
+	"Shield of Discord Teleport.DisplayName": Shield of  Discord  Teleport
+}
 
 Prefixes: {
 	PrefixSturdy: {

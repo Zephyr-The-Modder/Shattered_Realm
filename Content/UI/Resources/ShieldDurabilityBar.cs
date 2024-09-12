@@ -128,14 +128,14 @@ namespace ShatteredRealm.Content.UI.Resources
 				textlabel = modPlayer.shieldDurability + "/" + maxShieldDurability;
             }
 
-			text.SetText(ExampleResourceUISystem.DurabilityResourceText.Format(textlabel));
+			text.SetText(DurabilityUISystem.DurabilityResourceText.Format(textlabel));
 			base.Update(gameTime);
 		}
 	}
 
 	// This class will only be autoloaded/registered if we're not loading on a server
 	[Autoload(Side = ModSide.Client)]
-	internal class ExampleResourceUISystem : ModSystem
+	internal class DurabilityUISystem : ModSystem
 	{
 		private UserInterface DurabilityResourceBarUserInterface;
 
