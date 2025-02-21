@@ -24,6 +24,8 @@ using ShatteredRealm.Content.Items.Accessories.ShieldModifiers;
 using MonoMod.Logs;
 using Terraria.GameInput;
 using ShatteredRealm.Content.Systems;
+using System;
+using Terraria.WorldBuilding;
 
 namespace ShatteredRealm.Content.Globals
 {
@@ -57,7 +59,10 @@ namespace ShatteredRealm.Content.Globals
         public float shieldDurabilityMult;
         public float shieldCooldownMult;
         public bool overrideShieldBreak;
-        public bool overridePlayerDamage;
+        public int osd;
+        public int osd2;
+        public int osd3;
+        public float opd;
         public Color shieldBreakColor;
 
         public float ShieldEffectPower;
@@ -276,7 +281,6 @@ namespace ShatteredRealm.Content.Globals
             shieldCooldownMult = 1;
             shieldDurabilityMult = 1;
             shieldBreakColor = Color.LightGray;
-            overridePlayerDamage = false;
             overrideShieldBreak = false;
             CrystalCoating = false;
             StaticLegs = false;
@@ -294,6 +298,7 @@ namespace ShatteredRealm.Content.Globals
             vortexShield = false;
             stardustShield = false;
             InversePolarity = false;
+            osd = 0;
             base.ResetEffects();
         }
 
@@ -363,33 +368,28 @@ namespace ShatteredRealm.Content.Globals
 
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            if (!overridePlayerDamage)
+            //modifiers.FinalDamage *= ChangeHurt();
+        }
+
+        public float ChangeHurt()
+        {
+            int opd2;
+            float finalDamage = 1;
+            if (opd > 0)
             {
-                if (shieldEquipped && shieldDurability > 0)
-                {
-                    modifiers.FinalDamage *= ShieldDR;
-                }
+                opd2 = (int)MathF.Abs(opd);
+                finalDamage *= opd2;
+            }
+            else if (opd < 0)
+            {
+                opd2 = (int)MathF.Abs(opd);
+                finalDamage /= opd2;
             }
             else
             {
-                if (shieldEquipped && shieldDurability > 0)
-                {
-                    modifiers.FinalDamage *= ChangeHurt(shieldType);
-                }
+                finalDamage *= ShieldDR;
             }
-
-        }
-
-        public float ChangeHurt(string type)
-        {
-            float HurtModifiers = 1;
-            switch (type)
-            {
-                case "TurtleShield":
-                    HurtModifiers = 0.00000001f;
-                    break;
-            }
-            return HurtModifiers;
+            return finalDamage;
         }
 
         public override void OnHurt(Player.HurtInfo info)
@@ -418,7 +418,22 @@ namespace ShatteredRealm.Content.Globals
 
         public void DamageShield(int dmg, float damageModifier, Player.HurtInfo info)
         {
-            shieldDurability -= (int)(dmg * damageModifier);
+            if (osd != 0)
+            {
+                if (osd2 != 0 || osd3 != 0)
+                {
+                    shieldDurability -= osd + Main.rand.Next(osd2, osd3 + 1);
+                }
+                else
+                {
+                    shieldDurability -= osd;
+                }
+            }
+            else
+            {
+                shieldDurability -= (int)(dmg * damageModifier);
+            }
+            
             CombatText.NewText(Player.getRect(), Color.DarkCyan, dmg);
             ShieldDamageEffects(info);
         }
@@ -459,6 +474,9 @@ namespace ShatteredRealm.Content.Globals
                     break;
                 case "TurtleShield":
                     modifiedDmg = info.SourceDamage;
+                    break;
+                case "CataShield":
+                    modifiedDmg = info.SourceDamage * 2;
                     break;
             }
             return modifiedDmg;
@@ -531,6 +549,9 @@ namespace ShatteredRealm.Content.Globals
                     break;
                 case "PlatinumShield":
                     Player.AddBuff(ModContent.BuffType<PlatinumShieldLuck>(), SRUtils.ScaleShieldEffectPower(600, Player));
+                    break;
+                case "CataShield":
+                    Player.AddBuff(ModContent.BuffType<CataShieldFire>(), SRUtils.ScaleShieldEffectPower(360, Player));
                     break;
                 case "StoneShield":
                     break;

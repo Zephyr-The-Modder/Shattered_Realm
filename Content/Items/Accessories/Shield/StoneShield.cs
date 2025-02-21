@@ -53,7 +53,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Shield
 			Item.accessory = true;
             Item.rare = ItemRarityID.Blue;
 
-            Item.shieldItem().overrideShieldDamage = true;
+            Item.shieldItem().playerDT = -1.125f;
             Item.shieldItem().shield = true;
 
 			Item.shieldItem().absorption = 0.09f;

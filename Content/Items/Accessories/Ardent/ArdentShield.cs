@@ -43,7 +43,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Ardent
             Item.accessory = true;
             Item.defense = 7;
 
-            Item.shieldItem().overrideShieldDamage = true;
+            Item.shieldItem().playerDT = -1.4f;
             Item.shieldItem().shield = true;
 
             Item.shieldItem().absorption = 0.35f;

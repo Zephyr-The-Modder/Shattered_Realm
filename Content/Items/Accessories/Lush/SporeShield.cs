@@ -42,7 +42,7 @@ namespace ShatteredRealm.Content.Items.Accessories.Lush
 			Item.value = Item.buyPrice(gold: 11);
 			Item.accessory = true;
 
-			Item.shieldItem().overrideShieldDamage = true;
+			Item.shieldItem().playerDT = -1.1f;
 			Item.shieldItem().shield = true;
 
 			Item.shieldItem().absorption = 0.18f;

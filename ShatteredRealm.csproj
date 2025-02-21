@@ -10,15 +10,21 @@
 
 	<!-- References -->
 	<ItemGroup>
+	  <None Remove="Content\Buffs\CataShieldFire.png" />
+	  <None Remove="Content\Items\Accessories\Shield\CatastrophicShield.png" />
+	  <None Remove="Content\Items\Accessories\Shield\CatastrophicShield_Shield.png" />
 	  <None Remove="Content\Items\Armor\Vanity\TemplateLush_Head.png" />
 	  <None Remove="Content\Items\Armor\ViperHelmet_Head.png" />
-	  <None Remove="Content\Items\Weapons\Mage\Books\ManyThorns.png" />
+	  <None Remove="Content\Items\Weapons\Mage\Books\BlossomPetal.png" />
+	  <None Remove="Content\Items\Weapons\Mage\Books\FlowerProjectile.png" />
+	  <None Remove="Content\Items\Weapons\Mage\Books\YharonPlushieProj.png" />
 	  <None Remove="Content\Items\Weapons\Mage\Staffs\GravitationalStaff.png" />
 	  <None Remove="Content\Items\Weapons\Melee\Swords\GodHammer2.png" />
 	  <None Remove="Content\Items\Weapons\Melee\Swords\GodHammer3.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Bows\EaterBow.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Guns\Blunderbuss.png" />
 	  <None Remove="Content\Items\Weapons\Ranged\Guns\FirebirdDummy.png" />
+	  <None Remove="Content\Items\Weapons\Ranged\Guns\FirebirdProj.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Content\Items\Weapons\Summoner\Whips\" />

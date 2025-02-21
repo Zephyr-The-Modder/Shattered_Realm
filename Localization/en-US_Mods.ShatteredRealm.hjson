@@ -32,6 +32,11 @@ Projectiles: {
 	GravitationalRock.DisplayName: Gravitational Rock
 	ZephyrWandProj.DisplayName: Zephyr Wand Proj
 	GodHammerProj.DisplayName: God Hammer Proj
+	FirebirdProj.DisplayName: Burning Bullet
+	IcicleProjectile.DisplayName: Icicle Projectile
+	LargeIcicleProjectile.DisplayName: Large Icicle Projectile
+	BlossomPetal.DisplayName: Blossom Petal
+	YharonPlushieProj.DisplayName: Yharon Plushie Proj
 }
 
 Items: {
@@ -46,7 +51,7 @@ Items: {
 	}
 
 	VerdantBow: {
-		DisplayName: Blossom Shortbow
+		DisplayName: Blossom Shotbow
 		Tooltip: Occasionally shoots exploding flowers
 	}
 
@@ -90,10 +95,10 @@ Items: {
 	VerdantStaff: {
 		Tooltip:
 			'''
-			Fires several thorns at the cursor 
-			Right click to fire lifestealing thorns for a tradeoff for damage and accuracy
+			Fires powerful exploding flowers
+			Flowers explode into blossom beams which instantly hit the nearest enemy
 			'''
-		DisplayName: Book of Thorns
+		DisplayName: Petal Staff
 	}
 
 	PlantBurner: {
@@ -259,11 +264,11 @@ Items: {
 	}
 
 	Firebird: {
-		DisplayName: Firebird
+		DisplayName: Eruption
 		Tooltip:
 			'''
-			Fires many bullets in a spread.
-			The longer you hold out the gun, the faster they fire, and some even turn into flame.
+			Fires bursts of bullets.
+			At the end of each burst, fires a flurry of homing burning bullets.
 			'''
 	}
 
@@ -562,7 +567,7 @@ Items: {
 			+10% summon damage when shield is active
 			When shield is active, gain 10 defense, but move 10% slower
 			Otherwise, lose 5 but move 20% faster
-			These effects are inversed when the shield is reversed
+			These effects are inversed when the shield is reversed 
 			'''
 		DisplayName: Solar Shield
 		Tooltip: ""
@@ -728,6 +733,26 @@ Items: {
 			It upgrades with frequent use.
 			'''
 	}
+
+	CatastrophicShield: {
+		TooltipWithVar: Mods.ShatteredRealm.Items.CatastrophicShield.TooltipWithVar
+		DisplayName: Catastrophic Shield
+		Tooltip: ""
+	}
+
+	FrostBlaster: {
+		DisplayName: Frost Blaster
+		Tooltip: ""
+	}
+
+	YharonPlushie: {
+		DisplayName: Yharon Plushie
+		Tooltip:
+			'''
+			THE ENEMY ASCENDED BEYOND YOUR CONTROL-
+			[Dev-Item]
+			'''
+	}
 }
 
 UI: {
@@ -805,6 +830,11 @@ Buffs: {
 	PauseCooldownVortexTwo: {
 		DisplayName: Paused Cooldown
 		Description: Cooldown stopped!
+	}
+
+	CataShieldFire: {
+		DisplayName: Cata Shield Fire
+		Description: Mods.ShatteredRealm.Buffs.CataShieldFire.Description
 	}
 }
 
